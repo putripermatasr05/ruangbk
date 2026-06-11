@@ -13,24 +13,51 @@ const tabs = [
 /* Quiz Data: Belajar */
 const quizBelajar = {
   title: '🧩 Temukan Gaya Belajar Dominanmu',
-  subtitle: 'Jawab pertanyaan berikut dengan jujur untuk menemukan cara belajar terbaikmu.',
+  subtitle: 'Jawab 5 pertanyaan berikut dengan jujur untuk menemukan metode belajar yang paling efektif untukmu.',
   questions: [
     {
       id: 'q1', type: 'radio',
-      text: 'Saat merakit barang baru (misal: rak buku), apa yang kamu lakukan?',
+      text: '1. Saat merakit barang baru (misal: rak buku), apa yang pertama kali kamu lakukan?',
       options: [
-        { label: 'A', value: 'visual', text: 'Melihat buku panduan bergambar.' },
+        { label: 'A', value: 'visual', text: 'Melihat buku panduan bergambar secara detail.' },
         { label: 'B', value: 'auditori', text: 'Meminta bantuan orang lain membacakan instruksinya.' },
-        { label: 'C', value: 'kinestetik', text: 'Langsung mencoba menggabungkan bagian-bagiannya.' },
+        { label: 'C', value: 'kinestetik', text: 'Langsung mencoba merakit bagian-bagiannya sambil jalan.' },
       ],
     },
     {
       id: 'q2', type: 'radio',
-      text: 'Jika harus menghafal nomor telepon baru, bagaimana caramu?',
+      text: '2. Jika harus menghafal materi penting, bagaimana caramu?',
       options: [
-        { label: 'A', value: 'visual', text: 'Membayangkan urutan angkanya di kepala.' },
-        { label: 'B', value: 'auditori', text: 'Mengucapkan angkanya berulang-ulang bersuara.' },
-        { label: 'C', value: 'kinestetik', text: 'Menuliskan angkanya di kertas atau di udara.' },
+        { label: 'A', value: 'visual', text: 'Membuat mind-map, memakai stabilo warna-warni, atau membaca berulang.' },
+        { label: 'B', value: 'auditori', text: 'Mengucapkan materinya keras-keras atau berdiskusi dengan teman.' },
+        { label: 'C', value: 'kinestetik', text: 'Menulis ulang materi berulang kali atau belajar sambil berjalan mondar-mandir.' },
+      ],
+    },
+    {
+      id: 'q3', type: 'radio',
+      text: '3. Apa hal yang paling mengganggu konsentrasimu saat sedang belajar?',
+      options: [
+        { label: 'A', value: 'visual', text: 'Meja belajar atau kamar yang sangat berantakan.' },
+        { label: 'B', value: 'auditori', text: 'Suara bising, musik keras, atau orang ngobrol.' },
+        { label: 'C', value: 'kinestetik', text: 'Harus duduk diam terlalu lama tanpa bergerak.' },
+      ],
+    },
+    {
+      id: 'q4', type: 'radio',
+      text: '4. Saat membaca cerita, apa yang paling sering terjadi di kepalamu?',
+      options: [
+        { label: 'A', value: 'visual', text: 'Membayangkan adegan dan wajah karakter dengan sangat jelas.' },
+        { label: 'B', value: 'auditori', text: 'Mendengar intonasi suara percakapan karakter di pikiran.' },
+        { label: 'C', value: 'kinestetik', text: 'Ikut merasakan emosi karakter atau tanpa sadar meniru ekspresi mereka.' },
+      ],
+    },
+    {
+      id: 'q5', type: 'radio',
+      text: '5. Saat tersesat di tempat baru, apa yang biasanya kamu lakukan?',
+      options: [
+        { label: 'A', value: 'visual', text: 'Melihat peta atau Google Maps untuk mencari rute visual.' },
+        { label: 'B', value: 'auditori', text: 'Langsung bertanya arah kepada orang sekitar atau satpam.' },
+        { label: 'C', value: 'kinestetik', text: 'Terus berjalan mencoba-coba mencari jalan yang benar.' },
       ],
     },
   ],
@@ -39,9 +66,9 @@ const quizBelajar = {
     Object.values(answers).forEach((v) => { if (counts[v] !== undefined) counts[v]++ })
     const winner = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0]
     const map = {
-      visual: { icon: '👁️', title: 'Gaya Belajarmu: Visual!', desc: 'Gunakan mind-map, stabilo warna-warni, atau tonton video ilustrasi untuk mempercepat pemahamanmu.', tags: ['Mind-Map', 'Video Edukasi', 'Diagram Warna'] },
-      auditori: { icon: '👂', title: 'Gaya Belajarmu: Auditori!', desc: 'Coba rekam suara gurumu, belajar sambil diskusi, atau buat lagu dari materi hafalan.', tags: ['Rekam Penjelasan', 'Diskusi Kelompok', 'Podcast Belajar'] },
-      kinestetik: { icon: '🤸', title: 'Gaya Belajarmu: Kinestetik!', desc: 'Kamu butuh praktik langsung. Sering-seringlah bergerak saat menghafal, atau lakukan eksperimen mini.', tags: ['Praktik Langsung', 'Eksperimen', 'Role Play'] },
+      visual: { icon: '👁️', title: 'Gaya Belajarmu: Visual!', desc: 'Kamu menangkap informasi lebih cepat melalui gambar dan visual. Manfaatkan diagram, mind-map, dan video ilustrasi. Jangan ragu menggunakan warna-warni untuk menandai catatanmu!', tags: ['Mind-Map', 'Video Edukasi', 'Catatan Berwarna'] },
+      auditori: { icon: '👂', title: 'Gaya Belajarmu: Auditori!', desc: 'Telingamu adalah senjata utamamu! Kamu sangat cepat paham jika mendengar penjelasan. Coba rekam suara gurumu, belajar sambil diskusi, atau jelaskan kembali materi ke dirimu sendiri bersuara.', tags: ['Rekam Penjelasan', 'Diskusi Kelompok', 'Podcast Belajar'] },
+      kinestetik: { icon: '🤸', title: 'Gaya Belajarmu: Kinestetik!', desc: 'Kamu tidak bisa hanya duduk diam! Kamu butuh praktik langsung. Sering-seringlah bergerak saat menghafal, lakukan eksperimen mini, atau gunakan benda nyata untuk simulasi.', tags: ['Praktik Langsung', 'Belajar Aktif', 'Role Play'] },
     }
     return map[winner]
   },
@@ -49,32 +76,41 @@ const quizBelajar = {
 
 /* Quiz Data: Karir */
 const quizKarir = {
-  title: '🎯 Tipe Kepribadian Pekerja (RIASEC Mini)',
-  subtitle: 'Nilai setiap pernyataan dari skala 1–5 sesuai dirimu yang sebenarnya.',
+  title: '🎯 Asesmen Minat Karir (RIASEC Lengkap)',
+  subtitle: 'Nilai setiap pernyataan dari skala 1–5 (1: Sangat Tidak Setuju, 5: Sangat Setuju).',
   questions: [
-    {
-      id: 'qk1', type: 'scale',
-      text: 'Aku suka merancang, membangun, atau memperbaiki sesuatu secara teknis (mesin, program, konstruksi).',
-      key: 'teknis',
-    },
-    {
-      id: 'qk2', type: 'scale',
-      text: 'Aku menikmati membantu orang lain, mengajar, atau memberikan bimbingan dan dukungan.',
-      key: 'sosial',
-    },
-    {
-      id: 'qk3', type: 'scale',
-      text: 'Aku tertarik dengan seni, kreasi konten, desain, musik, atau ekspresi kreatif lainnya.',
-      key: 'kreatif',
-    },
+    { id: 'qk1', type: 'scale', text: '1. Aku suka merakit mesin, memperbaiki peralatan, atau bekerja di luar ruangan dengan alat.', key: 'R' },
+    { id: 'qk2', type: 'scale', text: '2. Aku suka menganalisis data, melakukan eksperimen, atau memecahkan soal matematika/sains.', key: 'I' },
+    { id: 'qk3', type: 'scale', text: '3. Aku tertarik menciptakan sesuatu yang original melalui seni, desain, musik, atau tulisan.', key: 'A' },
+    { id: 'qk4', type: 'scale', text: '4. Aku menikmati mengajar, merawat, atau memberikan dukungan emosional kepada orang lain.', key: 'S' },
+    { id: 'qk5', type: 'scale', text: '5. Aku suka memimpin tim, meyakinkan orang lain, atau mengambil risiko dalam proyek/bisnis.', key: 'E' },
+    { id: 'qk6', type: 'scale', text: '6. Aku nyaman bekerja dengan data yang terorganisir, menyusun jadwal, dan mengikuti instruksi/SOP.', key: 'C' },
   ],
   getResult: (answers) => {
-    const scores = { teknis: Number(answers[0] || 0), sosial: Number(answers[1] || 0), kreatif: Number(answers[2] || 0) }
-    const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0]
+    // 0:R, 1:I, 2:A, 3:S, 4:E, 5:C
+    const scores = {
+      realistik: Number(answers[0] || 0),
+      investigatif: Number(answers[1] || 0),
+      artistik: Number(answers[2] || 0),
+      sosial: Number(answers[3] || 0),
+      enterprising: Number(answers[4] || 0),
+      konvensional: Number(answers[5] || 0),
+    }
+    
+    // Kelompokkan menjadi rumpun dominan
+    const rumpun = {
+      teknis_sains: scores.realistik + scores.investigatif,
+      seni_kreatif: scores.artistik,
+      sosial_edukasi: scores.sosial,
+      bisnis_manajemen: scores.enterprising + scores.konvensional,
+    }
+    
+    const winner = Object.entries(rumpun).sort((a, b) => b[1] - a[1])[0][0]
     const map = {
-      teknis: { icon: '⚙️', title: 'Tipe Realistik–Investigatif', desc: 'Kamu berbakat di bidang teknis dan analitis. Jurusan Saintek sangat cocok untuk mengembangkan potensimu.', tags: ['Teknik Informatika', 'Teknik Mesin', 'MIPA', 'Kedokteran'] },
-      sosial: { icon: '🤝', title: 'Tipe Sosial–Enterprising', desc: 'Kamu senang berinteraksi dan membantu. Bidang sosial, pendidikan, atau manajemen sangat sesuai denganmu.', tags: ['Psikologi', 'Pendidikan', 'Komunikasi', 'Manajemen'] },
-      kreatif: { icon: '🎨', title: 'Tipe Artistik–Kreatif', desc: 'Jiwa senimu kuat! Eksplorasi jurusan yang menggabungkan kreativitas dengan teknologi modern.', tags: ['Desain Komunikasi Visual', 'Arsitektur', 'Seni Rupa', 'Multimedia'] },
+      teknis_sains: { icon: '🔬', title: 'Tipe Pemikir & Praktisi (R/I)', desc: 'Kamu logis, analitis, dan suka hal yang pasti. Kamu unggul memecahkan masalah teknis atau ilmiah. Bidang STEM sangat menjanjikan untukmu.', tags: ['Teknik', 'Kedokteran', 'MIPA', 'IT / Programmer'] },
+      seni_kreatif: { icon: '🎨', title: 'Tipe Kreator (Artistik)', desc: 'Jiwa senimu tak terbendung! Kamu out-of-the-box dan ekspresif. Dunia membutuhkan inovasi dan sentuhan keindahan dari karyamu.', tags: ['DKV', 'Arsitektur', 'Ilmu Komunikasi', 'Seni Musik/Rupa'] },
+      sosial_edukasi: { icon: '🤝', title: 'Tipe Pembimbing (Sosial)', desc: 'Empatimu tinggi. Kamu senang interaksi manusia, mendengarkan, dan membantu orang berkembang. Lingkungan edukasi dan kesehatan masyarakat menantimu.', tags: ['Psikologi', 'Pendidikan', 'Keperawatan', 'Sosiologi'] },
+      bisnis_manajemen: { icon: '📊', title: 'Tipe Penggerak (E/C)', desc: 'Kamu memiliki jiwa kepemimpinan, suka mengorganisir, dan berorientasi pada target. Kamu sangat cocok memimpin proyek, menata administrasi, atau membangun usaha.', tags: ['Manajemen Bisnis', 'Akuntansi', 'Ilmu Hukum', 'Hubungan Internasional'] },
     }
     return map[winner]
   },
@@ -82,103 +118,188 @@ const quizKarir = {
 
 /* Quiz Data: Pribadi-Sosial */
 const quizPribadi = {
-  title: '🌱 Seberapa Sehat Kehidupan Sosialmu?',
-  subtitle: 'Jawab pertanyaan singkat ini untuk mengetahui gambaran dinamika sosialmu.',
+  title: '🌱 Evaluasi Kesejahteraan Emosional & Sosial',
+  subtitle: 'Pilih respons yang paling mencerminkan dirimu dalam situasi sehari-hari.',
   questions: [
     {
       id: 'qp1', type: 'radio',
-      text: 'Saat ada masalah berat, apa yang biasanya kamu lakukan?',
+      text: '1. Saat menghadapi tekanan tugas sekolah yang menumpuk, apa yang biasa kamu lakukan?',
       options: [
-        { label: 'A', value: 'terbuka', text: 'Bercerita ke teman atau orang tua yang dipercaya.' },
-        { label: 'B', value: 'mandiri', text: 'Mencari solusi sendiri dengan refleksi dan jurnal.' },
-        { label: 'C', value: 'tertutup', text: 'Memendam sendiri dan menghindari pembicaraan.' },
+        { label: 'A', value: 'sehat', text: 'Membuat jadwal prioritas, mencicilnya, dan minta bantuan jika kewalahan.' },
+        { label: 'B', value: 'sedang', text: 'Memaksakan diri begadang mengejar target sampai kelelahan total.' },
+        { label: 'C', value: 'kritis', text: 'Menghindar sepenuhnya (procrastination), bermain medsos, atau pasrah.' },
       ],
     },
     {
       id: 'qp2', type: 'radio',
-      text: 'Bagaimana kamu biasanya merespons kritik dari teman?',
+      text: '2. Saat seseorang memberikan kritik membangun terhadap tugasmu, reaksimu adalah...',
       options: [
-        { label: 'A', value: 'terbuka', text: 'Menerima dan mempertimbangkan sebagai masukan.' },
-        { label: 'B', value: 'mandiri', text: 'Refleksi dulu sebelum merespons.' },
-        { label: 'C', value: 'tertutup', text: 'Merasa tersinggung dan menarik diri.' },
+        { label: 'A', value: 'sehat', text: 'Mendengarkan, memikirkannya, lalu merevisi jika memang masuk akal.' },
+        { label: 'B', value: 'sedang', text: 'Diam menerimanya, tapi diam-diam merasa sedikit tidak berharga.' },
+        { label: 'C', value: 'kritis', text: 'Langsung tersinggung, defensif, atau balik menyalahkan orang tersebut.' },
+      ],
+    },
+    {
+      id: 'qp3', type: 'radio',
+      text: '3. Berapa sering kamu merasa "kosong" atau kehilangan minat pada hobi yang dulu kamu sukai?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Jarang. Sesekali bosan, tapi segera kembali antusias.' },
+        { label: 'B', value: 'sedang', text: 'Kadang-kadang, terutama saat sedang banyak sekali pikiran.' },
+        { label: 'C', value: 'kritis', text: 'Sangat sering atau hampir setiap hari belakangan ini.' },
+      ],
+    },
+    {
+      id: 'qp4', type: 'radio',
+      text: '4. Dalam lingkungan sosial (sekolah/teman), apakah kamu merasa punya tempat bercerita?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Ya, aku punya teman/keluarga yang sangat mendukung dan dapat dipercaya.' },
+        { label: 'B', value: 'sedang', text: 'Ada, tapi aku masih sering menyembunyikan perasaan asliku.' },
+        { label: 'C', value: 'kritis', text: 'Tidak ada. Aku merasa sangat sendirian dan terisolasi.' },
       ],
     },
   ],
   getResult: (answers) => {
     const vals = Object.values(answers)
-    const hasTertutup = vals.includes('tertutup')
-    const allTerbuka = vals.every((v) => v === 'terbuka')
-    if (allTerbuka) return { icon: '🌟', title: 'Sosialmu Sangat Sehat!', desc: 'Kamu memiliki kemampuan komunikasi yang luar biasa. Terus jaga keterbukaan dan empatimu — itu aset besar!', tags: ['Terbuka', 'Empatik', 'Komunikatif'] }
-    if (hasTertutup) return { icon: '💛', title: 'Ada Ruang untuk Bertumbuh', desc: 'Tidak apa-apa merasa tertutup kadang-kadang. Coba mulai dengan bercerita ke satu orang yang paling kamu percaya. TemanBK selalu siap mendengar.', tags: ['Konsultasi BK', 'Bangun Kepercayaan', 'Self-Care'] }
-    return { icon: '✨', title: 'Sosialmu Cukup Sehat!', desc: 'Kamu reflektif dan mandiri. Terus asah kemampuan komunikasimu dan jangan ragu untuk meminta dukungan saat dibutuhkan.', tags: ['Reflektif', 'Mandiri', 'Terus Berkembang'] }
+    const countKritis = vals.filter(v => v === 'kritis').length
+    const countSedang = vals.filter(v => v === 'sedang').length
+    
+    if (countKritis >= 2) {
+      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban yang sangat berat sendirian. Ingat, meminta bantuan bukanlah kelemahan. TemanBK atau psikolog profesional sangat terbuka untuk mendengar dan mendampingimu.', tags: ['Perlu Konseling', 'Self-Care Darurat', 'Jangan Sendirian'] }
+    } else if (countKritis === 1 || countSedang >= 2) {
+      return { icon: '💛', title: 'Beri Waktu untuk Dirimu (Take a Break)', desc: 'Kamu sudah berjuang keras, tapi stres mulai menumpuk. Coba kurangi ekspektasi perfeksionis, mulai jurnaling, dan beranikan diri lebih terbuka ke orang terdekat. Kamu butuh istirahat mental.', tags: ['Manajemen Stres', 'Boundaries', 'Mindfulness'] }
+    } else {
+      return { icon: '🌟', title: 'Kondisi Emosionalmu Sangat Tangguh!', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sangat sehat. Pertahankan kebiasaan positifmu, dan jadilah tempat bersandar yang baik bagi teman-temanmu.', tags: ['Resiliensi Tinggi', 'Empati', 'Sehat Mental'] }
+    }
   },
 }
 
 /* Materi Content */
 const MateriContent = {
   belajar: () => (
-    <div>
-      <div className="flex gap-5 bg-gradient-to-r from-primary/10 to-accent/5 border border-primary/20 rounded-2xl p-6 mb-6">
-        <span className="text-5xl flex-shrink-0" aria-hidden="true">🧠</span>
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex gap-5 bg-gradient-to-r from-primary/10 to-accent/5 border border-primary/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-glow-primary">
+        <span className="text-6xl flex-shrink-0" aria-hidden="true">🧠</span>
         <div>
-          <h2 className="font-display font-bold text-xl mb-2">Gaya Belajar: Kenali Caramu Menyerap Ilmu</h2>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Belajar bukan tentang seberapa lama kamu membaca buku, tapi seberapa paham kamu dengan caramu sendiri. Setiap orang memiliki gaya belajar unik.
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Seni Belajar Efektif (Learn How to Learn)</h2>
+          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+            Belajar bukan tentang begadang 12 jam membaca buku, tapi tentang seberapa pintar otakmu menyandikan informasi. 
+            Mengenali gaya belajar hanyalah langkah pertama. Langkah kedua adalah menerapkan teknik belajar saintifik!
           </p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-3 gap-4">
+      
+      <h3 className="font-bold text-lg mb-4 text-primary-light">1. Tiga Gaya Belajar Utama</h3>
+      <div className="grid lg:grid-cols-3 gap-4 mb-8">
         {[
-          { icon: '👁️', title: 'Visual', tip: 'Gunakan mind-map, diagram, dan video ilustrasi.', desc: 'Belajar melalui gambar, diagram, dan warna. Kamu mudah memahami informasi visual.' },
-          { icon: '👂', title: 'Auditori', tip: 'Rekam penjelasan guru, belajar sambil diskusi.', desc: 'Belajar melalui suara dan percakapan. Informasi lebih mudah diingat bila diucapkan.' },
-          { icon: '🤸', title: 'Kinestetik', tip: 'Praktek langsung, eksperimen mini, belajar sambil gerak.', desc: 'Belajar melalui gerakan dan pengalaman langsung. Kamu butuh terlibat secara fisik.' },
+          { icon: '👁️', title: 'Visual', tip: 'Gunakan mind-map, diagram, dan video.', desc: 'Otak visual memproses informasi bagaikan kamera. Warnai catatanmu, buat infografis, dan bayangkan konsep layaknya film di kepalamu.' },
+          { icon: '👂', title: 'Auditori', tip: 'Rekam penjelasan, diskusi, dengarkan podcast.', desc: 'Otak auditori memproses informasi melalui gelombang suara. Bacakan catatanmu keras-keras atau rekam suaramu sendiri untuk diulang.' },
+          { icon: '🤸', title: 'Kinestetik', tip: 'Praktek langsung, gerakan, role play.', desc: 'Tubuh adalah gurumu. Kamu gampang bosan duduk. Berjalanlah mondar-mandir saat menghafal rumus, atau gunakan benda nyata sebagai peraga.' },
         ].map(({ icon, title, tip, desc }) => (
-          <motion.div key={title} whileHover={{ y: -3 }} className="glass-card p-5 hover:border-primary/30 transition-colors">
-            <span className="text-3xl mb-3 block" aria-hidden="true">{icon}</span>
-            <h3 className="font-bold text-base mb-2">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-3">{desc}</p>
-            <div className="text-xs text-accent bg-accent/8 border border-accent/20 rounded-lg px-3 py-2">
-              <strong>Tips:</strong> {tip}
+          <motion.div key={title} whileHover={{ y: -4 }} className="glass-card p-6 border-t-4 border-t-primary/50 hover:border-primary/50 transition-all">
+            <span className="text-4xl mb-4 block" aria-hidden="true">{icon}</span>
+            <h3 className="font-bold text-lg mb-2">{title}</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+            <div className="text-xs text-primary-light bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
+              <strong>Super-Tip:</strong> {tip}
             </div>
           </motion.div>
         ))}
+      </div>
+
+      <h3 className="font-bold text-lg mb-4 text-accent">2. Teknik Belajar Anti Lupa (Wajib Coba!)</h3>
+      <div className="grid lg:grid-cols-2 gap-4 mb-4">
+        <div className="glass-card p-6 border-l-4 border-l-accent">
+          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🍅 Teknik Pomodoro</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Gunakan timer: <strong>Fokus 25 menit, istirahat 5 menit</strong>. Setelah 4 putaran, istirahat panjang 20 menit. Ini mencegah otak "burnout" mendadak dan memaksimalkan konsentrasi.
+          </p>
+        </div>
+        <div className="glass-card p-6 border-l-4 border-l-royal">
+          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🗣️ Teknik Feynman</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Cara terbaik menguji pemahaman adalah <strong>mengajarkannya kepada orang awam dengan sederhana</strong>. Jika kamu tidak bisa menjelaskannya dengan simpel, kamu belum benar-benar paham.
+          </p>
+        </div>
+        <div className="glass-card p-6 border-l-4 border-l-emerald-500">
+          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🔄 Spaced Repetition</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Sistem Kebut Semalam (SKS) sangat mudah dilupakan otak. Ulang materi secara berkala: <strong>1 hari, 3 hari, 1 minggu, lalu 1 bulan</strong> setelah pertama dipelajari.
+          </p>
+        </div>
+        <div className="glass-card p-6 border-l-4 border-l-rose-500">
+          <h4 className="font-bold text-base mb-2 flex items-center gap-2">📝 Active Recall</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Berhenti sekadar membaca ulang! Tutup bukumu, dan <strong>tulis atau sebutkan semua yang kamu ingat</strong>. Proses ini memaksa koneksi saraf memori bekerja lebih kuat.
+          </p>
+        </div>
       </div>
     </div>
   ),
 
   karir: () => (
-    <div>
-      <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-2xl p-6 mb-6">
-        <span className="text-5xl flex-shrink-0" aria-hidden="true">🎯</span>
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)]">
+        <span className="text-6xl flex-shrink-0" aria-hidden="true">🚀</span>
         <div>
-          <h2 className="font-display font-bold text-xl mb-2">Karir & Masa Depan: Saintek vs Soshum</h2>
-          <p className="text-slate-400 text-sm leading-relaxed">Memilih jurusan adalah langkah besar. Kenali dulu rumpun ilmu dan mitos-mitos seputar dunia perkuliahan.</p>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Perencanaan Karir & Kampus Impian</h2>
+          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+            Pahami rumpun ilmu, temukan Ikigai-mu, dan bersiap hadapi dunia pasca-sekolah! Memilih jurusan dan karir butuh strategi yang matang, bukan sekadar ikut-ikutan teman.
+          </p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 gap-4 mb-6">
+
+      <h3 className="font-bold text-lg mb-4 text-emerald-400">Peta Rumpun Ilmu Pengetahuan</h3>
+      <div className="grid lg:grid-cols-3 gap-4 mb-8">
         {[
-          { icon: '🔬', title: 'Saintek', color: 'emerald', border: 'border-l-emerald-500', bg: 'bg-emerald-500/5', contoh: 'Teknik, Kedokteran, MIPA, Informatika', desc: 'Sains, Teknologi, Rekayasa, Matematika. Cocok untuk kamu yang suka angka, eksperimen, dan inovasi.' },
-          { icon: '📖', title: 'Soshum', color: 'accent', border: 'border-l-accent', bg: 'bg-accent/5', contoh: 'Hukum, Ekonomi, Komunikasi, Psikologi', desc: 'Sosial, Humaniora, Ekonomi, Hukum. Cocok untuk kamu yang suka komunikasi dan analisis sosial.' },
-        ].map(({ icon, title, border, bg, contoh, desc }) => (
-          <motion.div key={title} whileHover={{ y: -3 }} className={`glass-card p-5 border-l-4 ${border} ${bg}`}>
-            <span className="text-3xl mb-3 block" aria-hidden="true">{icon}</span>
-            <h3 className="font-bold text-base mb-2">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-3">{desc}</p>
-            <p className="text-xs text-slate-500"><strong className="text-slate-400">Contoh:</strong> {contoh}</p>
+          { icon: '🔬', title: 'SAINTEK', border: 'border-t-emerald-500', contoh: 'Kedokteran, Ilmu Komputer, Teknik Industri, Statistika.', desc: 'Sains & Teknologi. Cocok untuk pemikir logis yang suka angka, logika pasti, eksperimen, dan inovasi.' },
+          { icon: '📖', title: 'SOSHUM', border: 'border-t-accent', contoh: 'Psikologi, Manajemen, Hukum, Hubungan Internasional, Sastra.', desc: 'Sosial & Humaniora. Fokus pada interaksi masyarakat, dinamika ekonomi, dan hukum. Butuh keahlian analisa sosial.' },
+          { icon: '🛠️', title: 'VOKASI (Terapan)', border: 'border-t-royal', contoh: 'D4 Animasi, D3 Perhotelan, D4 K3, D3 Akuntansi.', desc: '70% Praktik, 30% Teori. Pilihan terbaik jika ingin langsung siap kerja dan mahir secara teknis operasional.' },
+        ].map(({ icon, title, border, contoh, desc }) => (
+          <motion.div key={title} whileHover={{ y: -4 }} className={`glass-card p-6 border-t-4 ${border} hover:bg-white/[0.02] transition-colors`}>
+            <span className="text-4xl mb-3 block" aria-hidden="true">{icon}</span>
+            <h3 className="font-bold text-lg tracking-wider mb-2">{title}</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+            <div className="bg-surface-2 p-3 rounded-xl border border-white/[0.05]">
+              <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold mb-1">Contoh Jurusan</p>
+              <p className="text-xs text-slate-300 font-medium">{contoh}</p>
+            </div>
           </motion.div>
         ))}
       </div>
-      <h3 className="font-bold text-base mb-3">💡 Mitos vs Fakta Perkuliahan</h3>
-      <div className="grid lg:grid-cols-2 gap-3">
+
+      <h3 className="font-bold text-lg mb-4 text-amber-400">Konsep IKIGAI: Merancang Masa Depan</h3>
+      <div className="glass-card p-6 lg:p-8 mb-8 border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-transparent relative overflow-hidden">
+        <div className="relative z-10 text-sm leading-relaxed text-slate-300">
+          <p className="mb-4">Karir impianmu idealnya terletak di irisan 4 pilar <strong>IKIGAI (Alasan untuk hidup)</strong> ala Jepang:</p>
+          <ul className="space-y-3 mb-6 list-disc list-inside marker:text-amber-500">
+            <li><strong>Apa yang kamu CINTAI</strong> (Passion) — Hobimu, ketertarikan utamamu.</li>
+            <li><strong>Apa KEAHLIAN/Bakatmu</strong> (Profession) — Hal yang secara natural kamu kuasai.</li>
+            <li><strong>Apa yang dunia BUTUHKAN</strong> (Mission) — Solusi untuk masalah di sekitarmu.</li>
+            <li><strong>Bagaimana kamu bisa DIBAYAR</strong> (Vocation) — Peluang industri dan prospek kerja nyata.</li>
+          </ul>
+          <p className="text-amber-200 bg-amber-500/10 p-4 rounded-xl border border-amber-500/20">
+            <em>💡 Jangan pilih jurusan hanya karena gengsi. Pilihlah di mana passion dan peluang pasar bertemu.</em>
+          </p>
+        </div>
+      </div>
+
+      <h3 className="font-bold text-base mb-3 flex items-center gap-2"><span className="text-rose-500">❌</span> Mitos vs <span className="text-emerald-500">✅</span> Fakta Perkuliahan</h3>
+      <div className="grid lg:grid-cols-2 gap-4">
         {[
-          { mitos: '"Saintek lebih bergengsi dari Soshum."', fakta: 'Kedua rumpun memiliki peluang karir setara — tergantung kompetensi dan passion-mu.' },
-          { mitos: '"IPK tinggi = sukses karir."', fakta: 'Soft skill, networking, dan pengalaman sama pentingnya dengan IPK di dunia kerja.' },
-        ].map(({ mitos, fakta }) => (
-          <div key={mitos} className="glass-card p-4 text-sm">
-            <span className="inline-block text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 mb-2">MITOS</span>
-            <p className="text-slate-400 mb-3">{mitos}</p>
-            <span className="inline-block text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 mb-2">FAKTA</span>
-            <p className="text-slate-200">{fakta}</p>
+          { mitos: '"Lulusan kampus PTN top pasti langsung dapat kerja."', fakta: 'Perusahaan modern merekrut berdasarkan Portofolio, Soft Skill, dan Pengalaman Magang. Kampus top hanya membantu screening awal.' },
+          { mitos: '"Salah jurusan berarti kiamat masa depan."', fakta: 'Sangat banyak profesional sukses berkarir lintas jurusan. Kemampuan adaptasi dan belajar mandiri lebih menentukan kesuksesan.' },
+          { mitos: '"Anak IPS/Soshum tidak bisa kerja di perusahaan Teknologi (Tech Company)."', fakta: 'Tech company butuh anak Soshum untuk UI/UX Researcher, Digital Marketer, HRD, dan Business Development.' },
+          { mitos: '"IPK tinggi adalah kunci sukses tunggal."', fakta: 'Di dunia kerja nyata: Komunikasi, Etos kerja, dan Problem Solving adalah Rajanya. IPK penting, namun bukan satu-satunya tolok ukur.' },
+        ].map(({ mitos, fakta }, idx) => (
+          <div key={idx} className="glass-card p-5 text-sm flex flex-col gap-3">
+            <div>
+              <span className="inline-block text-xs font-black px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 mb-1">MITOS</span>
+              <p className="text-slate-400 italic">"{mitos}"</p>
+            </div>
+            <div>
+              <span className="inline-block text-xs font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 mb-1">FAKTA</span>
+              <p className="text-slate-200">{fakta}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -186,27 +307,74 @@ const MateriContent = {
   ),
 
   pribadi: () => (
-    <div>
-      <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-2xl p-6 mb-6">
-        <span className="text-5xl flex-shrink-0" aria-hidden="true">🌱</span>
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+        <span className="text-6xl flex-shrink-0" aria-hidden="true">🌱</span>
         <div>
-          <h2 className="font-display font-bold text-xl mb-2">Pengembangan Pribadi & Sosial</h2>
-          <p className="text-slate-400 text-sm leading-relaxed">Memahami diri sendiri adalah langkah pertama menuju hubungan sosial yang sehat dan kehidupan yang bermakna.</p>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Kesehatan Mental & Dinamika Sosial</h2>
+          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+            Kamu tidak akan bisa meraih prestasi luar biasa jika "tangki emosionalmu" kosong. Masa SMA dipenuhi krisis identitas, konflik pertemanan, dan tekanan orang tua. Mari belajar merawat kewarasan.
+          </p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 gap-4">
+
+      <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-rose-400 hover:shadow-[0_8px_30px_rgba(251,113,133,0.1)] transition-all">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-rose-400/20 flex items-center justify-center text-xl">🛡️</div>
+            <h3 className="font-bold text-lg">Anti-Bullying & Cyberbullying</h3>
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed mb-4">
+            Perundungan bukan sekadar "bercanda". Kata-kata anonim di media sosial bisa sangat menyakitkan. Apa yang harus dilakukan?
+          </p>
+          <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside">
+            <li><strong>Speak Up:</strong> Laporkan diam-diam ke guru BK atau orang tua.</li>
+            <li><strong>Block & Report:</strong> Jangan umpan troll. Screenshot bukti, lalu langsung blokir akun pelaku.</li>
+            <li><strong>Jadi Upstander:</strong> Tawarkan bantuan moral jika temanmu jadi korban, jangan diam menonton.</li>
+          </ul>
+        </motion.div>
+
+        <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-sky-400 hover:shadow-[0_8px_30px_rgba(56,189,248,0.1)] transition-all">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-sky-400/20 flex items-center justify-center text-xl">🗣️</div>
+            <h3 className="font-bold text-lg">Komunikasi Asertif (I-Message)</h3>
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed mb-4">
+            Jangan selalu menjadi "People Pleaser" (selalu mengiyakan) atau sebaliknya menjadi agresif. Asertif adalah mengutarakan kemauan tanpa menyakiti orang lain.
+          </p>
+          <div className="bg-surface-2 p-4 rounded-xl border border-white/[0.05]">
+            <p className="text-sm font-semibold text-white mb-2">Gunakan Rumus "I-Message":</p>
+            <p className="text-xs text-sky-300 italic">"Aku merasa <strong>(perasaan)</strong> saat kamu <strong>(kejadian spesifik)</strong>. Tolong ke depannya <strong>(harapanmu)</strong>."</p>
+          </div>
+        </motion.div>
+      </div>
+
+      <h3 className="font-bold text-lg mb-4 text-royal-light">Toolkit P3K Psikologis (Pertolongan Pertama)</h3>
+      <div className="grid lg:grid-cols-3 gap-4 mb-6">
         {[
-          { icon: '💪', title: 'Manajemen Stres', desc: 'Pelajari teknik pernapasan, mindfulness, dan journaling untuk mengelola tekanan akademis dan sosial.' },
-          { icon: '🗣️', title: 'Komunikasi Efektif', desc: 'Sampaikan perasaan dan kebutuhanmu dengan asertif. Aktif mendengar adalah kunci hubungan yang sehat.' },
-          { icon: '🛡️', title: 'Anti Bullying', desc: 'Kenali bentuk-bentuk perundungan, cara merespons, dan bagaimana menciptakan lingkungan sekolah yang aman.' },
-          { icon: '❤️', title: 'Kesehatan Mental', desc: 'Tidak ada yang salah dengan meminta bantuan. Jaga kesehatan mentalmu sama seperti kesehatan fisikmu.' },
+          { icon: '🌬️', title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
+          { icon: '📱', title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
+          { icon: '✍️', title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
         ].map(({ icon, title, desc }) => (
-          <motion.div key={title} whileHover={{ y: -3 }} className="glass-card p-5 hover:border-royal/30 transition-colors">
-            <span className="text-3xl mb-3 block" aria-hidden="true">{icon}</span>
-            <h3 className="font-bold text-base mb-2">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
-          </motion.div>
+          <div key={title} className="glass-card p-5 border-t-2 border-t-white/10 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform scale-150 rotate-12">{icon}</div>
+            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{icon} {title}</h4>
+            <p className="text-slate-400 text-xs leading-relaxed relative z-10">{desc}</p>
+          </div>
         ))}
+      </div>
+
+      <div className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center">
+        <div className="text-5xl">❤️‍🩹</div>
+        <div>
+          <h4 className="font-bold text-lg text-rose-300 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
+          <p className="text-slate-300 text-sm leading-relaxed mb-4">
+            Datang ke profesional bukan tanda kelemahan! Segera cari bantuan jika: <br/>
+            <strong>Tidur/makan berubah ekstrem, kehilangan minat pada hobi berlarut-larut, 
+            mengurung diri total, atau ada pikiran menyakiti diri sendiri.</strong>
+          </p>
+          <p className="text-sm font-semibold text-white">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
+        </div>
       </div>
     </div>
   ),
