@@ -19,7 +19,7 @@ export default function Sidebar({ activePage, navigate }) {
             <circle cx="14" cy="19" r="2.5" fill="#fff"/>
           </svg>
         </div>
-        <span className="font-display font-bold text-xl gradient-text">RuangBK</span>
+        <span className="font-display font-bold text-xl gradient-text">TemanBK</span>
       </div>
 
       {/* Nav items */}
@@ -53,7 +53,7 @@ export default function Sidebar({ activePage, navigate }) {
       {/* Footer */}
       <div className="mt-auto pt-4 border-t border-white/[0.07]">
         <div className="px-3 flex flex-col gap-0.5">
-          <span className="text-xs text-slate-600">© 2025 RuangBK</span>
+          <span className="text-xs text-slate-600">© 2025 TemanBK</span>
           <span className="text-[10px] text-slate-700">Untuk Siswa SMA</span>
         </div>
       </div>

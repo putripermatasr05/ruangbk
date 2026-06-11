@@ -109,7 +109,7 @@ const quizPribadi = {
     const hasTertutup = vals.includes('tertutup')
     const allTerbuka = vals.every((v) => v === 'terbuka')
     if (allTerbuka) return { icon: '🌟', title: 'Sosialmu Sangat Sehat!', desc: 'Kamu memiliki kemampuan komunikasi yang luar biasa. Terus jaga keterbukaan dan empatimu — itu aset besar!', tags: ['Terbuka', 'Empatik', 'Komunikatif'] }
-    if (hasTertutup) return { icon: '💛', title: 'Ada Ruang untuk Bertumbuh', desc: 'Tidak apa-apa merasa tertutup kadang-kadang. Coba mulai dengan bercerita ke satu orang yang paling kamu percaya. RuangBK selalu siap mendengar.', tags: ['Konsultasi BK', 'Bangun Kepercayaan', 'Self-Care'] }
+    if (hasTertutup) return { icon: '💛', title: 'Ada Ruang untuk Bertumbuh', desc: 'Tidak apa-apa merasa tertutup kadang-kadang. Coba mulai dengan bercerita ke satu orang yang paling kamu percaya. TemanBK selalu siap mendengar.', tags: ['Konsultasi BK', 'Bangun Kepercayaan', 'Self-Care'] }
     return { icon: '✨', title: 'Sosialmu Cukup Sehat!', desc: 'Kamu reflektif dan mandiri. Terus asah kemampuan komunikasimu dan jangan ragu untuk meminta dukungan saat dibutuhkan.', tags: ['Reflektif', 'Mandiri', 'Terus Berkembang'] }
   },
 }

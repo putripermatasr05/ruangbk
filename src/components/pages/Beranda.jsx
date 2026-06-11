@@ -157,7 +157,7 @@ export default function Beranda({ navigate }) {
         </motion.div>
       </section>
 
-      {/* ── Mengapa RuangBK ── */}
+      {/* ── Mengapa TemanBK ── */}
       <section className="border-t border-white/[0.07] pt-12 pb-4 mt-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -167,7 +167,7 @@ export default function Beranda({ navigate }) {
         >
           <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">Tentang Kami</p>
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-10">
-            Mengapa <span className="gradient-text">RuangBK</span> Hadir?
+            Mengapa <span className="gradient-text">TemanBK</span> Hadir?
           </h2>
         </motion.div>
 
@@ -179,7 +179,7 @@ export default function Beranda({ navigate }) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-slate-400 leading-relaxed text-base"
           >
-            RuangBK dikembangkan sebagai wadah inovatif untuk memberikan layanan informasi Bimbingan dan Konseling yang relevan dengan kebutuhan siswa SMA. Kami menjunjung tinggi asas{' '}
+            TemanBK dikembangkan sebagai wadah inovatif untuk memberikan layanan informasi Bimbingan dan Konseling yang relevan dengan kebutuhan siswa SMA. Kami menjunjung tinggi asas{' '}
             <strong className="text-slate-200">kerahasiaan</strong>,{' '}
             <strong className="text-slate-200">etika digital</strong>, serta{' '}
             <strong className="text-slate-200">kebebasan berekspresi yang positif</strong>, tanpa unsur SARA, kekerasan, maupun hoaks.

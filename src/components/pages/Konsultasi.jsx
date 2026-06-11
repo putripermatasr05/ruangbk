@@ -11,7 +11,7 @@ const getBotResponse = (msgCount) => {
     "Kami mengerti kondisimu. Untuk diskusi lebih dalam dan personal, mari jadwalkan sesi tatap muka atau video call dengan konselor. Silakan tinggalkan **nama dan kelasmu** ya ✨",
     "Terima kasih sudah mau terbuka 🙏 Ingat, setiap langkah kecil menuju pemahaman dirimu adalah langkah yang berani. Kami selalu siap mendampingimu.",
     "Itu pertanyaan yang sangat bagus! Konselor kami siap membantu kamu mengeksplorasi lebih dalam. Apakah ada hal lain yang ingin kamu ceritakan? 😊",
-    "Kamu tidak sendirian menghadapi ini. Banyak siswa merasakan hal yang sama. Bersama RuangBK, kita hadapi satu langkah demi satu langkah 🌟",
+    "Kamu tidak sendirian menghadapi ini. Banyak siswa merasakan hal yang sama. Bersama TemanBK, kita hadapi satu langkah demi satu langkah 🌟",
   ]
   return responses[Math.min(msgCount, responses.length - 1)]
 }
