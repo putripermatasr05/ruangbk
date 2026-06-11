@@ -96,7 +96,7 @@ export default function Konsultasi({ navigate }) {
   }
 
   return (
-    <div className="grid lg:grid-cols-[280px_1fr] gap-5 h-[calc(100vh-8rem)] max-h-[680px]">
+    <div className="flex flex-col lg:grid lg:grid-cols-[280px_1fr] gap-5 lg:h-[calc(100vh-8rem)] lg:max-h-[680px]">
 
       {/* ── Left Info Panel ── */}
       <div className="flex flex-col gap-4 lg:sticky lg:top-0">
@@ -157,7 +157,7 @@ export default function Konsultasi({ navigate }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="glass-card flex flex-col overflow-hidden"
+        className="glass-card flex flex-col overflow-hidden h-[500px] lg:h-auto"
       >
         {/* Messages */}
         <div
