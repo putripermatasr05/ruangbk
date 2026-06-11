@@ -1,0 +1,254 @@
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { AnimatePresence, motion, LayoutGroup } from 'framer-motion'
+import { X, ExternalLink, Play } from 'lucide-react'
+
+/* ─── Gallery Data ─── */
+const galeriData = [
+  {
+    id: 1, platform: 'instagram', title: 'Mengenal 3 Gaya Belajar: Visual, Auditori & Kinestetik',
+    desc: 'Infografis interaktif tentang cara menemukan gaya belajarmu yang dominan.',
+    emoji: '👁️', bg: 'from-violet-600 to-purple-800', link: 'https://instagram.com',
+    type: 'image',
+  },
+  {
+    id: 2, platform: 'tiktok', title: '5 Tips Belajar Efektif untuk Siswa SMA',
+    desc: 'Video singkat berisi strategi belajar yang terbukti meningkatkan fokus dan pemahaman.',
+    emoji: '📚', bg: 'from-slate-800 to-slate-900', link: 'https://tiktok.com',
+    type: 'video',
+  },
+  {
+    id: 3, platform: 'youtube', title: 'Saintek vs Soshum: Mana yang Cocok Untukmu?',
+    desc: 'Pembahasan mendalam tentang perbedaan dua rumpun ilmu dan prospek karirnya.',
+    emoji: '🎓', bg: 'from-red-700 to-red-900', link: 'https://youtube.com',
+    type: 'video',
+  },
+  {
+    id: 4, platform: 'instagram', title: 'Mitos & Fakta Dunia Perkuliahan',
+    desc: 'Carousel informatif membongkar mitos-mitos yang sering dipercaya siswa SMA.',
+    emoji: '🔍', bg: 'from-pink-600 to-rose-800', link: 'https://instagram.com',
+    type: 'image',
+  },
+  {
+    id: 5, platform: 'tiktok', title: 'Cara Mengelola Stres Saat Ujian',
+    desc: 'Teknik pernapasan dan mindfulness sederhana yang bisa dipraktikkan di mana saja.',
+    emoji: '🧘', bg: 'from-teal-600 to-cyan-800', link: 'https://tiktok.com',
+    type: 'video',
+  },
+  {
+    id: 6, platform: 'youtube', title: 'Tips Memilih Jurusan Kuliah yang Tepat',
+    desc: 'Panduan lengkap dari riset minat hingga analisis prospek karir masa depan.',
+    emoji: '🗺️', bg: 'from-amber-600 to-orange-800', link: 'https://youtube.com',
+    type: 'video',
+  },
+  {
+    id: 7, platform: 'instagram', title: 'Mengenal RIASEC: Tipe Kepribadian Pekerja',
+    desc: 'Infografis penjelasan 6 tipe kepribadian Holland dan jurusan yang cocok.',
+    emoji: '🧩', bg: 'from-indigo-600 to-blue-800', link: 'https://instagram.com',
+    type: 'image',
+  },
+  {
+    id: 8, platform: 'tiktok', title: 'Anti-Bullying: Cara Merespons dengan Bijak',
+    desc: 'Video edukasi tentang cara mengenali dan merespons perundungan di sekolah.',
+    emoji: '🛡️', bg: 'from-emerald-600 to-green-800', link: 'https://tiktok.com',
+    type: 'video',
+  },
+]
+
+const platformBadge = {
+  instagram: { label: 'Instagram', color: 'bg-gradient-to-r from-purple-600 via-rose-500 to-amber-400' },
+  tiktok: { label: 'TikTok', color: 'bg-black' },
+  youtube: { label: 'YouTube', color: 'bg-red-600' },
+}
+
+const filters = ['semua', 'instagram', 'tiktok', 'youtube']
+
+export default function Galeri() {
+  const [activeFilter, setActiveFilter] = useState('semua')
+  const [selectedItem, setSelectedItem] = useState(null)
+  const dialogRef = useRef(null)
+
+  const filtered = activeFilter === 'semua'
+    ? galeriData
+    : galeriData.filter((g) => g.platform === activeFilter)
+
+  const openModal = useCallback((item) => {
+    setSelectedItem(item)
+  }, [])
+
+  const closeModal = useCallback(() => {
+    setSelectedItem(null)
+  }, [])
+
+  // Open/close native dialog
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (selectedItem) {
+      dialog.showModal()
+    } else {
+      if (dialog.open) dialog.close()
+    }
+  }, [selectedItem])
+
+  // Light-dismiss fallback (for browsers without closedby="any")
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const handler = (e) => {
+      if (e.target !== dialog) return
+      const rect = dialog.getBoundingClientRect()
+      const inside = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      )
+      if (!inside) closeModal()
+    }
+    dialog.addEventListener('click', handler)
+    return () => dialog.removeEventListener('click', handler)
+  }, [closeModal])
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const handler = () => { if (!dialog.open) closeModal() }
+    dialog.addEventListener('close', handler)
+    return () => dialog.removeEventListener('close', handler)
+  }, [closeModal])
+
+  return (
+    <div>
+      {/* Header */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+        <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">Media & Konten</p>
+        <h1 className="font-display font-bold text-4xl lg:text-5xl mb-3">
+          Galeri <span className="gradient-text">Edukasi Kreatif</span>
+        </h1>
+        <p className="text-slate-400 max-w-xl leading-relaxed">
+          Jelajahi kumpulan video edukasi dan infografis hasil karya tim kami dari berbagai platform digital.
+        </p>
+      </motion.div>
+
+      {/* Filter */}
+      <div className="flex gap-2 flex-wrap mb-8" role="group" aria-label="Filter konten galeri">
+        {filters.map((f) => (
+          <motion.button
+            key={f}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => setActiveFilter(f)}
+            aria-pressed={activeFilter === f}
+            className={`px-4 py-2 rounded-full text-sm font-bold capitalize border transition-all
+              ${activeFilter === f
+                ? 'bg-grad-primary text-white border-transparent shadow-glow-primary'
+                : 'text-slate-400 border-white/[0.07] hover:border-white/15 hover:text-slate-200'
+              }`}
+          >
+            {f === 'semua' ? '🎨 Semua' : f === 'instagram' ? '📸 Instagram' : f === 'tiktok' ? '🎵 TikTok' : '▶️ YouTube'}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Grid */}
+      <LayoutGroup>
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+          role="list"
+        >
+          <AnimatePresence>
+            {filtered.map((item) => (
+              <motion.article
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.88 }}
+                transition={{ duration: 0.25 }}
+                whileHover={{ y: -5 }}
+                className="glass-card overflow-hidden cursor-pointer group"
+                role="listitem"
+                tabIndex={0}
+                onClick={() => openModal(item)}
+                onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
+                aria-label={`Buka konten: ${item.title}`}
+              >
+                {/* Thumbnail */}
+                <div className={`relative aspect-video bg-gradient-to-br ${item.bg} overflow-hidden`}>
+                  <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-60 group-hover:scale-110 transition-transform duration-500">
+                    {item.emoji}
+                  </div>
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-slate-900">
+                      {item.type === 'video' ? <Play size={20} fill="currentColor" /> : <ExternalLink size={18} />}
+                    </div>
+                  </div>
+                  {/* Platform badge */}
+                  <span className={`absolute top-2 left-2 text-white text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full ${platformBadge[item.platform].color}`}>
+                    {platformBadge[item.platform].label}
+                  </span>
+                </div>
+
+                {/* Info */}
+                <div className="p-4">
+                  <h3 className="font-bold text-sm leading-snug mb-1 line-clamp-2">{item.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{item.desc}</p>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </LayoutGroup>
+
+      {/* Modal / Lightbox — Native <dialog> */}
+      <dialog
+        ref={dialogRef}
+        closedby="any"
+        aria-label="Pratinjau konten media"
+        aria-modal="true"
+        className="bg-transparent border-none p-0 max-w-full max-h-full w-full h-full backdrop:bg-black/80 backdrop:backdrop-blur-md"
+        style={{ background: 'transparent' }}
+      >
+        {selectedItem && (
+          <div className="flex items-center justify-center min-h-full p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className="bg-surface border border-white/[0.1] rounded-2xl overflow-hidden max-w-lg w-full shadow-card-lg"
+            >
+              {/* Media area */}
+              <div className={`aspect-video bg-gradient-to-br ${selectedItem.bg} flex items-center justify-center`}>
+                <span className="text-8xl opacity-70" aria-hidden="true">{selectedItem.emoji}</span>
+              </div>
+
+              {/* Info */}
+              <div className="p-6">
+                <span className={`inline-block text-white text-[10px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full mb-3 ${platformBadge[selectedItem.platform].color}`}>
+                  {platformBadge[selectedItem.platform].label}
+                </span>
+                <h3 className="font-display font-bold text-lg mb-2">{selectedItem.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-5">{selectedItem.desc}</p>
+                <div className="flex gap-3">
+                  <a
+                    href={selectedItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-grad-primary text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-glow-primary hover:shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-shadow"
+                  >
+                    <ExternalLink size={15} /> Buka di {platformBadge[selectedItem.platform].label}
+                  </a>
+                  <button
+                    onClick={closeModal}
+                    className="flex items-center gap-2 text-slate-400 text-sm font-bold px-4 py-2.5 rounded-full border border-white/10 hover:border-white/20 hover:text-white transition-all"
+                  >
+                    <X size={15} /> Tutup
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </dialog>
+    </div>
+  )
+}
