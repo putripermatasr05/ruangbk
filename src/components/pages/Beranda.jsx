@@ -22,7 +22,7 @@ export default function Beranda({ navigate }) {
   return (
     <div>
       {/* ── Hero Section ── */}
-      <section className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] pb-10 overflow-hidden">
+      <section className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] pb-10">
         {/* Background orbs */}
         <div className="absolute inset-0 pointer-events-none -z-0" aria-hidden="true">
           <div className="orb orb-1 absolute w-96 h-96 bg-primary/20 -top-24 -left-24" />
