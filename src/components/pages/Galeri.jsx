@@ -2,6 +2,67 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion'
 import { X, ExternalLink, Play } from 'lucide-react'
 
+const FeaturedMedia = () => {
+  useEffect(() => {
+    // Load TikTok script
+    if (!document.getElementById('tiktok-script')) {
+      const script = document.createElement('script')
+      script.id = 'tiktok-script'
+      script.src = 'https://www.tiktok.com/embed.js'
+      script.async = true
+      document.body.appendChild(script)
+    }
+    // Load Instagram script
+    if (!document.getElementById('ig-script')) {
+      const script = document.createElement('script')
+      script.id = 'ig-script'
+      script.src = 'https://www.instagram.com/embed.js'
+      script.async = true
+      document.body.appendChild(script)
+    } else if (window.instgrm) {
+      window.instgrm.Embeds.process()
+    }
+  }, [])
+
+  const tiktokHtml = `<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@audere24a/video/7642554946507820308" data-video-id="7642554946507820308" style="max-width: 100%; min-width: 100%; margin: 0;" > <section> <a target="_blank" title="@audere24a" href="https://www.tiktok.com/@audere24a?refer=embed">@audere24a</a> </section> </blockquote>`;
+
+  const igHtml = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYhLUH7u3QD/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; margin: 0; max-width:100%; min-width:100%; padding:0; width:100%;"></blockquote>`;
+
+  return (
+    <div className="mb-12">
+      <h2 className="font-display font-bold text-2xl mb-6 flex items-center gap-2">
+        <span>✨</span> Highlight Edukasi
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        
+        {/* YouTube */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-black shadow-lg">
+          <iframe 
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/T6kNNmVtrls?autoplay=1&mute=1&loop=1&playlist=T6kNNmVtrls&controls=0"
+            title="YouTube Shorts"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+
+        {/* TikTok */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-black shadow-lg">
+           <div className="absolute inset-0 overflow-y-auto custom-scroll bg-black flex items-center" dangerouslySetInnerHTML={{ __html: tiktokHtml }} />
+        </div>
+
+        {/* Instagram */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-white shadow-lg">
+           <div className="absolute inset-0 overflow-y-auto custom-scroll bg-white flex items-center" dangerouslySetInnerHTML={{ __html: igHtml }} />
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+
 /* ─── Gallery Data ─── */
 const galeriData = [
   {
@@ -127,6 +188,9 @@ export default function Galeri() {
           Jelajahi kumpulan video edukasi dan infografis hasil karya tim kami dari berbagai platform digital.
         </p>
       </motion.div>
+
+      {/* Highlight Videos */}
+      <FeaturedMedia />
 
       {/* Filter */}
       <div className="flex gap-2 flex-wrap mb-8" role="group" aria-label="Filter konten galeri">
