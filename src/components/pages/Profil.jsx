@@ -5,6 +5,7 @@ import avatarGendis from '../../assets/tim/gendis.jpg'
 import avatarGina from '../../assets/tim/gina.jpg'
 import avatarNasywa from '../../assets/tim/nasywa.jpeg'
 import avatarPutri from '../../assets/tim/putri.jpeg'
+import avatarSyifa from '../../assets/tim/syifa.jpg'
 import avatarZourika from '../../assets/tim/zourika.jpeg'
 
 const misiList = [
@@ -78,7 +79,7 @@ const timKami = [
     color: 'royal',
   },
   {
-    avatar: 'https://ui-avatars.com/api/?name=Syifa+Aulia&background=6366f1&color=fff&size=200',
+    avatar: avatarSyifa,
     name: 'Syifa Aulia',
     role: 'NIM: 2410123320018',
     color: 'primary',
