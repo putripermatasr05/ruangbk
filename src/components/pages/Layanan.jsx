@@ -463,7 +463,7 @@ export default function Layanan() {
 
       {/* Tab Nav */}
       <div
-        className="flex gap-1.5 p-1.5 bg-surface rounded-2xl border border-white/[0.07] w-fit mb-7"
+        className="flex gap-1.5 p-1.5 bg-surface rounded-2xl border border-white/[0.07] w-fit max-w-full overflow-x-auto custom-scroll mb-7"
         role="tablist"
         aria-label="Bidang layanan BK"
       >
@@ -475,7 +475,7 @@ export default function Layanan() {
             aria-selected={activeTab === id}
             aria-controls={`tabpanel-${id}`}
             onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap flex-shrink-0
               ${activeTab === id
                 ? 'bg-grad-primary text-white shadow-glow-primary'
                 : 'text-slate-400 hover:text-slate-200'
