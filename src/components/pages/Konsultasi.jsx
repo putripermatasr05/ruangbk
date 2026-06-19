@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Lock } from 'lucide-react'
-import avatarBudi from '../../assets/avatar_budi.png'
-import avatarSiti from '../../assets/avatar_siti.png'
+import avatarGendis from '../../assets/tim/gendis.jpg'
+import avatarGina from '../../assets/tim/gina.jpg'
+import avatarNasywa from '../../assets/tim/nasywa.jpeg'
+import avatarPutri from '../../assets/tim/putri.jpeg'
+import avatarSyifa from '../../assets/tim/syifa.jpg'
+import avatarZourika from '../../assets/tim/zourika.jpeg'
 
 /* ─── Bot Response Logic ─── */
 const getBotResponse = (msgCount) => {
@@ -134,16 +138,20 @@ export default function Konsultasi({ navigate }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-2 lg:max-h-[300px] overflow-y-auto custom-scroll pr-1"
         >
           {[
-            { avatar: avatarBudi, name: 'Bpk. Budi', role: 'Karir & Belajar', alt: 'Bpk. Budi Santoso' },
-            { avatar: avatarSiti, name: 'Ibu Siti', role: 'Pribadi & Sosial', alt: 'Ibu Siti Aminah' },
+            { avatar: avatarGendis, name: 'Gendis Retno W. M.', role: 'Konselor Sebaya', alt: 'Gendis' },
+            { avatar: avatarGina, name: 'Gina Naila Rahmatika', role: 'Konselor Sebaya', alt: 'Gina' },
+            { avatar: avatarNasywa, name: 'Nasywa Siti Rahima', role: 'Konselor Sebaya', alt: 'Nasywa' },
+            { avatar: avatarPutri, name: 'Putri Permata Sari', role: 'Konselor Sebaya', alt: 'Putri' },
+            { avatar: avatarSyifa, name: 'Syifa Aulia', role: 'Konselor Sebaya', alt: 'Syifa' },
+            { avatar: avatarZourika, name: 'Zourika Nahda M.', role: 'Konselor Sebaya', alt: 'Zourika' },
           ].map(({ avatar, name, role, alt }) => (
             <div key={name} className="glass-card flex items-center gap-3 px-4 py-3">
               <img src={avatar} alt={alt} width={38} height={38} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm">{name}</p>
+                <p className="font-bold text-sm truncate">{name}</p>
                 <p className="text-xs text-slate-500 truncate">{role}</p>
               </div>
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-bg-2 flex-shrink-0" aria-label="Online" />
