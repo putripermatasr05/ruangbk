@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Briefcase, Heart } from 'lucide-react'
+import { BookOpen, Briefcase, Heart, Users } from 'lucide-react'
 import QuizEngine from '../ui/QuizEngine'
 
 /* ─── DATA ─── */
 const tabs = [
   { id: 'belajar', label: 'Belajar', icon: '📚', Icon: BookOpen },
   { id: 'karir', label: 'Karir', icon: '🎯', Icon: Briefcase },
-  { id: 'pribadi', label: 'Pribadi-Sosial', icon: '🌱', Icon: Heart },
+  { id: 'pribadi', label: 'Pribadi', icon: '🌱', Icon: Heart },
+  { id: 'sosial', label: 'Sosial', icon: '🤝', Icon: Users },
 ]
 
 /* Quiz Data: Belajar */
@@ -116,10 +117,10 @@ const quizKarir = {
   },
 }
 
-/* Quiz Data: Pribadi-Sosial */
+/* Quiz Data: Pribadi */
 const quizPribadi = {
-  title: '🌱 Evaluasi Kesejahteraan Emosional & Sosial',
-  subtitle: 'Pilih respons yang paling mencerminkan dirimu dalam situasi sehari-hari.',
+  title: '🌱 Evaluasi Kesejahteraan Emosional (Pribadi)',
+  subtitle: 'Pilih respons yang paling mencerminkan kondisi personalmu saat ini.',
   questions: [
     {
       id: 'qp1', type: 'radio',
@@ -132,29 +133,20 @@ const quizPribadi = {
     },
     {
       id: 'qp2', type: 'radio',
-      text: '2. Saat seseorang memberikan kritik membangun terhadap tugasmu, reaksimu adalah...',
-      options: [
-        { label: 'A', value: 'sehat', text: 'Mendengarkan, memikirkannya, lalu merevisi jika memang masuk akal.' },
-        { label: 'B', value: 'sedang', text: 'Diam menerimanya, tapi diam-diam merasa sedikit tidak berharga.' },
-        { label: 'C', value: 'kritis', text: 'Langsung tersinggung, defensif, atau balik menyalahkan orang tersebut.' },
-      ],
-    },
-    {
-      id: 'qp3', type: 'radio',
-      text: '3. Berapa sering kamu merasa "kosong" atau kehilangan minat pada hobi yang dulu kamu sukai?',
+      text: '2. Berapa sering kamu merasa "kosong" atau kehilangan minat pada hobi yang dulu kamu sukai?',
       options: [
         { label: 'A', value: 'sehat', text: 'Jarang. Sesekali bosan, tapi segera kembali antusias.' },
-        { label: 'B', value: 'sedang', text: 'Kadang-kadang, terutama saat sedang banyak sekali pikiran.' },
+        { label: 'B', value: 'sedang', text: 'Kadang-kadang, terutama saat sedang banyak pikiran.' },
         { label: 'C', value: 'kritis', text: 'Sangat sering atau hampir setiap hari belakangan ini.' },
       ],
     },
     {
-      id: 'qp4', type: 'radio',
-      text: '4. Dalam lingkungan sosial (sekolah/teman), apakah kamu merasa punya tempat bercerita?',
+      id: 'qp3', type: 'radio',
+      text: '3. Bagaimana kamu menghadapi kegagalan atau nilai yang buruk?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Ya, aku punya teman/keluarga yang sangat mendukung dan dapat dipercaya.' },
-        { label: 'B', value: 'sedang', text: 'Ada, tapi aku masih sering menyembunyikan perasaan asliku.' },
-        { label: 'C', value: 'kritis', text: 'Tidak ada. Aku merasa sangat sendirian dan terisolasi.' },
+        { label: 'A', value: 'sehat', text: 'Mengevaluasi kesalahan dan menjadikannya pelajaran tanpa menyalahkan diri.' },
+        { label: 'B', value: 'sedang', text: 'Kecewa berhari-hari, lalu mencoba bangkit perlahan.' },
+        { label: 'C', value: 'kritis', text: 'Menghukum diri sendiri dan merasa sangat tidak berguna.' },
       ],
     },
   ],
@@ -164,11 +156,59 @@ const quizPribadi = {
     const countSedang = vals.filter(v => v === 'sedang').length
     
     if (countKritis >= 2) {
-      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban yang sangat berat sendirian. Ingat, meminta bantuan bukanlah kelemahan. TemanBK atau psikolog profesional sangat terbuka untuk mendengar dan mendampingimu.', tags: ['Perlu Konseling', 'Self-Care Darurat', 'Jangan Sendirian'] }
+      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran sendirian. Jangan sungkan mencari dukungan profesional atau cerita ke konselor.', tags: ['Perlu Konseling', 'Self-Care'] }
     } else if (countKritis === 1 || countSedang >= 2) {
-      return { icon: '💛', title: 'Beri Waktu untuk Dirimu (Take a Break)', desc: 'Kamu sudah berjuang keras, tapi stres mulai menumpuk. Coba kurangi ekspektasi perfeksionis, mulai jurnaling, dan beranikan diri lebih terbuka ke orang terdekat. Kamu butuh istirahat mental.', tags: ['Manajemen Stres', 'Boundaries', 'Mindfulness'] }
+      return { icon: '💛', title: 'Beri Waktu untuk Dirimu', desc: 'Kamu butuh istirahat mental. Coba kurangi ekspektasi perfeksionis dan mulailah memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness'] }
     } else {
-      return { icon: '🌟', title: 'Kondisi Emosionalmu Sangat Tangguh!', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sangat sehat. Pertahankan kebiasaan positifmu, dan jadilah tempat bersandar yang baik bagi teman-temanmu.', tags: ['Resiliensi Tinggi', 'Empati', 'Sehat Mental'] }
+      return { icon: '🌟', title: 'Kondisimu Stabil', desc: 'Kamu punya coping mechanism yang sehat! Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental'] }
+    }
+  },
+}
+
+/* Quiz Data: Sosial */
+const quizSosial = {
+  title: '🤝 Evaluasi Dinamika Sosial',
+  subtitle: 'Pilih respons yang paling menggambarkan interaksimu dengan lingkungan sekitar.',
+  questions: [
+    {
+      id: 'qs1', type: 'radio',
+      text: '1. Dalam lingkungan pertemanan/sekolah, apakah kamu merasa punya tempat bercerita?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Ya, aku punya circle yang sangat mendukung dan dapat dipercaya.' },
+        { label: 'B', value: 'sedang', text: 'Ada, tapi aku masih sering menyembunyikan perasaan asliku dari mereka.' },
+        { label: 'C', value: 'kritis', text: 'Tidak ada. Aku merasa sangat sendirian dan terisolasi.' },
+      ],
+    },
+    {
+      id: 'qs2', type: 'radio',
+      text: '2. Saat seseorang memberikan kritik tajam, bagaimana reaksimu?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Mendengarkan dengan asertif, lalu merevisi jika memang masuk akal.' },
+        { label: 'B', value: 'sedang', text: 'Diam menerima, tapi diam-diam merasa insecure atau memendam kekesalan.' },
+        { label: 'C', value: 'kritis', text: 'Langsung tersinggung, defensif agresif, atau balik menyalahkan.' },
+      ],
+    },
+    {
+      id: 'qs3', type: 'radio',
+      text: '3. Jika kamu melihat teman sedang diasingkan atau mengalami bullying ringan di kelas?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Mendekati, menemani, atau berusaha melaporkan ke guru BK (Upstander).' },
+        { label: 'B', value: 'sedang', text: 'Kasihan, tapi takut ikut campur agar tidak ikut dijadikan target.' },
+        { label: 'C', value: 'kritis', text: 'Ikut menjauh atau bahkan merasa itu bukan urusanku sama sekali.' },
+      ],
+    },
+  ],
+  getResult: (answers) => {
+    const vals = Object.values(answers)
+    const countKritis = vals.filter(v => v === 'kritis').length
+    const countSedang = vals.filter(v => v === 'sedang').length
+    
+    if (countKritis >= 2) {
+      return { icon: '🆘', title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena lingkungan toxic atau kendala komunikasi asertif. Pertimbangkan berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
+    } else if (countKritis === 1 || countSedang >= 2) {
+      return { icon: '💛', title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang melelahkan. Coba asah lagi teknik komunikasi asertif dan jangan ragu untuk menetapkan batasan (boundaries).', tags: ['Boundaries', 'Asertif', 'People Pleaser'] }
+    } else {
+      return { icon: '🌟', title: 'Sosialmu Sangat Cerdas!', desc: 'Kamu memiliki empati tinggi dan kecerdasan sosial yang baik. Kamu mampu menavigasi dinamika pertemanan dengan sehat.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
     }
   },
 }
@@ -311,9 +351,51 @@ const MateriContent = {
       <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
         <span className="text-6xl flex-shrink-0" aria-hidden="true">🌱</span>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Kesehatan Mental & Dinamika Sosial</h2>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Kesehatan Mental & Self-Care</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
-            Kamu tidak akan bisa meraih prestasi luar biasa jika "tangki emosionalmu" kosong. Masa SMA dipenuhi krisis identitas, konflik pertemanan, dan tekanan orang tua. Mari belajar merawat kewarasan.
+            Kamu tidak akan bisa meraih prestasi luar biasa jika "tangki emosionalmu" kosong. Mari belajar mengenali diri sendiri, mengelola stres, dan merawat kewarasan psikologis.
+          </p>
+        </div>
+      </div>
+
+      <h3 className="font-bold text-lg mb-4 text-royal-light">Toolkit P3K Psikologis (Pertolongan Pertama)</h3>
+      <div className="grid lg:grid-cols-3 gap-4 mb-6">
+        {[
+          { icon: '🌬️', title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
+          { icon: '📱', title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
+          { icon: '✍️', title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
+        ].map(({ icon, title, desc }) => (
+          <div key={title} className="glass-card p-5 border-t-2 border-t-white/10 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform scale-150 rotate-12">{icon}</div>
+            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{icon} {title}</h4>
+            <p className="text-slate-400 text-xs leading-relaxed relative z-10">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center">
+        <div className="text-5xl">❤️‍🩹</div>
+        <div>
+          <h4 className="font-bold text-lg text-rose-300 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
+          <p className="text-slate-300 text-sm leading-relaxed mb-4">
+            Datang ke profesional bukan tanda kelemahan! Segera cari bantuan jika: <br/>
+            <strong>Tidur/makan berubah ekstrem, kehilangan minat pada hobi berlarut-larut, 
+            mengurung diri total, atau ada pikiran menyakiti diri sendiri.</strong>
+          </p>
+          <p className="text-sm font-semibold text-white">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
+        </div>
+      </div>
+    </div>
+  ),
+
+  sosial: () => (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex gap-5 bg-gradient-to-r from-sky-500/10 to-teal-500/5 border border-sky-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(14,165,233,0.15)]">
+        <span className="text-6xl flex-shrink-0" aria-hidden="true">🤝</span>
+        <div>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Dinamika Sosial & Pertemanan</h2>
+          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+            Masa SMA diwarnai dengan pembentukan identitas sosial, konflik teman sebaya, hingga urusan perundungan. Bangun relasi yang sehat dan asah kemampuan komunikasi asertifmu.
           </p>
         </div>
       </div>
@@ -348,39 +430,11 @@ const MateriContent = {
           </div>
         </motion.div>
       </div>
-
-      <h3 className="font-bold text-lg mb-4 text-royal-light">Toolkit P3K Psikologis (Pertolongan Pertama)</h3>
-      <div className="grid lg:grid-cols-3 gap-4 mb-6">
-        {[
-          { icon: '🌬️', title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
-          { icon: '📱', title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
-          { icon: '✍️', title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
-        ].map(({ icon, title, desc }) => (
-          <div key={title} className="glass-card p-5 border-t-2 border-t-white/10 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform scale-150 rotate-12">{icon}</div>
-            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{icon} {title}</h4>
-            <p className="text-slate-400 text-xs leading-relaxed relative z-10">{desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center">
-        <div className="text-5xl">❤️‍🩹</div>
-        <div>
-          <h4 className="font-bold text-lg text-rose-300 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
-          <p className="text-slate-300 text-sm leading-relaxed mb-4">
-            Datang ke profesional bukan tanda kelemahan! Segera cari bantuan jika: <br/>
-            <strong>Tidur/makan berubah ekstrem, kehilangan minat pada hobi berlarut-larut, 
-            mengurung diri total, atau ada pikiran menyakiti diri sendiri.</strong>
-          </p>
-          <p className="text-sm font-semibold text-white">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
-        </div>
-      </div>
     </div>
   ),
 }
 
-const quizData = { belajar: quizBelajar, karir: quizKarir, pribadi: quizPribadi }
+const quizData = { belajar: quizBelajar, karir: quizKarir, pribadi: quizPribadi, sosial: quizSosial }
 
 const tabPanelVariants = {
   initial: { opacity: 0, y: 10 },
@@ -390,7 +444,7 @@ const tabPanelVariants = {
 
 export default function Layanan() {
   const [activeTab, setActiveTab] = useState('belajar')
-  const [mode, setMode] = useState({ belajar: 'materi', karir: 'materi', pribadi: 'materi' })
+  const [mode, setMode] = useState({ belajar: 'materi', karir: 'materi', pribadi: 'materi', sosial: 'materi' })
 
   const setTabMode = (tab, m) => setMode((prev) => ({ ...prev, [tab]: m }))
 
