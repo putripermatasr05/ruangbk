@@ -149,18 +149,45 @@ const quizPribadi = {
         { label: 'C', value: 'kritis', text: 'Menghukum diri sendiri dan merasa sangat tidak berguna.' },
       ],
     },
+    {
+      id: 'qp4', type: 'radio',
+      text: '4. Bagaimana kualitas tidurmu dalam 1-2 minggu terakhir?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Cukup dan nyenyak, bangun pagi merasa segar.' },
+        { label: 'B', value: 'sedang', text: 'Kadang susah tidur kalau lagi banyak pikiran, tapi masih bisa diatasi.' },
+        { label: 'C', value: 'kritis', text: 'Sangat buruk. Terlalu banyak tidur (oversleeping) atau insomnia parah setiap hari.' },
+      ],
+    },
+    {
+      id: 'qp5', type: 'radio',
+      text: '5. Saat kamu membuat kesalahan kecil, apa yang biasanya terlintas di pikiranmu?',
+      options: [
+        { label: 'A', value: 'sehat', text: '"Tidak apa-apa, namanya juga proses belajar. Aku akan perbaiki ke depannya."' },
+        { label: 'B', value: 'sedang', text: '"Ah, harusnya aku bisa lebih teliti dari ini." (sedikit menyalahkan diri sendiri).' },
+        { label: 'C', value: 'kritis', text: '"Aku memang selalu mengacaukan segalanya dan tidak pernah bisa melakukan apapun dengan benar."' },
+      ],
+    },
+    {
+      id: 'qp6', type: 'radio',
+      text: '6. Ketika sedang sangat sedih atau kewalahan, seberapa sering kamu mengalihkan perhatian ke hal-hal yang merusak diri?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Sangat jarang/tidak pernah. Aku lebih suka mencari solusi, jurnaling, atau beristirahat.' },
+        { label: 'B', value: 'sedang', text: 'Kadang-kadang, seperti doom-scrolling medsos seharian penuh untuk melarikan diri dari kenyataan.' },
+        { label: 'C', value: 'kritis', text: 'Sering. Mengisolasi diri secara ekstrem, melukai diri, atau tindakan impulsif lainnya.' },
+      ],
+    },
   ],
   getResult: (answers) => {
     const vals = Object.values(answers)
     const countKritis = vals.filter(v => v === 'kritis').length
     const countSedang = vals.filter(v => v === 'sedang').length
     
-    if (countKritis >= 2) {
-      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran sendirian. Jangan sungkan mencari dukungan profesional atau cerita ke konselor.', tags: ['Perlu Konseling', 'Self-Care'] }
-    } else if (countKritis === 1 || countSedang >= 2) {
-      return { icon: '💛', title: 'Beri Waktu untuk Dirimu', desc: 'Kamu butuh istirahat mental. Coba kurangi ekspektasi perfeksionis dan mulailah memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness'] }
+    if (countKritis >= 3) {
+      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran yang sangat berat sendirian. Tolong jangan sungkan mencari dukungan profesional atau jadwalkan sesi cerita dengan konselor BK kita. Kami di sini untukmu.', tags: ['Perlu Konseling', 'Darurat Self-Care', 'Jangan Sendirian'] }
+    } else if (countKritis >= 1 || countSedang >= 3) {
+      return { icon: '💛', title: 'Beri Waktu untuk Dirimu', desc: 'Kamu sudah berjuang keras, tapi stres dan kelelahan mental mulai menumpuk. Coba kurangi ekspektasi perfeksionis dan mulailah lebih memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness', 'Take a Break'] }
     } else {
-      return { icon: '🌟', title: 'Kondisimu Stabil', desc: 'Kamu punya coping mechanism yang sehat! Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental'] }
+      return { icon: '🌟', title: 'Kondisimu Sangat Stabil', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sehat dan tangguh. Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental', 'Positive Vibes'] }
     }
   },
 }
@@ -197,18 +224,45 @@ const quizSosial = {
         { label: 'C', value: 'kritis', text: 'Ikut menjauh atau bahkan merasa itu bukan urusanku sama sekali.' },
       ],
     },
+    {
+      id: 'qs4', type: 'radio',
+      text: '4. Apakah kamu sering merasa harus berpura-pura menjadi orang lain agar diterima di suatu sirkel pertemanan?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Tidak. Teman-temanku yang sesungguhnya menerima aku apa adanya.' },
+        { label: 'B', value: 'sedang', text: 'Terkadang iya, agar tidak dicap "aneh", FOMO, atau tertinggal pergaulan.' },
+        { label: 'C', value: 'kritis', text: 'Ya, hampir selalu. Aku merasa lelah harus memakai topeng setiap hari di sekolah.' },
+      ],
+    },
+    {
+      id: 'qs5', type: 'radio',
+      text: '5. Ketika temanmu meminta bantuan tapi kamu sedang sangat lelah atau sibuk, apa yang kamu lakukan?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Menolak dengan sopan dan menjelaskan situasinya (menjaga boundaries).' },
+        { label: 'B', value: 'sedang', text: 'Mengiyakan dengan terpaksa, lalu mengeluh diam-diam di belakang.' },
+        { label: 'C', value: 'kritis', text: 'Selalu mengiyakan apapun kondisinya karena takut dijauhi (people pleaser sejati).' },
+      ],
+    },
+    {
+      id: 'qs6', type: 'radio',
+      text: '6. Bagaimana sikapmu terhadap gosip atau drama pertemanan di sekolah?',
+      options: [
+        { label: 'A', value: 'sehat', text: 'Menghindarinya sebisa mungkin. Aku tidak suka ikut campur urusan orang lain.' },
+        { label: 'B', value: 'sedang', text: 'Kadang ikut menyimak sekadar agar tahu info, tapi tidak ikut menyebarkannya.' },
+        { label: 'C', value: 'kritis', text: 'Sering terlibat aktif, menyebarkannya, atau bahkan menjadikannya hiburan.' },
+      ],
+    },
   ],
   getResult: (answers) => {
     const vals = Object.values(answers)
     const countKritis = vals.filter(v => v === 'kritis').length
     const countSedang = vals.filter(v => v === 'sedang').length
     
-    if (countKritis >= 2) {
-      return { icon: '🆘', title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena lingkungan toxic atau kendala komunikasi asertif. Pertimbangkan berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
-    } else if (countKritis === 1 || countSedang >= 2) {
-      return { icon: '💛', title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang melelahkan. Coba asah lagi teknik komunikasi asertif dan jangan ragu untuk menetapkan batasan (boundaries).', tags: ['Boundaries', 'Asertif', 'People Pleaser'] }
+    if (countKritis >= 3) {
+      return { icon: '🆘', title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena terjebak dalam lingkungan pertemanan yang toxic, menjadi people pleaser ekstrem, atau kendala komunikasi. Pertimbangkan untuk berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
+    } else if (countKritis >= 1 || countSedang >= 3) {
+      return { icon: '💛', title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang membuatmu kelelahan. Coba asah lagi teknik komunikasi asertif, beranikan diri untuk berkata "tidak", dan jangan ragu untuk menetapkan batasan personal (boundaries) yang sehat.', tags: ['Boundaries', 'Komunikasi Asertif', 'People Pleaser'] }
     } else {
-      return { icon: '🌟', title: 'Sosialmu Sangat Cerdas!', desc: 'Kamu memiliki empati tinggi dan kecerdasan sosial yang baik. Kamu mampu menavigasi dinamika pertemanan dengan sehat.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
+      return { icon: '🌟', title: 'Sosialmu Sangat Cerdas!', desc: 'Hebat! Kamu memiliki kecerdasan sosial dan empati yang sangat baik. Kamu mampu menavigasi dinamika pertemanan dengan asertif, sehat, dan menjadi pengaruh positif bagi sekitarmu.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
     }
   },
 }
