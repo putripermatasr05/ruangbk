@@ -141,12 +141,12 @@ export default function Konsultasi({ navigate }) {
           className="flex flex-col gap-2 lg:max-h-[300px] overflow-y-auto custom-scroll pr-1"
         >
           {[
-            { avatar: avatarGendis, name: 'Gendis Retno W. M.', role: 'Konselor Sebaya', alt: 'Gendis' },
-            { avatar: avatarGina, name: 'Gina Naila Rahmatika', role: 'Konselor Sebaya', alt: 'Gina' },
-            { avatar: avatarNasywa, name: 'Nasywa Siti Rahima', role: 'Konselor Sebaya', alt: 'Nasywa' },
-            { avatar: avatarPutri, name: 'Putri Permata Sari', role: 'Konselor Sebaya', alt: 'Putri' },
-            { avatar: avatarSyifa, name: 'Syifa Aulia', role: 'Konselor Sebaya', alt: 'Syifa' },
-            { avatar: avatarZourika, name: 'Zourika Nahda M.', role: 'Konselor Sebaya', alt: 'Zourika' },
+            { avatar: avatarGendis, name: 'Gendis Retno W. M.', role: 'Konselor BK', alt: 'Gendis' },
+            { avatar: avatarGina, name: 'Gina Naila Rahmatika', role: 'Konselor BK', alt: 'Gina' },
+            { avatar: avatarNasywa, name: 'Nasywa Siti Rahima', role: 'Konselor BK', alt: 'Ima' },
+            { avatar: avatarPutri, name: 'Putri Permata Sari', role: 'Konselor BK', alt: 'Putri' },
+            { avatar: avatarSyifa, name: 'Syifa Aulia', role: 'Konselor BK', alt: 'Lia' },
+            { avatar: avatarZourika, name: 'Zourika Nahda M.', role: 'Konselor BK', alt: 'Nada' },
           ].map(({ avatar, name, role, alt }) => (
             <div key={name} className="glass-card flex items-center gap-3 px-4 py-3">
               <img src={avatar} alt={alt} width={38} height={38} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
