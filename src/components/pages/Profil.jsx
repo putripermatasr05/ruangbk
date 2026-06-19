@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { Eye, Zap, CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Eye, Zap, CheckCircle2, ChevronDown } from 'lucide-react'
 import avatarGendis from '../../assets/tim/gendis.jpg'
 import avatarGina from '../../assets/tim/gina.jpg'
 import avatarNasywa from '../../assets/tim/nasywa.jpeg'
@@ -10,6 +11,45 @@ const misiList = [
   'Memberikan informasi karir, belajar, dan sosial yang up-to-date.',
   'Menyediakan ruang konsultasi yang aman dan nyaman.',
   'Membantu siswa mengenali minat dan bakat secara mandiri.',
+]
+
+const materiBK = [
+  {
+    title: 'Pengertian Bimbingan dan Konseling',
+    content: 'Bimbingan dan Konseling (BK) merupakan layanan bantuan yang diberikan kepada peserta didik untuk membantu memahami diri, mengembangkan potensi, mengatasi permasalahan, serta merencanakan masa depan secara optimal. BK bertujuan mendukung perkembangan pribadi, sosial, belajar, dan karier peserta didik agar menjadi individu yang mandiri, bertanggung jawab, dan berkarakter.'
+  },
+  {
+    title: 'Tujuan Bimbingan dan Konseling',
+    content: 'Layanan Bimbingan dan Konseling bertujuan membantu peserta didik mencapai perkembangan yang optimal, mandiri, dan bertanggung jawab dalam aspek pribadi, sosial, belajar, dan karier. Selain itu, BK membantu peserta didik memahami diri dan lingkungan, mengembangkan potensi, mengatasi permasalahan, serta merencanakan masa depan dengan baik.'
+  },
+  {
+    title: 'Komponen Layanan BK',
+    content: `<div class="space-y-3">
+      <div><strong class="text-slate-200">1. Layanan Dasar</strong><br/>Layanan yang diberikan kepada seluruh peserta didik melalui kegiatan bimbingan untuk mengembangkan potensi, keterampilan hidup, serta kemampuan penyesuaian diri.</div>
+      <div><strong class="text-slate-200">2. Layanan Peminatan dan Perencanaan Individual</strong><br/>Layanan yang membantu peserta didik mengenali minat, bakat, dan kemampuannya sehingga dapat merencanakan pendidikan dan karier sesuai potensi yang dimiliki.</div>
+      <div><strong class="text-slate-200">3. Layanan Responsif</strong><br/>Layanan yang diberikan kepada peserta didik yang sedang menghadapi masalah dan memerlukan bantuan segera agar tidak menghambat perkembangan dirinya.</div>
+      <div><strong class="text-slate-200">4. Layanan Dukungan Sistem</strong><br/>Layanan yang mendukung pelaksanaan program BK melalui kerja sama dengan guru, orang tua, sekolah, dan pihak terkait untuk menciptakan lingkungan yang mendukung perkembangan peserta didik.</div>
+    </div>`
+  },
+  {
+    title: 'Bidang Layanan BK',
+    content: `<div class="space-y-3">
+      <div><strong class="text-slate-200">Pribadi:</strong> Membantu peserta didik memahami dan mengembangkan diri secara positif.</div>
+      <div><strong class="text-slate-200">Sosial:</strong> Membantu peserta didik membangun hubungan yang baik dengan lingkungan dan meningkatkan keterampilan sosial.</div>
+      <div><strong class="text-slate-200">Belajar:</strong> Membantu peserta didik mengembangkan kebiasaan belajar yang efektif dan mencapai prestasi optimal.</div>
+      <div><strong class="text-slate-200">Karier:</strong> Membantu peserta didik mengenali potensi diri, merencanakan pendidikan lanjutan, dan mempersiapkan pilihan karier di masa depan.</div>
+    </div>`
+  },
+  {
+    title: 'Fungsi Bimbingan dan Konseling',
+    content: `<div class="space-y-3">
+      <div><strong class="text-slate-200">1. Fungsi Pemahaman:</strong> Membantu peserta didik memahami diri, potensi, kebutuhan, permasalahan, dan lingkungan sekitar sebagai dasar pengambilan keputusan yang tepat.</div>
+      <div><strong class="text-slate-200">2. Fungsi Pencegahan:</strong> Membantu peserta didik mengantisipasi dan mencegah munculnya berbagai masalah yang dapat menghambat perkembangan diri.</div>
+      <div><strong class="text-slate-200">3. Fungsi Pengentasan:</strong> Membantu peserta didik menyelesaikan masalah yang sedang dihadapi agar dapat kembali berkembang secara optimal.</div>
+      <div><strong class="text-slate-200">4. Fungsi Pemeliharaan:</strong> Membantu peserta didik mempertahankan kondisi dan perilaku positif yang telah dimiliki agar tetap berkembang dengan baik.</div>
+      <div><strong class="text-slate-200">5. Fungsi Pengembangan:</strong> Membantu peserta didik mengembangkan potensi, bakat, minat, serta keterampilan hidup untuk mencapai keberhasilan di masa depan.</div>
+    </div>`
+  }
 ]
 
 const timKami = [
@@ -57,6 +97,8 @@ const cardVariants = {
 }
 
 export default function Profil({ navigate }) {
+  const [openAccordion, setOpenAccordion] = useState(0) // Default buka accordion pertama
+
   return (
     <div>
       {/* Header */}
@@ -116,6 +158,53 @@ export default function Profil({ navigate }) {
           <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-accent/5 pointer-events-none" aria-hidden="true" />
         </motion.div>
       </div>
+
+      {/* Materi BK (Accordion) */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
+        className="mb-14"
+      >
+        <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">Pilar Layanan</p>
+        <h2 className="font-display font-bold text-3xl lg:text-4xl mb-6">
+          Apa itu <span className="gradient-text">Bimbingan & Konseling?</span>
+        </h2>
+        
+        <div className="flex flex-col gap-3">
+          {materiBK.map((item, idx) => {
+            const isOpen = openAccordion === idx;
+            return (
+              <div key={idx} className="glass-card border border-white/[0.05] overflow-hidden rounded-2xl">
+                <button
+                  onClick={() => setOpenAccordion(isOpen ? null : idx)}
+                  className="w-full flex items-center justify-between p-5 text-left hover:bg-white/[0.02] transition-colors"
+                >
+                  <h3 className="font-bold text-lg text-slate-200">{item.title}</h3>
+                  <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                    <ChevronDown size={20} className="text-slate-400" />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    >
+                      <div 
+                        className="px-5 pb-5 text-sm text-slate-400 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: item.content }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )
+          })}
+        </div>
+      </motion.div>
 
       {/* Tim Pengembang */}
       <motion.div
