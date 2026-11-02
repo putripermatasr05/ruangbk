@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Briefcase, Heart, Users } from 'lucide-react'
+import { BookOpen, Briefcase, ChevronDown, Heart, Users } from 'lucide-react'
 import QuizEngine from '../ui/QuizEngine'
 
 /* ─── DATA ─── */
@@ -267,6 +267,211 @@ const quizSosial = {
   },
 }
 
+/* Data Teknik Belajar Anti Lupa */
+const teknikBelajarList = [
+  {
+    id: 'pomodoro',
+    icon: '🍅',
+    letter: 'A',
+    name: 'Teknik Pomodoro',
+    subtitle: 'Belajar dengan Mengatur Waktu',
+    desc: 'Teknik Pomodoro merupakan metode belajar dengan membagi waktu menjadi sesi fokus dan istirahat singkat.',
+    borderLeft: 'border-l-accent',
+    accentText: 'text-accent',
+    accentBg: 'bg-accent/10',
+    dotBg: 'bg-accent',
+    cara: [
+      { text: 'Pilih tugas yang ingin kamu selesaikan.' },
+      { text: 'Atur timer selama 25 menit.' },
+      { text: 'Fokus belajar tanpa gangguan.' },
+      { text: 'Istirahat selama 5 menit setelah timer berbunyi.' },
+      { text: 'Ulangi hingga empat sesi, kemudian ambil istirahat lebih panjang sekitar 15–20 menit.' },
+    ],
+    isNumbered: true,
+    contoh: 'Gunakan 25 menit untuk mengerjakan tugas Matematika, lalu istirahat selama 5 menit sebelum melanjutkan.',
+    tips: 'Sesuaikan durasi belajar dengan kebutuhan dan kemampuan konsentrasimu.',
+  },
+  {
+    id: 'feynman',
+    icon: '🗣️',
+    letter: 'B',
+    name: 'Teknik Feynman',
+    subtitle: 'Belajar dengan Mengajarkan Kembali',
+    desc: 'Teknik Feynman merupakan cara belajar dengan menjelaskan kembali materi menggunakan bahasa sendiri sesederhana mungkin.',
+    borderLeft: 'border-l-royal',
+    accentText: 'text-royal-light',
+    accentBg: 'bg-royal/10',
+    dotBg: 'bg-royal',
+    cara: [
+      { text: 'Pilih materi yang ingin dipahami.' },
+      { text: 'Pelajari materi tersebut.' },
+      { text: 'Coba jelaskan kembali seolah-olah kamu sedang mengajari teman.' },
+      { text: 'Temukan bagian yang masih sulit dijelaskan.' },
+      { text: 'Pelajari kembali bagian tersebut dan ulangi penjelasan.' },
+    ],
+    isNumbered: true,
+    contoh: 'Setelah mempelajari sistem pencernaan, coba jelaskan proses pencernaan makanan kepada temanmu menggunakan bahasa sederhana.',
+    tips: 'Kamu bisa mencoba menjelaskannya di depan cermin atau merekam suaramu sendiri.',
+  },
+  {
+    id: 'spaced-repetition',
+    icon: '🔄',
+    letter: 'C',
+    name: 'Spaced Repetition',
+    subtitle: 'Mengulang Materi Secara Berkala',
+    desc: 'Spaced Repetition merupakan teknik belajar dengan mengulang materi dalam rentang waktu tertentu agar informasi lebih mudah diingat dalam jangka panjang.',
+    borderLeft: 'border-l-emerald-500',
+    accentText: 'text-emerald-400',
+    accentBg: 'bg-emerald-500/10',
+    dotBg: 'bg-emerald-500',
+    cara: [
+      { label: 'Hari ke-1', text: 'Pelajari materi baru.' },
+      { label: 'Hari ke-2', text: 'Ulangi materi.' },
+      { label: 'Hari ke-4', text: 'Pelajari kembali bagian penting.' },
+      { label: 'Hari ke-7', text: 'Lakukan pengulangan.' },
+      { label: 'Hari ke-30', text: 'Periksa kembali pemahamanmu.' },
+    ],
+    isNumbered: false,
+    contoh: 'Setelah mempelajari materi Biologi hari Senin, luangkan waktu pada hari berikutnya untuk mengingat kembali materi tersebut.',
+    tips: 'Gunakan kalender atau pengingat di ponsel agar jadwal pengulanganmu lebih teratur.',
+  },
+  {
+    id: 'active-recall',
+    icon: '📝',
+    letter: 'D',
+    name: 'Active Recall',
+    subtitle: 'Melatih Ingatan Tanpa Melihat Catatan',
+    desc: 'Active Recall merupakan teknik belajar dengan mencoba mengingat kembali informasi yang telah dipelajari tanpa langsung membuka buku atau catatan.',
+    borderLeft: 'border-l-rose-500',
+    accentText: 'text-rose-400',
+    accentBg: 'bg-rose-500/10',
+    dotBg: 'bg-rose-500',
+    cara: [
+      { text: 'Pelajari materi seperti biasa.' },
+      { text: 'Tutup buku atau catatanmu.' },
+      { text: 'Tuliskan informasi yang masih kamu ingat.' },
+      { text: 'Buat pertanyaan berdasarkan materi.' },
+      { text: 'Jawab pertanyaan tanpa melihat catatan.' },
+      { text: 'Periksa kembali jawabanmu.' },
+    ],
+    isNumbered: true,
+    contoh: 'Setelah belajar Sejarah, tutup bukumu dan coba jawab pertanyaan tentang tokoh, tanggal, serta peristiwa penting yang sudah dipelajari.',
+    tips: 'Gunakan flashcard, latihan soal, atau kuis mandiri untuk menguji ingatanmu.',
+  },
+]
+
+function TeknikBelajarCard({ item }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div
+      className={`glass-card p-6 border-l-4 ${item.borderLeft} transition-all duration-300 hover:border-white/20 hover:shadow-lg cursor-pointer select-none`}
+      onClick={() => setIsOpen(!isOpen)}
+      role="button"
+      tabIndex={0}
+      aria-expanded={isOpen}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          setIsOpen(!isOpen)
+        }
+      }}
+    >
+      <div className="flex items-start justify-between gap-4 mb-1">
+        <div>
+          <h4 className="font-bold text-base flex items-center gap-2 text-slate-100">
+            <span>{item.icon}</span> {item.letter}. {item.name}
+          </h4>
+          <p className="text-xs font-medium text-slate-400 italic mt-0.5">
+            {item.subtitle}
+          </p>
+        </div>
+        <div
+          className={`w-7 h-7 rounded-lg bg-surface-2 border border-white/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
+            isOpen ? 'rotate-180 text-white' : 'text-slate-400'
+          }`}
+        >
+          <ChevronDown className="w-4 h-4" />
+        </div>
+      </div>
+
+      <p className="text-slate-300 text-sm leading-relaxed mb-3">
+        {item.desc}
+      </p>
+
+      <div className="flex items-center justify-between text-xs font-semibold pt-2.5 border-t border-white/[0.06]">
+        <span className={item.accentText}>
+          {isOpen ? 'Tutup Detail' : 'Klik untuk lihat detail'}
+        </span>
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform duration-300 ${item.accentText} ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden select-text cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="pt-4 mt-3 border-t border-white/10 space-y-4">
+              <div>
+                <p className="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${item.dotBg}`}></span>
+                  Cara melakukannya:
+                </p>
+                <div className="space-y-2 text-xs text-slate-300">
+                  {item.cara.map((step, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2.5 leading-relaxed bg-surface-2/40 rounded-lg p-2.5 border border-white/[0.04]"
+                    >
+                      {item.isNumbered ? (
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-white/[0.08] text-slate-300 flex items-center justify-center font-bold text-[11px]">
+                          {idx + 1}
+                        </span>
+                      ) : (
+                        <span className="flex-shrink-0 font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px]">
+                          {step.label}
+                        </span>
+                      )}
+                      <span className="pt-0.5">{step.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-surface-2/80 rounded-xl p-3.5 border border-white/[0.08]">
+                <p className="text-xs text-amber-400 font-bold mb-1 flex items-center gap-1.5">
+                  <span>💡</span> Contoh:
+                </p>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {item.contoh}
+                </p>
+              </div>
+
+              <div className="bg-primary/10 border border-primary/20 rounded-xl p-3.5 text-xs text-primary-light">
+                <p className="font-bold mb-1 flex items-center gap-1.5 text-primary-light">
+                  <span>✨</span> Tips:
+                </p>
+                <p className="leading-relaxed text-slate-300">
+                  {item.tips}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 /* Materi Content */
 const MateriContent = {
   belajar: () => (
@@ -301,31 +506,10 @@ const MateriContent = {
       </div>
 
       <h3 className="font-bold text-lg mb-4 text-accent">2. Teknik Belajar Anti Lupa (Wajib Coba!)</h3>
-      <div className="grid lg:grid-cols-2 gap-4 mb-4">
-        <div className="glass-card p-6 border-l-4 border-l-accent">
-          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🍅 Teknik Pomodoro</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Gunakan timer: <strong>Fokus 25 menit, istirahat 5 menit</strong>. Setelah 4 putaran, istirahat panjang 20 menit. Ini mencegah otak "burnout" mendadak dan memaksimalkan konsentrasi.
-          </p>
-        </div>
-        <div className="glass-card p-6 border-l-4 border-l-royal">
-          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🗣️ Teknik Feynman</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Cara terbaik menguji pemahaman adalah <strong>mengajarkannya kepada orang awam dengan sederhana</strong>. Jika kamu tidak bisa menjelaskannya dengan simpel, kamu belum benar-benar paham.
-          </p>
-        </div>
-        <div className="glass-card p-6 border-l-4 border-l-emerald-500">
-          <h4 className="font-bold text-base mb-2 flex items-center gap-2">🔄 Spaced Repetition</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Sistem Kebut Semalam (SKS) sangat mudah dilupakan otak. Ulang materi secara berkala: <strong>1 hari, 3 hari, 1 minggu, lalu 1 bulan</strong> setelah pertama dipelajari.
-          </p>
-        </div>
-        <div className="glass-card p-6 border-l-4 border-l-rose-500">
-          <h4 className="font-bold text-base mb-2 flex items-center gap-2">📝 Active Recall</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Berhenti sekadar membaca ulang! Tutup bukumu, dan <strong>tulis atau sebutkan semua yang kamu ingat</strong>. Proses ini memaksa koneksi saraf memori bekerja lebih kuat.
-          </p>
-        </div>
+      <div className="grid lg:grid-cols-2 gap-4 items-start mb-4">
+        {teknikBelajarList.map((item) => (
+          <TeknikBelajarCard key={item.id} item={item} />
+        ))}
       </div>
     </div>
   ),
