@@ -5,8 +5,8 @@ import {
   CheckCircle2, ChevronDown, Clock, Compass, Eye, FileEdit, FileText, Globe,
   GraduationCap, Headphones, Heart, HeartHandshake, HeartPulse, HelpCircle,
   Info, Lightbulb, ListChecks, MapPin, MessageCircle, MessageSquare,
-  MessageSquareQuote, Palette, Repeat, Rocket, RotateCcw, Scale, Shield,
-  Smartphone, Sparkles, Target, Timer, TrendingUp, Users, Wallet, Wind, Wrench
+  MessageSquareQuote, Moon, Palette, PenTool, Repeat, Rocket, RotateCcw, Scale, Shield,
+  Smartphone, Smile, Sparkles, Target, Timer, TrendingUp, Users, Utensils, Wallet, Wind, Wrench
 } from 'lucide-react'
 import QuizEngine from '../ui/QuizEngine'
 
@@ -957,75 +957,282 @@ const quizKarir = {
 
 /* Quiz Data: Pribadi */
 const quizPribadi = {
-  title: 'Evaluasi Kesejahteraan Emosional (Pribadi)',
-  subtitle: 'Pilih respons yang paling mencerminkan kondisi personalmu saat ini.',
+  title: 'KUIS: EVALUASI KESEJAHTERAAN EMOSIONAL',
+  subtitle: 'Bidang Pribadi – TemanBK',
+  description: 'Kuis ini bertujuan mengajak kamu mengenali kebiasaan dalam mengelola emosi, menghadapi tekanan, dan merawat diri.',
+  instructions: 'Bacalah setiap pertanyaan, kemudian pilih satu jawaban yang paling menggambarkan kebiasaan atau responsmu. Jawablah dengan jujur sesuai keadaan dirimu.',
   questions: [
     {
-      id: 'qp1', type: 'radio',
-      text: '1. Saat menghadapi tekanan tugas sekolah yang menumpuk, apa yang biasa kamu lakukan?',
+      id: 'qp1',
+      type: 'radio',
+      text: 'Pertanyaan 1 – Mengelola Stres: Saat menghadapi tekanan tugas sekolah yang menumpuk, apa yang biasanya kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Membuat jadwal prioritas, mencicilnya, dan minta bantuan jika kewalahan.' },
-        { label: 'B', value: 'sedang', text: 'Memaksakan diri begadang mengejar target sampai kelelahan total.' },
-        { label: 'C', value: 'kritis', text: 'Menghindar sepenuhnya (procrastination), bermain medsos, atau pasrah.' },
+        { label: 'A', value: 'A', text: 'Membuat daftar prioritas, mengerjakan tugas secara bertahap, dan meminta bantuan jika diperlukan.' },
+        { label: 'B', value: 'B', text: 'Berusaha menyelesaikan semuanya sekaligus meskipun merasa lelah dan kewalahan.' },
+        { label: 'C', value: 'C', text: 'Menunda pekerjaan karena merasa bingung harus memulai dari mana.' },
       ],
     },
     {
-      id: 'qp2', type: 'radio',
-      text: '2. Berapa sering kamu merasa "kosong" atau kehilangan minat pada hobi yang dulu kamu sukai?',
+      id: 'qp2',
+      type: 'radio',
+      text: 'Pertanyaan 2 – Mengenali Emosi: Ketika merasa sedih, kecewa, atau marah, bagaimana biasanya kamu merespons perasaan tersebut?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Jarang. Sesekali bosan, tapi segera kembali antusias.' },
-        { label: 'B', value: 'sedang', text: 'Kadang-kadang, terutama saat sedang banyak pikiran.' },
-        { label: 'C', value: 'kritis', text: 'Sangat sering atau hampir setiap hari belakangan ini.' },
+        { label: 'A', value: 'A', text: 'Mencoba mengenali penyebabnya dan mencari cara yang sehat untuk mengungkapkan perasaan.' },
+        { label: 'B', value: 'B', text: 'Memendam perasaan karena merasa tidak nyaman menceritakannya.' },
+        { label: 'C', value: 'C', text: 'Melampiaskan emosi tanpa memikirkan dampaknya terhadap diri sendiri atau orang lain.' },
       ],
     },
     {
-      id: 'qp3', type: 'radio',
-      text: '3. Bagaimana kamu menghadapi kegagalan atau nilai yang buruk?',
+      id: 'qp3',
+      type: 'radio',
+      text: 'Pertanyaan 3 – Mengelola Kecemasan: Ketika merasa cemas menghadapi ujian atau situasi yang membuatmu gugup, apa yang biasanya kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Mengevaluasi kesalahan dan menjadikannya pelajaran tanpa menyalahkan diri.' },
-        { label: 'B', value: 'sedang', text: 'Kecewa berhari-hari, lalu mencoba bangkit perlahan.' },
-        { label: 'C', value: 'kritis', text: 'Menghukum diri sendiri dan merasa sangat tidak berguna.' },
+        { label: 'A', value: 'A', text: 'Mencoba menenangkan diri melalui latihan pernapasan, grounding, atau kegiatan yang membuat nyaman.' },
+        { label: 'B', value: 'B', text: 'Terus memikirkan kemungkinan buruk yang mungkin terjadi.' },
+        { label: 'C', value: 'C', text: 'Menghindari situasi tersebut karena merasa belum siap menghadapinya.' },
       ],
     },
     {
-      id: 'qp4', type: 'radio',
-      text: '4. Bagaimana kualitas tidurmu dalam 1-2 minggu terakhir?',
+      id: 'qp4',
+      type: 'radio',
+      text: 'Pertanyaan 4 – Kebiasaan Digital: Ketika menggunakan media sosial, bagaimana kamu menjaga keseimbangan antara aktivitas digital dan kehidupan sehari-hari?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Cukup dan nyenyak, bangun pagi merasa segar.' },
-        { label: 'B', value: 'sedang', text: 'Kadang susah tidur kalau lagi banyak pikiran, tapi masih bisa diatasi.' },
-        { label: 'C', value: 'kritis', text: 'Sangat buruk. Terlalu banyak tidur (oversleeping) atau insomnia parah setiap hari.' },
+        { label: 'A', value: 'A', text: 'Mengatur waktu penggunaan media sosial dan mengambil jeda ketika mulai merasa lelah.' },
+        { label: 'B', value: 'B', text: 'Sering menggunakan media sosial lebih lama dari yang direncanakan.' },
+        { label: 'C', value: 'C', text: 'Membandingkan kehidupan diri sendiri dengan unggahan orang lain hingga memengaruhi suasana hati.' },
       ],
     },
     {
-      id: 'qp5', type: 'radio',
-      text: '5. Saat kamu membuat kesalahan kecil, apa yang biasanya terlintas di pikiranmu?',
+      id: 'qp5',
+      type: 'radio',
+      text: 'Pertanyaan 5 – Self-Care: Ketika merasa lelah secara fisik maupun emosional, apa yang biasanya kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: '"Tidak apa-apa, namanya juga proses belajar. Aku akan perbaiki ke depannya."' },
-        { label: 'B', value: 'sedang', text: '"Ah, harusnya aku bisa lebih teliti dari ini." (sedikit menyalahkan diri sendiri).' },
-        { label: 'C', value: 'kritis', text: '"Aku memang selalu mengacaukan segalanya dan tidak pernah bisa melakukan apapun dengan benar."' },
+        { label: 'A', value: 'A', text: 'Memberikan waktu untuk beristirahat dan melakukan aktivitas yang membantu memulihkan energi.' },
+        { label: 'B', value: 'B', text: 'Tetap memaksakan diri menyelesaikan aktivitas meskipun membutuhkan istirahat.' },
+        { label: 'C', value: 'C', text: 'Mengabaikan kebutuhan diri sendiri karena merasa harus terus memenuhi tuntutan orang lain.' },
       ],
     },
     {
-      id: 'qp6', type: 'radio',
-      text: '6. Ketika sedang sangat sedih atau kewalahan, seberapa sering kamu mengalihkan perhatian ke hal-hal yang merusak diri?',
+      id: 'qp6',
+      type: 'radio',
+      text: 'Pertanyaan 6 – Mencari Bantuan: Jika mengalami masalah pribadi yang terasa berat dan sulit diselesaikan sendiri, apa yang akan kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Sangat jarang/tidak pernah. Aku lebih suka mencari solusi, jurnaling, atau beristirahat.' },
-        { label: 'B', value: 'sedang', text: 'Kadang-kadang, seperti doom-scrolling medsos seharian penuh untuk melarikan diri dari kenyataan.' },
-        { label: 'C', value: 'kritis', text: 'Sering. Mengisolasi diri secara ekstrem, melukai diri, atau tindakan impulsif lainnya.' },
+        { label: 'A', value: 'A', text: 'Berusaha bercerita kepada orang yang dipercaya, seperti keluarga, teman tepercaya, atau konselor.' },
+        { label: 'B', value: 'B', text: 'Mencoba menyelesaikannya sendiri terlebih dahulu meskipun membutuhkan waktu.' },
+        { label: 'C', value: 'C', text: 'Memilih memendam masalah karena merasa tidak ada orang yang bisa memahami keadaanmu.' },
       ],
     },
   ],
   getResult: (answers) => {
+    const aspectDefs = [
+      {
+        id: 0,
+        aspek: 'Mengelola stres',
+        Icon: Clock,
+        rekomendasi: 'Pelajari teknik manajemen waktu dan penyusunan prioritas.',
+      },
+      {
+        id: 1,
+        aspek: 'Mengenali emosi',
+        Icon: Heart,
+        rekomendasi: 'Pelajari cara mengenali dan mengekspresikan emosi secara sehat.',
+      },
+      {
+        id: 2,
+        aspek: 'Mengelola kecemasan',
+        Icon: Wind,
+        rekomendasi: 'Coba latihan grounding dan teknik relaksasi.',
+      },
+      {
+        id: 3,
+        aspek: 'Kebiasaan digital',
+        Icon: Smartphone,
+        rekomendasi: 'Terapkan penggunaan media sosial secara seimbang.',
+      },
+      {
+        id: 4,
+        aspek: 'Self-care',
+        Icon: Smile,
+        rekomendasi: 'Bangun kebiasaan perawatan diri sehari-hari.',
+      },
+      {
+        id: 5,
+        aspek: 'Mencari bantuan',
+        Icon: HeartHandshake,
+        rekomendasi: 'Kenali sumber dukungan dan layanan konseling yang tersedia.',
+      },
+    ]
+
     const vals = Object.values(answers)
-    const countKritis = vals.filter(v => v === 'kritis').length
-    const countSedang = vals.filter(v => v === 'sedang').length
-    
-    if (countKritis >= 3) {
-      return { Icon: AlertTriangle, title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran yang sangat berat sendirian. Tolong jangan sungkan mencari dukungan profesional atau jadwalkan sesi cerita dengan konselor BK kita. Kami di sini untukmu.', tags: ['Perlu Konseling', 'Darurat Self-Care', 'Jangan Sendirian'] }
-    } else if (countKritis >= 1 || countSedang >= 3) {
-      return { Icon: HeartPulse, title: 'Beri Waktu untuk Dirimu', desc: 'Kamu sudah berjuang keras, tapi stres dan kelelahan mental mulai menumpuk. Coba kurangi ekspektasi perfeksionis dan mulailah lebih memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness', 'Take a Break'] }
-    } else {
-      return { Icon: Sparkles, title: 'Kondisimu Sangat Stabil', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sehat dan tangguh. Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental', 'Positive Vibes'] }
+    const countA = vals.filter((v) => v === 'A').length
+    const countB = vals.filter((v) => v === 'B').length
+    const countC = vals.filter((v) => v === 'C').length
+
+    let statusHeader = {
+      title: 'Kesejahteraan Emosionalmu Sangat Baik & Adaptif!',
+      tagline: 'Kamu memiliki pemahaman diri yang matang dan kebiasaan merawat diri yang sehat.',
+      desc: 'Sebagian besar responsmu menunjukkan kebiasaan yang konstruktif dalam mengelola tekanan, mengenali perasaan, dan menjaga keseimbangan hidup.',
+      Icon: Sparkles,
+      iconBg: 'bg-emerald-100 border-emerald-200 text-emerald-600',
+    }
+
+    if (countC >= 3 || answers[5] === 'C') {
+      statusHeader = {
+        title: 'Saatnya Memberi Ruang untuk Diri Sendiri & Mencari Dukungan',
+        tagline: 'Jangan ragu berbagi beban. Kamu berharga dan tidak harus menanggung semuanya sendirian.',
+        desc: 'Beberapa responsmu menunjukkan tanda stres atau kecemasan yang mulai membebani. Luangkan waktu untuk istirahat dan pertimbangkan untuk bercerita kepada orang yang kamu percaya atau konselor BK.',
+        Icon: AlertTriangle,
+        iconBg: 'bg-rose-100 border-rose-200 text-rose-600',
+      }
+    } else if (countB >= 3 || countC >= 1) {
+      statusHeader = {
+        title: 'Kesejahteraan Emosionalmu Cukup Baik dengan Ruang Bertumbuh',
+        tagline: 'Fondasi emosionalmu sudah terbentuk, terus kembangkan strategi self-care yang sehat.',
+        desc: 'Kamu sudah berusaha mengelola berbagai tantangan dengan baik. Mengasah sedikit penyesuaian pada kebiasaan istirahat dan komunikasi akan membuatmu semakin tangguh.',
+        Icon: HeartPulse,
+        iconBg: 'bg-purple-100 border-purple-200 text-purple-600',
+      }
+    }
+
+    return {
+      render: ({ reset }) => (
+        <div className="space-y-6">
+          {/* Header Hasil */}
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+              className={`w-16 h-16 rounded-2xl ${statusHeader.iconBg} border flex items-center justify-center mx-auto mb-4 shadow-sm`}
+              aria-hidden="true"
+            >
+              <statusHeader.Icon size={32} />
+            </motion.div>
+            <span className="inline-block text-[11px] font-bold px-3 py-1 rounded-full border mb-2 bg-purple-50 text-purple-700 border-purple-200">
+              HASIL EVALUASI KESEJAHTERAAN EMOSIONAL
+            </span>
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-slate-900">
+              {statusHeader.title}
+            </h3>
+            <p className="text-purple-600 font-semibold text-base mb-2">
+              {statusHeader.tagline}
+            </p>
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
+              {statusHeader.desc}
+            </p>
+          </div>
+
+          {/* Ringkasan Distribusi Respons */}
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center">
+              Distribusi Pola Responsmu (Total 6 Aspek)
+            </h4>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-emerald-50/70 p-3.5 rounded-2xl border border-emerald-200/80 text-center">
+                <span className="text-xs font-semibold text-emerald-800 block mb-1">
+                  Kebiasaan Sehat (A)
+                </span>
+                <p className="font-display font-bold text-2xl text-emerald-700">
+                  {countA} <span className="text-xs font-normal text-emerald-600">aspek</span>
+                </p>
+              </div>
+
+              <div className="bg-amber-50/70 p-3.5 rounded-2xl border border-amber-200/80 text-center">
+                <span className="text-xs font-semibold text-amber-800 block mb-1">
+                  Perlu Penyesuaian (B)
+                </span>
+                <p className="font-display font-bold text-2xl text-amber-700">
+                  {countB} <span className="text-xs font-normal text-amber-600">aspek</span>
+                </p>
+              </div>
+
+              <div className="bg-rose-50/70 p-3.5 rounded-2xl border border-rose-200/80 text-center">
+                <span className="text-xs font-semibold text-rose-800 block mb-1">
+                  Butuh Perhatian (C)
+                </span>
+                <p className="font-display font-bold text-2xl text-rose-700">
+                  {countC} <span className="text-xs font-normal text-rose-600">aspek</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Tabel / Grid Rekomendasi Berdasarkan Aspek */}
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="font-bold text-sm lg:text-base text-slate-900 flex items-center gap-2">
+                <ListChecks size={18} className="text-purple-600" />
+                <span>Rekomendasi Berdasarkan Aspek yang Dieksplorasi</span>
+              </h4>
+              <span className="text-xs text-slate-500">6 Aspek Pribadi</span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3.5">
+              {aspectDefs.map((item, idx) => {
+                const ans = answers[idx]
+                const isHealthy = ans === 'A'
+                const isModerate = ans === 'B'
+
+                const badgeClass = isHealthy
+                  ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                  : isModerate
+                  ? 'bg-amber-100 text-amber-800 border-amber-200'
+                  : 'bg-rose-100 text-rose-800 border-rose-200'
+
+                const badgeText = isHealthy
+                  ? 'Sudah Baik'
+                  : isModerate
+                  ? 'Perlu Penyesuaian'
+                  : 'Perlu Perhatian'
+
+                return (
+                  <div
+                    key={item.aspek}
+                    className="p-4 rounded-2xl bg-purple-50/50 border border-purple-100 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-xl bg-white border border-purple-200 flex items-center justify-center text-purple-700 shadow-2xs">
+                            <item.Icon size={16} />
+                          </div>
+                          <h5 className="font-bold text-sm text-slate-900">{item.aspek}</h5>
+                        </div>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeClass}`}>
+                          {badgeText}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed pl-10">
+                        {item.rekomendasi}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Pesan TemanBK */}
+          <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+            <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+              <MessageSquareQuote size={16} className="text-amber-800" />
+              <span>Pesan TemanBK:</span>
+            </p>
+            <p className="leading-relaxed text-slate-700">
+              Kesehatan mental adalah perjalanan yang dinamis, bukan perlombaan kesempurnaan. Setiap langkah kecil dalam merawat diri dan berani mengungkapkan perasaan adalah tanda kekuatan diri.
+            </p>
+          </div>
+
+          <div className="text-center pt-2">
+            <button
+              onClick={reset}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-purple-200 text-sm font-bold text-slate-700 hover:text-purple-800 hover:border-purple-400 shadow-sm hover:shadow-md transition-all"
+            >
+              <RotateCcw size={15} /> Ulangi Evaluasi
+            </button>
+          </div>
+        </div>
+      ),
     }
   },
 }
@@ -1686,50 +1893,293 @@ const MateriContent = {
 
   pribadi: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {/* Header Banner */}
       <div className="flex gap-5 bg-gradient-to-r from-purple-100/80 via-pink-50 to-violet-50 border border-purple-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
         <div className="w-16 h-16 rounded-2xl bg-white border border-purple-200 flex items-center justify-center text-purple-700 flex-shrink-0 shadow-sm" aria-hidden="true">
           <HeartPulse size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-3">Kesehatan Mental & Self-Care</h2>
-          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
-            Kamu tidak akan bisa meraih prestasi luar biasa jika "tangki emosionalmu" kosong. Mari belajar mengenali diri sendiri, mengelola stres, dan merawat kewarasan psikologis.
-          </p>
-        </div>
-      </div>
-
-      <h3 className="font-bold text-lg mb-4 text-slate-900 flex items-center gap-2">
-        <Heart size={20} className="text-purple-600" />
-        <span>Toolkit P3K Psikologis (Pertolongan Pertama)</span>
-      </h3>
-      <div className="grid lg:grid-cols-3 gap-4 mb-6">
-        {[
-          { Icon: Wind, title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
-          { Icon: Smartphone, title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
-          { Icon: FileEdit, title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
-        ].map(({ Icon: CardIcon, title, desc }) => (
-          <div key={title} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-5 border-t-4 border-t-purple-400 transition-all relative overflow-hidden group">
-            <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700 mb-3" aria-hidden="true">
-              <CardIcon size={20} />
-            </div>
-            <h4 className="font-bold text-base mb-2 text-slate-900 flex items-center gap-2">{title}</h4>
-            <p className="text-slate-600 text-xs leading-relaxed relative z-10">{desc}</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+              BIDANG PRIBADI
+            </span>
+            <span className="text-xs text-purple-600 font-semibold">Kenali Dirimu, Rawat Kesehatan Mentalmu!</span>
           </div>
-        ))}
+          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-2">Kesehatan Mental & Self-Care</h2>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
+            Kesehatan mental merupakan bagian penting dari kesejahteraan diri. Sama seperti kesehatan fisik, kondisi emosional juga perlu diperhatikan dan dirawat. Tuntutan sekolah, hubungan pertemanan, masalah keluarga, dan berbagai perubahan dalam kehidupan dapat menimbulkan tekanan. Melalui materi ini, kamu akan belajar mengenali emosi, mengelola stres, melakukan perawatan diri (self-care), serta memahami kapan perlu mencari bantuan.
+          </p>
+        </div>
       </div>
 
-      <div className="card-pastel-peach border border-rose-200/80 rounded-3xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center shadow-sm">
-        <div className="w-16 h-16 rounded-2xl bg-white border border-rose-200 flex items-center justify-center text-rose-600 flex-shrink-0 shadow-sm" aria-hidden="true">
-          <AlertTriangle size={32} />
-        </div>
-        <div>
-          <h4 className="font-bold text-lg text-rose-950 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
-          <p className="text-slate-700 text-sm leading-relaxed mb-4">
-            Datang ke profesional bukan tanda kelemahan! Segera cari bantuan jika: <br/>
-            <strong>Tidur/makan berubah ekstrem, kehilangan minat pada hobi berlarut-larut, 
-            mengurung diri total, atau ada pikiran menyakiti diri sendiri.</strong>
+      {/* 1. Toolkit P3K Psikologis */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-purple-900 mb-1 flex items-center gap-2">
+            <Heart size={20} className="text-purple-600" />
+            <span>1. Toolkit P3K Psikologis (Pertolongan Pertama untuk Diri Sendiri)</span>
+          </h3>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Berikut beberapa cara sederhana yang dapat kamu coba ketika merasa stres, cemas, atau kewalahan:
           </p>
-          <p className="text-sm font-bold text-rose-900">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-5 mb-4">
+          {/* Grounding 5-4-3-2-1 */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-t-4 border-t-purple-500 transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-11 h-11 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700 mb-3" aria-hidden="true">
+                <Wind size={22} />
+              </div>
+              <h4 className="font-bold text-base text-slate-900 mb-2">Grounding 5-4-3-2-1</h4>
+              <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                Ketika merasa cemas atau pikiran mulai tidak tenang, cobalah mengarahkan perhatian pada keadaan di sekitarmu melalui lima indra:
+              </p>
+              <ul className="space-y-1.5 text-xs text-slate-700 mb-4 bg-purple-50/50 p-3.5 rounded-2xl border border-purple-100/70 font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-200 text-purple-900 font-bold text-[10px] flex items-center justify-center flex-shrink-0">5</span>
+                  <span>benda yang dapat kamu lihat</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-200 text-purple-900 font-bold text-[10px] flex items-center justify-center flex-shrink-0">4</span>
+                  <span>benda yang dapat kamu sentuh</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-200 text-purple-900 font-bold text-[10px] flex items-center justify-center flex-shrink-0">3</span>
+                  <span>suara yang dapat kamu dengar</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-200 text-purple-900 font-bold text-[10px] flex items-center justify-center flex-shrink-0">2</span>
+                  <span>aroma yang dapat kamu cium</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-purple-200 text-purple-900 font-bold text-[10px] flex items-center justify-center flex-shrink-0">1</span>
+                  <span>rasa yang dapat kamu kecap</span>
+                </li>
+              </ul>
+            </div>
+            <p className="text-[11px] text-purple-800 bg-purple-100/70 p-2.5 rounded-xl border border-purple-200/60 leading-relaxed">
+              Teknik ini membantu mengarahkan perhatian kembali pada keadaan saat ini sehingga kamu dapat merasa lebih tenang.
+            </p>
+          </div>
+
+          {/* Digital Wellbeing */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-t-4 border-t-sky-500 transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-11 h-11 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 mb-3" aria-hidden="true">
+                <Smartphone size={22} />
+              </div>
+              <h4 className="font-bold text-base text-slate-900 mb-2">Digital Wellbeing</h4>
+              <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                Media sosial dapat menjadi sarana hiburan dan informasi, tetapi penggunaan berlebihan atau kebiasaan membandingkan diri dengan orang lain dapat memengaruhi suasana hati.
+              </p>
+              <div className="bg-sky-50/50 p-3.5 rounded-2xl border border-sky-100/70 mb-4">
+                <p className="text-[11px] font-bold text-sky-900 mb-2">Cobalah beberapa kebiasaan berikut:</p>
+                <ul className="space-y-1.5 text-xs text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <CheckCircle2 size={13} className="text-sky-600 flex-shrink-0 mt-0.5" />
+                    <span>Mengatur waktu penggunaan media sosial.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <CheckCircle2 size={13} className="text-sky-600 flex-shrink-0 mt-0.5" />
+                    <span>Mengambil jeda ketika mulai merasa lelah.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <CheckCircle2 size={13} className="text-sky-600 flex-shrink-0 mt-0.5" />
+                    <span>Menghindari membandingkan hidup sendiri dengan unggahan orang lain.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <CheckCircle2 size={13} className="text-sky-600 flex-shrink-0 mt-0.5" />
+                    <span>Menggunakan media sosial untuk kegiatan positif dan bermanfaat.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-[11px] text-sky-900 bg-sky-100/70 p-2.5 rounded-xl border border-sky-200/60 leading-relaxed">
+              Ingat, apa yang ditampilkan seseorang di media sosial belum tentu menggambarkan keseluruhan kehidupannya.
+            </p>
+          </div>
+
+          {/* Brain Dump Journal */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-t-4 border-t-amber-500 transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-700 mb-3" aria-hidden="true">
+                <FileEdit size={22} />
+              </div>
+              <h4 className="font-bold text-base text-slate-900 mb-2">Brain Dump Journal</h4>
+              <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                Terkadang, banyaknya pikiran membuat kita sulit memahami perasaan sendiri. Salah satu cara yang bisa dicoba adalah brain dump journal.
+              </p>
+              <div className="bg-amber-50/50 p-3.5 rounded-2xl border border-amber-100/70 mb-4">
+                <p className="text-[11px] font-bold text-amber-900 mb-2">Caranya sederhana:</p>
+                <ul className="space-y-1.5 text-xs text-slate-700">
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>Siapkan buku catatan atau kertas.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>Tuliskan apa pun yang sedang kamu pikirkan atau rasakan.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>Tidak perlu memikirkan susunan kalimat atau tata bahasa.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>Setelah selesai, baca kembali tulisanmu jika merasa nyaman.</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>Coba kenali hal-hal yang sedang mengganggu pikiranmu.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-[11px] text-amber-900 bg-amber-100/70 p-2.5 rounded-xl border border-amber-200/60 leading-relaxed">
+              Menulis dapat membantu kamu mengenali dan menata pikiran serta perasaan.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Self-Care Sederhana Sehari-hari */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-slate-900 mb-1 flex items-center gap-2">
+            <Smile size={20} className="text-rose-500" />
+            <span>2. Self-Care Sederhana Sehari-hari</span>
+          </h3>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Self-care adalah upaya merawat diri agar kebutuhan fisik, emosional, dan sosial tetap diperhatikan. Kamu bisa memulainya melalui kebiasaan sederhana:
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            {
+              Icon: Moon,
+              title: 'Istirahat cukup',
+              desc: 'Berikan waktu bagi tubuh dan pikiran untuk beristirahat.',
+              bg: 'bg-purple-50',
+              border: 'border-purple-200',
+              color: 'text-purple-700',
+            },
+            {
+              Icon: Utensils,
+              title: 'Makan teratur',
+              desc: 'Perhatikan kebutuhan nutrisi tubuh.',
+              bg: 'bg-amber-50',
+              border: 'border-amber-200',
+              color: 'text-amber-700',
+            },
+            {
+              Icon: Smile,
+              title: 'Luangkan waktu untuk diri sendiri',
+              desc: 'Lakukan kegiatan atau hobi yang kamu sukai.',
+              bg: 'bg-pink-50',
+              border: 'border-pink-200',
+              color: 'text-pink-600',
+            },
+            {
+              Icon: Activity,
+              title: 'Bergerak aktif',
+              desc: 'Lakukan aktivitas fisik yang menyenangkan.',
+              bg: 'bg-emerald-50',
+              border: 'border-emerald-200',
+              color: 'text-emerald-700',
+            },
+            {
+              Icon: MessageCircle,
+              title: 'Berbagi cerita',
+              desc: 'Bicarakan perasaan dengan orang yang kamu percaya.',
+              bg: 'bg-sky-50',
+              border: 'border-sky-200',
+              color: 'text-sky-600',
+            },
+            {
+              Icon: Heart,
+              title: 'Menghargai diri sendiri',
+              desc: 'Sadari bahwa kamu tidak harus selalu sempurna dan boleh meminta bantuan.',
+              bg: 'bg-rose-50',
+              border: 'border-rose-200',
+              color: 'text-rose-600',
+            },
+          ].map(({ Icon: CardIcon, title, desc, bg, border, color }) => (
+            <motion.div
+              key={title}
+              whileHover={{ y: -3 }}
+              className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-5 transition-all flex items-start gap-4"
+            >
+              <div className={`w-11 h-11 rounded-2xl ${bg} border ${border} flex items-center justify-center ${color} flex-shrink-0 shadow-2xs`}>
+                <CardIcon size={20} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-slate-900 mb-1">{title}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Red Flags: Kapan Harus Mencari Bantuan? */}
+      <div className="card-pastel-peach border border-rose-200/80 rounded-3xl p-6 lg:p-8 shadow-sm">
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-white border border-rose-200 flex items-center justify-center text-rose-600 flex-shrink-0 shadow-sm" aria-hidden="true">
+            <AlertTriangle size={26} />
+          </div>
+          <div>
+            <h3 className="font-bold text-lg lg:text-xl text-rose-950 mb-1">
+              3. Red Flags: Kapan Harus Mencari Bantuan?
+            </h3>
+            <p className="text-slate-700 text-sm leading-relaxed">
+              Meminta bantuan bukanlah tanda kelemahan. Ada kalanya seseorang membutuhkan dukungan dari orang lain untuk menghadapi masalah yang sedang dialami.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white/80 border border-rose-200/70 rounded-2xl p-4.5 mb-5">
+          <p className="text-xs font-bold text-rose-900 mb-2.5">
+            Beberapa kondisi yang perlu diperhatikan antara lain:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-700">
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Perubahan pola tidur atau makan yang berlangsung terus-menerus.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Kehilangan minat terhadap aktivitas yang sebelumnya disukai.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Kesulitan berkonsentrasi dan menjalankan kegiatan sehari-hari.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Menarik diri dari lingkungan sosial secara berlebihan.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Merasa sedih, cemas, atau tertekan dalam waktu yang berkepanjangan.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 flex-shrink-0" />
+              <span>Memiliki pikiran untuk menyakiti diri sendiri.</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-xs lg:text-sm text-slate-700 leading-relaxed mb-4">
+          Jika mengalami kondisi tersebut, jangan menghadapinya sendirian. Kamu dapat bercerita kepada orang tua, wali, guru BK, atau orang dewasa tepercaya. Jika diperlukan, mintalah bantuan tenaga profesional kesehatan mental.
+        </p>
+
+        <div className="bg-rose-100/70 border border-rose-200 rounded-2xl p-4 flex items-center gap-3">
+          <Heart size={20} className="text-rose-600 flex-shrink-0" />
+          <p className="text-xs lg:text-sm font-bold text-rose-950 leading-relaxed">
+            Ingat, kamu tidak harus menghadapi semuanya sendirian. Konselor TemanBK siap menjadi ruang awal untuk bercerita dan mendapatkan dukungan tanpa dihakimi.
+          </p>
         </div>
       </div>
     </div>
