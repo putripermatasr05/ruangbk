@@ -12,9 +12,9 @@ import {
   CheckCircle2,
   Clock,
   ChevronDown,
-  Info,
-  ShieldCheck,
-  Users
+  ChevronUp,
+  Shield,
+  HelpCircle
 } from 'lucide-react'
 import {
   supabase,
@@ -40,55 +40,61 @@ const COUNSELORS = [
   {
     id: 'putri',
     name: 'Putri Permata Sari',
+    firstName: 'Putri',
     role: 'Konselor BK',
     avatar: avatarPutri,
-    specialty: 'Perencanaan Karir & Studi',
-    shortRole: 'Karir & Studi',
+    specialty: 'Perencanaan Karir & Kampus',
+    tag: 'Karir & Kampus',
     online: true,
   },
   {
     id: 'gendis',
     name: 'Gendis Retno W. M.',
+    firstName: 'Gendis',
     role: 'Konselor BK',
     avatar: avatarGendis,
     specialty: 'Manajemen Stres & Regulasi Emosi',
-    shortRole: 'Stres & Emosi',
+    tag: 'Stres & Emosi',
     online: true,
   },
   {
     id: 'gina',
     name: 'Gina Naila Rahmatika',
+    firstName: 'Gina',
     role: 'Konselor BK',
     avatar: avatarGina,
-    specialty: 'Dinamika Pertemanan & Sosial',
-    shortRole: 'Pertemanan',
+    specialty: 'Dinamika Pertemanan & Relasi Sosial',
+    tag: 'Pertemanan',
     online: true,
   },
   {
     id: 'nasywa',
     name: 'Nasywa Siti Rahima',
+    firstName: 'Nasywa',
     role: 'Konselor BK',
     avatar: avatarNasywa,
     specialty: 'Eksplorasi Minat & Bakat',
-    shortRole: 'Minat & Bakat',
+    tag: 'Minat & Bakat',
     online: true,
   },
   {
     id: 'syifa',
     name: 'Syifa Aulia',
+    firstName: 'Syifa',
     role: 'Konselor BK',
     avatar: avatarSyifa,
     specialty: 'Self-Care & Mindfulness',
-    shortRole: 'Self-Care',
+    tag: 'Self-Care',
     online: true,
   },
   {
     id: 'zourika',
     name: 'Zourika Nahda M.',
+    firstName: 'Zourika',
     role: 'Konselor BK',
     avatar: avatarZourika,
-    specialty: 'Strategi & Gaya Belajar',
-    shortRole: 'Gaya Belajar',
+    specialty: 'Strategi Belajar & Motivasi',
+    tag: 'Gaya Belajar',
     online: true,
   },
 ]
@@ -104,7 +110,7 @@ const formatTime = (isoString) => {
 }
 
 export default function Konsultasi() {
-  // Auth Siswa (Nama + PIN, Tanpa NIS)
+  // Auth Siswa
   const [student, setStudent] = useState(getActiveStudent())
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [authTab, setAuthTab] = useState('login') // 'login' | 'register'
@@ -114,9 +120,10 @@ export default function Konsultasi() {
   const [authError, setAuthError] = useState('')
   const [authLoading, setAuthLoading] = useState(false)
 
-  // Konselor & Thread Siswa
+  // Konselor & Thread
   const [selectedCounselor, setSelectedCounselor] = useState(COUNSELORS[0])
   const [isAnonymous, setIsAnonymous] = useState(true)
+  const [showCounselorBar, setShowCounselorBar] = useState(true)
   const [currentThread, setCurrentThread] = useState(null)
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState('')
@@ -202,10 +209,10 @@ export default function Konsultasi() {
     const el = textareaRef.current
     if (!el) return
     el.style.height = 'auto'
-    el.style.height = `${Math.min(el.scrollHeight, 110)}px`
+    el.style.height = `${Math.min(el.scrollHeight, 100)}px`
   }, [inputMessage])
 
-  // Submit Login / Register (Nama + PIN)
+  // Submit Login / Register
   const handleAuthSubmit = async (e) => {
     e.preventDefault()
     setAuthError('')
@@ -222,7 +229,7 @@ export default function Konsultasi() {
       setAuthPin('')
       setAuthError('')
     } catch (err) {
-      setAuthError(err.message || 'Gagal masuk. Silakan coba lagi.')
+      setAuthError(err.message || 'Gagal masuk. Silakan periksa kembali.')
     } finally {
       setAuthLoading(false)
     }
@@ -271,7 +278,7 @@ export default function Konsultasi() {
         setInputMessage('')
       }
     } catch (err) {
-      console.error('Send message error:', err)
+      console.error('Send error:', err)
     } finally {
       setIsSending(false)
     }
@@ -280,55 +287,84 @@ export default function Konsultasi() {
   const quickPills = [
     'Aku bingung memilih jurusan kuliah yang sesuai minat.',
     'Bagaimana cara mengatasi overthinking dan cemas?',
-    'Cara membagi waktu belajar dan kegiatan ekskul?',
-    'Tips percaya diri saat presentasi di depan kelas.',
+    'Cara membagi waktu belajar dan kegiatan sekolah?',
+    'Tips percaya diri saat berinteraksi di kelas.',
   ]
 
   return (
-    <div className="w-full flex flex-col h-[calc(100dvh-5rem)] sm:h-[640px] lg:h-[720px] bg-white sm:rounded-3xl sm:border border-purple-100 overflow-hidden shadow-lg relative">
-      {/* ── TOP HEADER ROOM CHAT ── */}
-      <header className="px-4 py-3 bg-white/95 backdrop-blur-md border-b border-purple-100 flex items-center justify-between gap-3 z-10 flex-shrink-0">
-        <div className="flex items-center gap-3 min-w-0">
+    /* 
+      Container Full di Mobile:
+      Menggunakan fixed inset-0 bottom-[4.5rem] di mobile sehingga layar chat terisi penuh 100%,
+      tanpa ada rongga/gap kosong aneh di bawah input chat!
+      Di desktop (lg:) kembali menjadi kartu rounded-3xl yang presisi.
+    */
+    <div className="fixed inset-0 bottom-[4.6rem] z-20 flex flex-col bg-[#FAF9FF] lg:static lg:h-[720px] lg:rounded-3xl lg:border lg:border-purple-100 lg:shadow-xl lg:bg-white overflow-hidden">
+      {/* ── TOP HEADER (Pinned di Atas) ── */}
+      <header className="px-4 py-2.5 sm:py-3 bg-white/95 backdrop-blur-md border-b border-purple-100 flex items-center justify-between gap-2 z-10 flex-shrink-0 shadow-sm">
+        {/* Info Konselor Aktif */}
+        <div className="flex items-center gap-2.5 min-w-0">
           <div className="relative flex-shrink-0">
             <img
               src={selectedCounselor.avatar}
               alt={selectedCounselor.name}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-purple-200"
+              className="w-10 h-10 rounded-full object-cover border-2 border-purple-200"
             />
             <span
-              className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"
+              className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"
               title="Online"
             />
           </div>
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <h1 className="font-bold text-sm sm:text-base text-slate-900 truncate">
+            <div className="flex items-center gap-1.5">
+              <h1 className="font-bold text-xs sm:text-sm text-slate-900 truncate">
                 {selectedCounselor.name}
               </h1>
-              <span className="hidden sm:inline-flex text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                Online
-              </span>
             </div>
-            <p className="text-[11px] text-slate-500 truncate">
+            <p className="text-[10px] text-purple-700 font-medium truncate">
               {selectedCounselor.specialty}
             </p>
           </div>
         </div>
 
-        {/* Akun Siswa & Mode Privasi */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        {/* Action Controls: Toggle Anonim + Profil Siswa */}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          {/* Toggle Privasi Cepat */}
+          <button
+            type="button"
+            onClick={() => setIsAnonymous(!isAnonymous)}
+            title={isAnonymous ? 'Mode Anonim Aktif: Nama disamarkan. Klik untuk buka identitas.' : 'Identitas Terbuka: Nama & kelas terlihat. Klik untuk mode anonim.'}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border transition-all ${
+              isAnonymous
+                ? 'bg-purple-50 text-purple-800 border-purple-200 hover:bg-purple-100'
+                : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+            }`}
+          >
+            {isAnonymous ? <EyeOff size={12} className="text-purple-600" /> : <Eye size={12} className="text-emerald-600" />}
+            <span className="hidden xs:inline">{isAnonymous ? 'Anonim' : 'Identitas'}</span>
+          </button>
+
+          {/* Toggle Bar Konselor */}
+          <button
+            type="button"
+            onClick={() => setShowCounselorBar(!showCounselorBar)}
+            className="p-1.5 rounded-full bg-slate-50 hover:bg-purple-50 text-slate-500 hover:text-purple-700 border border-slate-200 transition-colors"
+            title={showCounselorBar ? 'Tutup daftar konselor' : 'Ganti konselor'}
+          >
+            {showCounselorBar ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+          </button>
+
+          {/* Akun Siswa */}
           {student ? (
-            <div className="flex items-center gap-2">
-              <div className="text-right hidden sm:block">
-                <p className="text-xs font-bold text-slate-900 truncate max-w-[130px]">{student.name}</p>
-                <p className="text-[10px] text-purple-700 font-semibold">{student.class_name}</p>
-              </div>
+            <div className="flex items-center gap-1 pl-1 border-l border-slate-200">
+              <span className="text-[11px] font-bold text-slate-800 max-w-[80px] truncate hidden sm:inline">
+                {student.name.split(' ')[0]}
+              </span>
               <button
                 onClick={handleLogout}
-                title="Ganti Akun Siswa"
-                className="w-8 h-8 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 flex items-center justify-center transition-colors"
+                title={`Keluar akun (${student.name})`}
+                className="w-7 h-7 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 flex items-center justify-center transition-colors"
               >
-                <LogOut size={14} />
+                <LogOut size={12} />
               </button>
             </div>
           ) : (
@@ -337,37 +373,28 @@ export default function Konsultasi() {
                 setAuthTab('login')
                 setIsAuthModalOpen(true)
               }}
-              className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E1B2E] text-white hover:bg-black shadow-sm transition-all flex items-center gap-1.5"
+              className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#1E1B2E] text-white hover:bg-black transition-all flex items-center gap-1 shadow-sm"
             >
-              <KeyRound size={13} />
+              <KeyRound size={11} />
               <span>Masuk PIN</span>
             </button>
           )}
         </div>
       </header>
 
-      {/* ── SCROLLABLE ROOM CHAT AREA (Full di Mobile) ── */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 sm:p-6 flex flex-col gap-4 custom-scroll bg-gradient-to-b from-[#FAF8FF] via-white to-[#FAF8FF]">
-        {/* ── CARD WELCOME & PENGATURAN DI DALAM ROOM CHAT ── */}
-        <div className="bg-white/95 rounded-3xl p-4 sm:p-5 border border-purple-100/80 shadow-sm space-y-4 max-w-2xl mx-auto w-full">
-          {/* Info Kerahasiaan */}
-          <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-amber-50/70 border border-amber-200/70 text-amber-900">
-            <Lock size={16} className="text-amber-700 flex-shrink-0" />
-            <p className="text-xs leading-relaxed">
-              <strong>Kerahasiaan Terjamin 100%:</strong> Ceritamu aman dan dilindungi kode etik BK.
-            </p>
-          </div>
-
-          {/* 1. Pilih Konselor (Horizontal Scroll Langsung di Dalam Chat) */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                Pilih Konselor Pendamping:
+      {/* ── PILIHAN KONSELOR (Stories Style, Ramping & Elegan) ── */}
+      <AnimatePresence>
+        {showCounselorBar && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="bg-white/95 border-b border-purple-100/80 px-3 py-2 overflow-hidden flex-shrink-0 z-10"
+          >
+            <div className="flex items-center gap-3 overflow-x-auto custom-scroll pb-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex-shrink-0 pl-1">
+                Pilih Konselor:
               </span>
-              <span className="text-[10px] text-purple-600 font-semibold">Geser & tap foto</span>
-            </div>
-
-            <div className="flex gap-2.5 overflow-x-auto pb-1.5 custom-scroll">
               {COUNSELORS.map((c) => {
                 const isSelected = selectedCounselor.id === c.id
                 return (
@@ -375,87 +402,69 @@ export default function Konsultasi() {
                     key={c.id}
                     type="button"
                     onClick={() => setSelectedCounselor(c)}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-2xl border transition-all flex-shrink-0 text-left ${
-                      isSelected
-                        ? 'bg-purple-600 text-white border-purple-600 shadow-md ring-2 ring-purple-300/40'
-                        : 'bg-slate-50/80 hover:bg-purple-50 text-slate-700 border-purple-100/80 hover:border-purple-300'
-                    }`}
+                    className="flex flex-col items-center flex-shrink-0 group transition-all"
                   >
-                    <img
-                      src={c.avatar}
-                      alt={c.name}
-                      className={`w-8 h-8 rounded-full object-cover flex-shrink-0 border ${
-                        isSelected ? 'border-white' : 'border-purple-200'
+                    <div
+                      className={`relative w-10 h-10 rounded-full p-0.5 transition-all ${
+                        isSelected
+                          ? 'ring-2 ring-purple-600 ring-offset-1 scale-105 shadow-md'
+                          : 'opacity-70 group-hover:opacity-100'
                       }`}
-                    />
-                    <div className="min-w-0">
-                      <p className={`text-xs font-bold truncate max-w-[120px] ${isSelected ? 'text-white' : 'text-slate-900'}`}>
-                        {c.name.split(' ')[0]} {c.name.split(' ')[1] || ''}
-                      </p>
-                      <p className={`text-[10px] truncate max-w-[120px] ${isSelected ? 'text-purple-100' : 'text-slate-500'}`}>
-                        {c.shortRole}
-                      </p>
+                    >
+                      <img
+                        src={c.avatar}
+                        alt={c.name}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                      {isSelected && (
+                        <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-purple-600 text-white flex items-center justify-center text-[9px]">
+                          ✓
+                        </span>
+                      )}
                     </div>
+                    <span
+                      className={`text-[10px] mt-1 font-semibold truncate max-w-[64px] ${
+                        isSelected ? 'text-purple-700 font-bold' : 'text-slate-500'
+                      }`}
+                    >
+                      {c.firstName}
+                    </span>
                   </button>
                 )
               })}
             </div>
-          </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          {/* 2. Toggle Mode Anonim vs Bagi Identitas */}
-          <div className="pt-2 border-t border-purple-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span className="text-[11px] font-bold text-slate-600">
-              Kirim Pesan Sebagai:
-            </span>
-            <div className="inline-flex p-1 bg-purple-50/80 rounded-2xl border border-purple-100/80 self-start sm:self-auto">
-              <button
-                type="button"
-                onClick={() => setIsAnonymous(true)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                  isAnonymous
-                    ? 'bg-white text-purple-900 shadow-sm'
-                    : 'text-slate-500 hover:text-purple-700'
-                }`}
-              >
-                <EyeOff size={13} className="text-purple-600" />
-                <span>Anonim (Rahasia)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsAnonymous(false)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                  !isAnonymous
-                    ? 'bg-white text-purple-900 shadow-sm'
-                    : 'text-slate-500 hover:text-purple-700'
-                }`}
-              >
-                <Eye size={13} className="text-purple-600" />
-                <span>Bagi Identitas</span>
-              </button>
-            </div>
-          </div>
+      {/* ── CHAT MESSAGES STREAM (Scrollable) ── */}
+      <div className="flex-1 overflow-y-auto px-3.5 py-4 flex flex-col gap-3 custom-scroll bg-gradient-to-b from-purple-50/20 via-white to-purple-50/20">
+        {/* Banner Keamanan Ringkas */}
+        <div className="self-center my-1 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50/80 border border-purple-100 text-purple-800 text-[10px] font-semibold">
+          <Lock size={11} className="text-purple-600" />
+          <span>Kerahasiaan 100% terjaga oleh kode etik BK</span>
         </div>
 
-        {/* ── Sambutan Hangat dari Konselor ── */}
-        <div className="flex gap-2.5 sm:gap-3 max-w-[90%] sm:max-w-[80%] self-start mt-2">
+        {/* Bubble Sambutan dari Konselor */}
+        <div className="flex gap-2 max-w-[85%] self-start mt-1">
           <img
             src={selectedCounselor.avatar}
             alt={selectedCounselor.name}
-            className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-purple-200 self-end shadow-sm"
+            className="w-7 h-7 rounded-full object-cover flex-shrink-0 border border-purple-200 self-end shadow-sm"
           />
           <div>
-            <div className="bg-white border border-purple-100/90 rounded-2xl rounded-bl-sm p-3.5 sm:p-4 text-xs sm:text-sm text-slate-800 shadow-sm leading-relaxed">
-              Halo {student ? (isAnonymous ? 'teman siswa' : student.name) : 'kamu'}! Saya{' '}
+            <div className="bg-white border border-purple-100/90 rounded-2xl rounded-bl-sm p-3.5 text-xs text-slate-800 shadow-sm leading-relaxed">
+              Halo {student ? (isAnonymous ? 'kamu' : student.name) : 'kamu'}! Saya{' '}
               <strong className="text-purple-700 font-bold">{selectedCounselor.name}</strong> siap mendengarkan ceritamu.
-              Ceritakan apa yang sedang kamu rasakan atau tanyakan seputar studi, karir, dan hal lainnya di sini.
+              Silakan ceritakan apa yang sedang kamu rasakan atau tanyakan seputar studi, karir, dan hal lainnya di sini.
             </div>
             <span className="text-[10px] text-slate-400 mt-1 block px-1">
-              Konselor BK • {selectedCounselor.shortRole}
+              Konselor BK • {selectedCounselor.tag}
             </span>
           </div>
         </div>
 
-        {/* ── Daftar Pesan Chat ── */}
+        {/* Daftar Pesan Percakapan */}
         {messages.map((m) => {
           const isStudentSender = m.sender_type === 'student'
           return (
@@ -463,25 +472,25 @@ export default function Konsultasi() {
               key={m.id}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`flex gap-2.5 sm:gap-3 max-w-[90%] sm:max-w-[80%] ${
+              className={`flex gap-2 max-w-[85%] ${
                 isStudentSender ? 'self-end flex-row-reverse' : 'self-start'
               }`}
             >
               {isStudentSender ? (
-                <div className="w-8 h-8 rounded-full bg-[#1E1B2E] text-white flex items-center justify-center flex-shrink-0 self-end text-xs font-bold shadow-sm">
-                  <User size={14} />
+                <div className="w-7 h-7 rounded-full bg-[#1E1B2E] text-white flex items-center justify-center flex-shrink-0 self-end text-[11px] font-bold shadow-sm">
+                  <User size={13} />
                 </div>
               ) : (
                 <img
                   src={selectedCounselor.avatar}
                   alt={selectedCounselor.name}
-                  className="w-8 h-8 rounded-full object-cover flex-shrink-0 border border-purple-200 self-end shadow-sm"
+                  className="w-7 h-7 rounded-full object-cover flex-shrink-0 border border-purple-200 self-end shadow-sm"
                 />
               )}
 
               <div>
                 <div
-                  className={`p-3.5 sm:p-4 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
+                  className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
                     isStudentSender
                       ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white rounded-br-sm shadow-[0_4px_16px_rgba(139,92,246,0.25)]'
                       : 'bg-white border border-purple-100 text-slate-800 rounded-bl-sm'
@@ -490,7 +499,7 @@ export default function Konsultasi() {
                   <p className="whitespace-pre-wrap">{m.text}</p>
                 </div>
                 <div
-                  className={`flex items-center gap-1.5 text-[10px] text-slate-400 mt-1 px-1 ${
+                  className={`flex items-center gap-1.5 text-[9px] text-slate-400 mt-0.5 px-1 ${
                     isStudentSender ? 'justify-end' : 'justify-start'
                   }`}
                 >
@@ -506,40 +515,33 @@ export default function Konsultasi() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* ── TOPIC SUGGESTION PILLS ── */}
-      <div className="px-3 py-2 bg-white/95 border-t border-purple-100/70 overflow-x-auto flex gap-2 custom-scroll flex-shrink-0">
+      {/* ── TOPIC SUGGESTION PILLS (Di Atas Input) ── */}
+      <div className="px-3 py-1.5 bg-white/95 border-t border-purple-100/70 overflow-x-auto flex gap-2 custom-scroll flex-shrink-0">
         {quickPills.map((pill) => (
           <button
             key={pill}
             type="button"
             onClick={() => setInputMessage(pill)}
-            className="text-[11px] whitespace-nowrap px-3 py-1.5 rounded-full bg-purple-50/70 hover:bg-purple-100 text-purple-700 border border-purple-200/60 transition-colors flex-shrink-0"
+            className="text-[10px] whitespace-nowrap px-3 py-1 rounded-full bg-purple-50/80 hover:bg-purple-100 text-purple-700 border border-purple-200/60 transition-colors flex-shrink-0"
           >
             {pill}
           </button>
         ))}
       </div>
 
-      {/* ── BOTTOM INPUT BAR ── */}
-      <footer className="p-3 sm:p-4 bg-white border-t border-purple-100 flex-shrink-0">
+      {/* ── BOTTOM INPUT BAR (Pinned di Bawah Layar) ── */}
+      <footer className="p-2.5 sm:p-3 bg-white border-t border-purple-100 flex-shrink-0 shadow-sm">
         {!student ? (
-          <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-2xl bg-purple-50 border border-purple-200 gap-2">
-            <div className="flex items-center gap-2 min-w-0">
-              <KeyRound size={16} className="text-purple-600 flex-shrink-0" />
-              <span className="text-xs font-semibold text-purple-900 truncate">
-                Masuk dengan Nama & PIN untuk mengirim pesan konsultasi.
-              </span>
-            </div>
-            <button
-              onClick={() => {
-                setAuthTab('login')
-                setIsAuthModalOpen(true)
-              }}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#1E1B2E] text-white hover:bg-black shadow-sm transition-all flex-shrink-0"
-            >
-              Masuk Sekarang
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              setAuthTab('login')
+              setIsAuthModalOpen(true)
+            }}
+            className="w-full py-2.5 px-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:opacity-95 transition-all"
+          >
+            <KeyRound size={14} />
+            <span>Masuk dengan Nama & PIN untuk Mulai Chat</span>
+          </button>
         ) : (
           <form onSubmit={handleSend} className="flex gap-2 items-end">
             <textarea
@@ -553,26 +555,26 @@ export default function Konsultasi() {
                   handleSend(e)
                 }
               }}
-              placeholder={`Ketik pesan untuk Konselor ${selectedCounselor.name}...`}
-              className="flex-1 bg-purple-50/40 border border-purple-200/80 rounded-2xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-800 placeholder-slate-400 resize-none focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all leading-relaxed max-h-28 shadow-inner"
+              placeholder={`Ketik pesan untuk ${selectedCounselor.firstName}...`}
+              className="flex-1 bg-purple-50/40 border border-purple-200/80 rounded-2xl px-3.5 py-2 text-xs sm:text-sm text-slate-800 placeholder-slate-400 resize-none focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all leading-relaxed max-h-24"
             />
             <button
               type="submit"
               disabled={!inputMessage.trim() || isSending}
               aria-label="Kirim pesan"
-              className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
+              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
                 inputMessage.trim() && !isSending
-                  ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white shadow-[0_6px_20px_rgba(139,92,246,0.35)] hover:scale-105 active:scale-95'
-                  : 'bg-slate-100 border border-slate-200 text-slate-400 cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md hover:scale-105 active:scale-95'
+                  : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
               }`}
             >
-              <Send size={15} />
+              <Send size={14} />
             </button>
           </form>
         )}
       </footer>
 
-      {/* ── MODAL: LOGIN / DAFTAR SISWA (HANYA NAMA + PIN, TANPA NIS) ── */}
+      {/* ── MODAL AUTH (NAMA + PIN, TANPA NIS) ── */}
       <AnimatePresence>
         {isAuthModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
@@ -588,7 +590,7 @@ export default function Konsultasi() {
                     <KeyRound size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-base text-slate-900">Akses Konsultasi Siswa</h3>
+                    <h3 className="font-bold text-base text-slate-900">Akses Konsultasi Privat</h3>
                     <p className="text-xs text-slate-500">Cukup gunakan Nama & PIN 4-digit</p>
                   </div>
                 </div>
