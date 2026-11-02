@@ -1239,75 +1239,282 @@ const quizPribadi = {
 
 /* Quiz Data: Sosial */
 const quizSosial = {
-  title: 'Evaluasi Dinamika Sosial',
-  subtitle: 'Pilih respons yang paling menggambarkan interaksimu dengan lingkungan sekitar.',
+  title: 'KUIS: EVALUASI DINAMIKA SOSIAL',
+  subtitle: 'Bidang Sosial – TemanBK',
+  description: 'Kuis ini bertujuan membantu kamu mengenali kebiasaan dan sikap dalam membangun hubungan sosial, menghadapi konflik pertemanan, serta berkomunikasi dengan orang lain.',
+  instructions: 'Bacalah setiap pertanyaan, kemudian pilih satu jawaban yang paling menggambarkan dirimu atau tindakan yang biasanya kamu lakukan. Tidak ada jawaban benar atau salah. Jawablah dengan jujur sesuai pengalamanmu.',
   questions: [
     {
-      id: 'qs1', type: 'radio',
-      text: '1. Dalam lingkungan pertemanan/sekolah, apakah kamu merasa punya tempat bercerita?',
+      id: 'qs1',
+      type: 'radio',
+      text: 'Pertanyaan 1 – Dukungan Sosial dan Pertemanan: Dalam lingkungan pertemanan atau sekolah, apakah kamu merasa memiliki seseorang yang bisa dipercaya untuk berbagi cerita?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Ya, aku punya circle yang sangat mendukung dan dapat dipercaya.' },
-        { label: 'B', value: 'sedang', text: 'Ada, tapi aku masih sering menyembunyikan perasaan asliku dari mereka.' },
-        { label: 'C', value: 'kritis', text: 'Tidak ada. Aku merasa sangat sendirian dan terisolasi.' },
+        { label: 'A', value: 'A', text: 'Ya, aku memiliki teman atau orang tepercaya yang bisa mendengarkan dan mendukungku.' },
+        { label: 'B', value: 'B', text: 'Ada, tetapi aku masih merasa kesulitan untuk menceritakan perasaan atau masalah yang sedang kuhadapi.' },
+        { label: 'C', value: 'C', text: 'Belum, aku masih merasa kesulitan menemukan seseorang yang nyaman untuk diajak berbagi cerita.' },
       ],
     },
     {
-      id: 'qs2', type: 'radio',
-      text: '2. Saat seseorang memberikan kritik tajam, bagaimana reaksimu?',
+      id: 'qs2',
+      type: 'radio',
+      text: 'Pertanyaan 2 – Menghadapi Perundungan: Jika kamu melihat teman diejek atau dipermalukan oleh sekelompok siswa, apa yang akan kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Mendengarkan dengan asertif, lalu merevisi jika memang masuk akal.' },
-        { label: 'B', value: 'sedang', text: 'Diam menerima, tapi diam-diam merasa insecure atau memendam kekesalan.' },
-        { label: 'C', value: 'kritis', text: 'Langsung tersinggung, defensif agresif, atau balik menyalahkan.' },
+        { label: 'A', value: 'A', text: 'Memberikan dukungan kepada teman yang menjadi korban dan melaporkan kejadian kepada Guru BK atau orang dewasa tepercaya.' },
+        { label: 'B', value: 'B', text: 'Merasa tidak nyaman melihat kejadian tersebut, tetapi masih bingung bagaimana harus bertindak.' },
+        { label: 'C', value: 'C', text: 'Memilih diam dan tidak ikut campur karena takut menjadi sasaran berikutnya.' },
       ],
     },
     {
-      id: 'qs3', type: 'radio',
-      text: '3. Jika kamu melihat teman sedang diasingkan atau mengalami bullying ringan di kelas?',
+      id: 'qs3',
+      type: 'radio',
+      text: 'Pertanyaan 3 – Menghadapi Cyberbullying: Jika seseorang mengirim komentar menghina atau menyebarkan informasi yang mempermalukanmu di media sosial, bagaimana kamu merespons?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Mendekati, menemani, atau berusaha melaporkan ke guru BK (Upstander).' },
-        { label: 'B', value: 'sedang', text: 'Kasihan, tapi takut ikut campur agar tidak ikut dijadikan target.' },
-        { label: 'C', value: 'kritis', text: 'Ikut menjauh atau bahkan merasa itu bukan urusanku sama sekali.' },
+        { label: 'A', value: 'A', text: 'Menyimpan bukti, memblokir dan melaporkan akun tersebut, serta bercerita kepada orang tepercaya.' },
+        { label: 'B', value: 'B', text: 'Merasa terganggu dan memilih mengabaikannya, tetapi belum tahu harus melakukan apa selanjutnya.' },
+        { label: 'C', value: 'C', text: 'Membalas komentar tersebut dengan hinaan atau mengajak orang lain menyerang akun pelaku.' },
       ],
     },
     {
-      id: 'qs4', type: 'radio',
-      text: '4. Apakah kamu sering merasa harus berpura-pura menjadi orang lain agar diterima di suatu sirkel pertemanan?',
+      id: 'qs4',
+      type: 'radio',
+      text: 'Pertanyaan 4 – Komunikasi Asertif: Ketika teman meminta bantuan saat kamu sedang memiliki banyak urusan, bagaimana kamu menyampaikan keadaanmu?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Tidak. Teman-temanku yang sesungguhnya menerima aku apa adanya.' },
-        { label: 'B', value: 'sedang', text: 'Terkadang iya, agar tidak dicap "aneh", FOMO, atau tertinggal pergaulan.' },
-        { label: 'C', value: 'kritis', text: 'Ya, hampir selalu. Aku merasa lelah harus memakai topeng setiap hari di sekolah.' },
+        { label: 'A', value: 'A', text: 'Menjelaskan kondisiku dengan sopan dan menyampaikan jika belum bisa membantu.' },
+        { label: 'B', value: 'B', text: 'Mengiyakan permintaannya meskipun sebenarnya sedang keberatan.' },
+        { label: 'C', value: 'C', text: 'Menolak dengan nada marah tanpa mempertimbangkan perasaan teman.' },
       ],
     },
     {
-      id: 'qs5', type: 'radio',
-      text: '5. Ketika temanmu meminta bantuan tapi kamu sedang sangat lelah atau sibuk, apa yang kamu lakukan?',
+      id: 'qs5',
+      type: 'radio',
+      text: 'Pertanyaan 5 – Menghadapi Konflik Pertemanan: Ketika terjadi kesalahpahaman dengan teman dekat, apa yang biasanya kamu lakukan?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Menolak dengan sopan dan menjelaskan situasinya (menjaga boundaries).' },
-        { label: 'B', value: 'sedang', text: 'Mengiyakan dengan terpaksa, lalu mengeluh diam-diam di belakang.' },
-        { label: 'C', value: 'kritis', text: 'Selalu mengiyakan apapun kondisinya karena takut dijauhi (people pleaser sejati).' },
+        { label: 'A', value: 'A', text: 'Mengajak berbicara baik-baik, mendengarkan penjelasannya, dan mencari penyelesaian bersama.' },
+        { label: 'B', value: 'B', text: 'Memilih diam terlebih dahulu karena belum siap membicarakan masalah tersebut.' },
+        { label: 'C', value: 'C', text: 'Menghindari teman tersebut atau membicarakan masalahnya kepada orang lain tanpa mencoba menyelesaikannya.' },
       ],
     },
     {
-      id: 'qs6', type: 'radio',
-      text: '6. Bagaimana sikapmu terhadap gosip atau drama pertemanan di sekolah?',
+      id: 'qs6',
+      type: 'radio',
+      text: 'Pertanyaan 6 – Menjaga Batasan Pribadi: Jika teman mengajakmu melakukan sesuatu yang sebenarnya membuatmu tidak nyaman, bagaimana kamu merespons?',
       options: [
-        { label: 'A', value: 'sehat', text: 'Menghindarinya sebisa mungkin. Aku tidak suka ikut campur urusan orang lain.' },
-        { label: 'B', value: 'sedang', text: 'Kadang ikut menyimak sekadar agar tahu info, tapi tidak ikut menyebarkannya.' },
-        { label: 'C', value: 'kritis', text: 'Sering terlibat aktif, menyebarkannya, atau bahkan menjadikannya hiburan.' },
+        { label: 'A', value: 'A', text: 'Menolak dengan sopan dan menjelaskan bahwa aku tidak nyaman melakukannya.' },
+        { label: 'B', value: 'B', text: 'Mengikuti ajakannya karena takut dianggap tidak setia kawan.' },
+        { label: 'C', value: 'C', text: 'Merasa keberatan, tetapi memilih diam dan mengikuti keinginan teman.' },
       ],
     },
   ],
   getResult: (answers) => {
+    const aspectDefs = [
+      {
+        id: 0,
+        aspek: 'Dukungan sosial dan pertemanan',
+        Icon: Users,
+        rekomendasi: 'Membangun hubungan pertemanan yang sehat dan menemukan lingkungan dukungan yang positif.',
+      },
+      {
+        id: 1,
+        aspek: 'Menghadapi perundungan',
+        Icon: Shield,
+        rekomendasi: 'Mengenali bentuk perundungan dan mengetahui langkah mencari bantuan.',
+      },
+      {
+        id: 2,
+        aspek: 'Menghadapi cyberbullying',
+        Icon: Smartphone,
+        rekomendasi: 'Memahami keamanan digital, privasi, serta cara melaporkan perundungan digital.',
+      },
+      {
+        id: 3,
+        aspek: 'Komunikasi asertif',
+        Icon: MessageSquareQuote,
+        rekomendasi: 'Berlatih menyampaikan pendapat, perasaan, dan penolakan secara sehat.',
+      },
+      {
+        id: 4,
+        aspek: 'Menghadapi konflik',
+        Icon: Scale,
+        rekomendasi: 'Mengembangkan kemampuan mendengarkan, memahami sudut pandang orang lain, dan menyelesaikan konflik.',
+      },
+      {
+        id: 5,
+        aspek: 'Batasan pribadi',
+        Icon: CheckCircle2,
+        rekomendasi: 'Belajar menghargai kebutuhan diri sendiri serta batasan orang lain.',
+      },
+    ]
+
     const vals = Object.values(answers)
-    const countKritis = vals.filter(v => v === 'kritis').length
-    const countSedang = vals.filter(v => v === 'sedang').length
-    
-    if (countKritis >= 3) {
-      return { Icon: AlertCircle, title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena terjebak dalam lingkungan pertemanan yang toxic, menjadi people pleaser ekstrem, atau kendala komunikasi. Pertimbangkan untuk berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
-    } else if (countKritis >= 1 || countSedang >= 3) {
-      return { Icon: HeartPulse, title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang membuatmu kelelahan. Coba asah lagi teknik komunikasi asertif, beranikan diri untuk berkata "tidak", dan jangan ragu untuk menetapkan batasan personal (boundaries) yang sehat.', tags: ['Boundaries', 'Komunikasi Asertif', 'People Pleaser'] }
-    } else {
-      return { Icon: Sparkles, title: 'Sosialmu Sangat Cerdas!', desc: 'Hebat! Kamu memiliki kecerdasan sosial dan empati yang sangat baik. Kamu mampu menavigasi dinamika pertemanan dengan asertif, sehat, dan menjadi pengaruh positif bagi sekitarmu.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
+    const countA = vals.filter((v) => v === 'A').length
+    const countB = vals.filter((v) => v === 'B').length
+    const countC = vals.filter((v) => v === 'C').length
+
+    let statusHeader = {
+      title: 'Kecerdasan Sosial & Sikap Asertifmu Sangat Baik!',
+      tagline: 'Kamu memiliki empati yang kuat, mampu menjaga batasan diri, dan menghargai orang lain.',
+      desc: 'Sebagian besar responsmu menunjukkan kebiasaan positif dalam membangun relasi saling mendukung, berani bersuara (upstander), dan mengomunikasikan kebutuhan dengan santun.',
+      Icon: Sparkles,
+      iconBg: 'bg-emerald-100 border-emerald-200 text-emerald-600',
+    }
+
+    if (countC >= 3 || answers[1] === 'C' || answers[5] === 'C') {
+      statusHeader = {
+        title: 'Saatnya Memperkuat Batasan Diri & Menemukan Lingkungan Suportif',
+        tagline: 'Relasi yang sehat tidak boleh mengorbankan kenyamanan diri. Jangan ragu mencari dukungan.',
+        desc: 'Beberapa responsmu menunjukkan adanya kekhawatiran terhadap tekanan teman sebaya atau kebingungan saat menghadapi perundungan. Mempelajari batasan pribadi dan terbuka kepada konselor BK adalah langkah berharga.',
+        Icon: AlertTriangle,
+        iconBg: 'bg-rose-100 border-rose-200 text-rose-600',
+      }
+    } else if (countB >= 3 || countC >= 1) {
+      statusHeader = {
+        title: 'Dinamika Sosialmu Berkembang Cukup Baik dengan Ruang Bertumbuh',
+        tagline: 'Terus latih keberanian mengutarakan perasaan dan menyelesaikan kesalahpahaman.',
+        desc: 'Kamu sudah memiliki kepedulian yang baik dalam berteman. Mengasah rumus komunikasi asertif dan menjaga batasan pribadi akan membuat hubunganmu semakin nyaman.',
+        Icon: HeartPulse,
+        iconBg: 'bg-purple-100 border-purple-200 text-purple-600',
+      }
+    }
+
+    return {
+      render: ({ reset }) => (
+        <div className="space-y-6">
+          {/* Header Hasil */}
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+              className={`w-16 h-16 rounded-2xl ${statusHeader.iconBg} border flex items-center justify-center mx-auto mb-4 shadow-sm`}
+              aria-hidden="true"
+            >
+              <statusHeader.Icon size={32} />
+            </motion.div>
+            <span className="inline-block text-[11px] font-bold px-3 py-1 rounded-full border mb-2 bg-purple-50 text-purple-700 border-purple-200">
+              HASIL EVALUASI DINAMIKA SOSIAL
+            </span>
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-slate-900">
+              {statusHeader.title}
+            </h3>
+            <p className="text-purple-600 font-semibold text-base mb-2">
+              {statusHeader.tagline}
+            </p>
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
+              {statusHeader.desc}
+            </p>
+          </div>
+
+          {/* Ringkasan Distribusi Respons */}
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center">
+              Distribusi Pola Responsmu (Total 6 Aspek Sosial)
+            </h4>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-emerald-50/70 p-3.5 rounded-2xl border border-emerald-200/80 text-center">
+                <span className="text-xs font-semibold text-emerald-800 block mb-1">
+                  Sehat & Asertif (A)
+                </span>
+                <p className="font-display font-bold text-2xl text-emerald-700">
+                  {countA} <span className="text-xs font-normal text-emerald-600">aspek</span>
+                </p>
+              </div>
+
+              <div className="bg-amber-50/70 p-3.5 rounded-2xl border border-amber-200/80 text-center">
+                <span className="text-xs font-semibold text-amber-800 block mb-1">
+                  Perlu Penyesuaian (B)
+                </span>
+                <p className="font-display font-bold text-2xl text-amber-700">
+                  {countB} <span className="text-xs font-normal text-amber-600">aspek</span>
+                </p>
+              </div>
+
+              <div className="bg-rose-50/70 p-3.5 rounded-2xl border border-rose-200/80 text-center">
+                <span className="text-xs font-semibold text-rose-800 block mb-1">
+                  Butuh Perhatian (C)
+                </span>
+                <p className="font-display font-bold text-2xl text-rose-700">
+                  {countC} <span className="text-xs font-normal text-rose-600">aspek</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Tabel / Grid Rekomendasi Berdasarkan Aspek */}
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="font-bold text-sm lg:text-base text-slate-900 flex items-center gap-2">
+                <ListChecks size={18} className="text-purple-600" />
+                <span>Rekomendasi Berdasarkan Aspek yang Dieksplorasi</span>
+              </h4>
+              <span className="text-xs text-slate-500">6 Aspek Sosial</span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3.5">
+              {aspectDefs.map((item, idx) => {
+                const ans = answers[idx]
+                const isHealthy = ans === 'A'
+                const isModerate = ans === 'B'
+
+                const badgeClass = isHealthy
+                  ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                  : isModerate
+                  ? 'bg-amber-100 text-amber-800 border-amber-200'
+                  : 'bg-rose-100 text-rose-800 border-rose-200'
+
+                const badgeText = isHealthy
+                  ? 'Sudah Baik'
+                  : isModerate
+                  ? 'Perlu Penyesuaian'
+                  : 'Perlu Perhatian'
+
+                return (
+                  <div
+                    key={item.aspek}
+                    className="p-4 rounded-2xl bg-purple-50/50 border border-purple-100 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-xl bg-white border border-purple-200 flex items-center justify-center text-purple-700 shadow-2xs">
+                            <item.Icon size={16} />
+                          </div>
+                          <h5 className="font-bold text-sm text-slate-900">{item.aspek}</h5>
+                        </div>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeClass}`}>
+                          {badgeText}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed pl-10">
+                        {item.rekomendasi}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Pesan TemanBK */}
+          <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+            <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+              <MessageSquareQuote size={16} className="text-amber-800" />
+              <span>Pesan TemanBK:</span>
+            </p>
+            <p className="leading-relaxed text-slate-700">
+              Pertemanan yang baik dibangun di atas rasa saling menghargai dan rasa aman. Kamu tidak perlu mengubah dirimu hanya agar diterima, dan kamu selalu berhak memiliki batasan pribadi yang dihormati.
+            </p>
+          </div>
+
+          <div className="text-center pt-2">
+            <button
+              onClick={reset}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-purple-200 text-sm font-bold text-slate-700 hover:text-purple-800 hover:border-purple-400 shadow-sm hover:shadow-md transition-all"
+            >
+              <RotateCcw size={15} /> Ulangi Evaluasi
+            </button>
+          </div>
+        </div>
+      ),
     }
   },
 }
@@ -2187,51 +2394,291 @@ const MateriContent = {
 
   sosial: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {/* Header Banner */}
       <div className="flex gap-5 bg-gradient-to-r from-sky-100/80 via-blue-50 to-indigo-50 border border-sky-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
         <div className="w-16 h-16 rounded-2xl bg-white border border-sky-200 flex items-center justify-center text-sky-600 flex-shrink-0 shadow-sm" aria-hidden="true">
           <Users size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-3">Dinamika Sosial & Pertemanan</h2>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 border border-sky-200">
+              BIDANG SOSIAL
+            </span>
+            <span className="text-xs text-sky-700 font-semibold">Bangun Relasi Sehat, Ciptakan Lingkungan Pertemanan yang Positif!</span>
+          </div>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-2">Dinamika Sosial & Pertemanan</h2>
           <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
-            Masa SMA diwarnai dengan pembentukan identitas sosial, konflik teman sebaya, hingga urusan perundungan. Bangun relasi yang sehat dan asah kemampuan komunikasi asertifmu.
+            Masa SMA merupakan masa ketika kamu mulai membangun hubungan sosial yang lebih luas, mengenal berbagai karakter teman, dan belajar memahami diri sendiri dalam lingkungan pergaulan. Dalam pertemanan, perbedaan pendapat, kesalahpahaman, hingga konflik merupakan hal yang bisa terjadi. Oleh karena itu, penting untuk memiliki kemampuan berkomunikasi, menghargai orang lain, menjaga batasan pribadi, dan membangun hubungan yang saling mendukung. Melalui materi ini, kamu akan belajar mengenali hubungan pertemanan yang sehat, memahami perundungan, serta mengembangkan keterampilan komunikasi asertif.
           </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6 mb-8">
-        <motion.div whileHover={{ y: -4 }} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-rose-400 transition-all">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600">
-              <Shield size={20} />
-            </div>
-            <h3 className="font-bold text-lg text-slate-900">Anti-Bullying & Cyberbullying</h3>
-          </div>
-          <p className="text-slate-600 text-sm leading-relaxed mb-4">
-            Perundungan bukan sekadar "bercanda". Kata-kata anonim di media sosial bisa sangat menyakitkan. Apa yang harus dilakukan?
+      {/* 1. Anti-Bullying & Cyberbullying */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-slate-900 mb-1 flex items-center gap-2">
+            <Shield size={20} className="text-rose-600" />
+            <span>1. Anti-Bullying & Cyberbullying</span>
+          </h3>
+          <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider mb-2">
+            Kenali dan Cegah Perundungan
           </p>
-          <ul className="text-sm text-slate-700 space-y-2 list-disc list-inside">
-            <li><strong>Speak Up:</strong> Laporkan diam-diam ke guru BK atau orang tua.</li>
-            <li><strong>Block & Report:</strong> Jangan umpan troll. Screenshot bukti, lalu langsung blokir akun pelaku.</li>
-            <li><strong>Jadi Upstander:</strong> Tawarkan bantuan moral jika temanmu jadi korban, jangan diam menonton.</li>
-          </ul>
-        </motion.div>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Perundungan (bullying) merupakan perilaku agresif yang dilakukan secara berulang dan melibatkan ketidakseimbangan kekuatan sehingga seseorang mengalami kesulitan untuk membela dirinya. Perundungan dapat terjadi secara langsung maupun melalui media digital (cyberbullying).
+          </p>
+        </div>
 
-        <motion.div whileHover={{ y: -4 }} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-sky-400 transition-all">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600">
-              <MessageCircle size={20} />
+        <div className="grid lg:grid-cols-2 gap-5 mb-4">
+          {/* Bentuk-bentuk perundungan */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-rose-500 transition-all flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-base text-slate-900 mb-3 flex items-center gap-2">
+                <AlertTriangle size={18} className="text-rose-600" />
+                <span>Bentuk-Bentuk Perundungan</span>
+              </h4>
+              <div className="space-y-3 text-xs text-slate-700">
+                <div className="bg-rose-50/60 p-3 rounded-2xl border border-rose-100">
+                  <strong className="text-rose-900 font-bold block mb-0.5">Verbal</strong>
+                  <span>Mengejek, menghina, mengancam, atau memberikan julukan yang merendahkan.</span>
+                </div>
+                <div className="bg-rose-50/60 p-3 rounded-2xl border border-rose-100">
+                  <strong className="text-rose-900 font-bold block mb-0.5">Fisik</strong>
+                  <span>Mendorong, memukul, atau melakukan tindakan fisik yang menyakiti orang lain.</span>
+                </div>
+                <div className="bg-rose-50/60 p-3 rounded-2xl border border-rose-100">
+                  <strong className="text-rose-900 font-bold block mb-0.5">Sosial</strong>
+                  <span>Sengaja mengucilkan, mempermalukan, atau mengajak orang lain menjauhi seseorang.</span>
+                </div>
+                <div className="bg-rose-50/60 p-3 rounded-2xl border border-rose-100">
+                  <strong className="text-rose-900 font-bold block mb-0.5">Cyberbullying</strong>
+                  <span>Mengirim pesan menghina, menyebarkan foto atau informasi pribadi tanpa izin, serta mempermalukan seseorang melalui media sosial.</span>
+                </div>
+              </div>
             </div>
-            <h3 className="font-bold text-lg text-slate-900">Komunikasi Asertif (I-Message)</h3>
           </div>
-          <p className="text-slate-600 text-sm leading-relaxed mb-4">
-            Jangan selalu menjadi "People Pleaser" (selalu mengiyakan) atau sebaliknya menjadi agresif. Asertif adalah mengutarakan kemauan tanpa menyakiti orang lain.
+
+          {/* Apa yang harus dilakukan */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-sky-500 transition-all flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-base text-slate-900 mb-3 flex items-center gap-2">
+                <CheckCircle2 size={18} className="text-sky-600" />
+                <span>Apa yang Harus Dilakukan Jika Mengalami/Menyaksikan?</span>
+              </h4>
+              <div className="space-y-3 text-xs text-slate-700">
+                <div className="bg-sky-50/60 p-3 rounded-2xl border border-sky-100">
+                  <strong className="text-sky-900 font-bold block mb-0.5">Speak Up</strong>
+                  <span>Ceritakan kejadian kepada Guru BK, orang tua, atau orang dewasa tepercaya. Kamu tidak harus menghadapinya sendirian.</span>
+                </div>
+                <div className="bg-sky-50/60 p-3 rounded-2xl border border-sky-100">
+                  <strong className="text-sky-900 font-bold block mb-0.5">Block & Report</strong>
+                  <span>Jika mengalami perundungan digital, simpan bukti yang diperlukan, gunakan fitur blokir dan laporkan akun atau konten tersebut.</span>
+                </div>
+                <div className="bg-sky-50/60 p-3 rounded-2xl border border-sky-100">
+                  <strong className="text-sky-900 font-bold block mb-0.5">Be an Upstander</strong>
+                  <span>Jika melihat teman menjadi korban, berikan dukungan dan jangan ikut menertawakan atau menyebarkan. Jika tidak aman, segera minta bantuan orang dewasa.</span>
+                </div>
+                <div className="bg-sky-50/60 p-3 rounded-2xl border border-sky-100">
+                  <strong className="text-sky-900 font-bold block mb-0.5">Jangan Membalas dengan Perundungan</strong>
+                  <span>Hindari membalas hinaan dengan tindakan serupa karena dapat memperburuk keadaan.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm flex items-start gap-3">
+          <Lightbulb size={20} className="text-amber-800 flex-shrink-0 mt-0.5" />
+          <p className="leading-relaxed">
+            <strong className="text-amber-900">Ingat!</strong> Bercanda seharusnya membuat semua orang merasa nyaman. Jika suatu tindakan menyakiti, merendahkan, atau membuat seseorang merasa tidak aman, tindakan tersebut perlu diperhatikan dan dihentikan.
           </p>
-          <div className="bg-sky-50/70 p-4 rounded-2xl border border-sky-100">
-            <p className="text-sm font-bold text-sky-950 mb-2">Gunakan Rumus "I-Message":</p>
-            <p className="text-xs text-sky-800 italic">"Aku merasa <strong>(perasaan)</strong> saat kamu <strong>(kejadian spesifik)</strong>. Tolong ke depannya <strong>(harapanmu)</strong>."</p>
+        </div>
+      </div>
+
+      {/* 2. Komunikasi Asertif (I-Message) */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-slate-900 mb-1 flex items-center gap-2">
+            <MessageSquareQuote size={20} className="text-purple-600" />
+            <span>2. Komunikasi Asertif (I-Message)</span>
+          </h3>
+          <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider mb-2">
+            Berani Berpendapat Tanpa Menyakiti Orang Lain
+          </p>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Komunikasi asertif adalah kemampuan menyampaikan pikiran, perasaan, kebutuhan, dan pendapat secara jujur serta tegas dengan tetap menghargai orang lain.
+          </p>
+        </div>
+
+        {/* 3 Bentuk Komunikasi */}
+        <div className="grid md:grid-cols-3 gap-4 mb-5">
+          <div className="bg-white/90 border border-purple-100/80 rounded-3xl p-5 shadow-sm">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 mb-2 inline-block">
+              BENTUK 1
+            </span>
+            <h4 className="font-bold text-sm text-slate-900 mb-1">Pasif</h4>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Kesulitan menyampaikan pendapat atau menolak permintaan orang lain karena takut mengecewakan.
+            </p>
           </div>
-        </motion.div>
+
+          <div className="bg-white/90 border border-purple-100/80 rounded-3xl p-5 shadow-sm">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 border border-rose-200 mb-2 inline-block">
+              BENTUK 2
+            </span>
+            <h4 className="font-bold text-sm text-slate-900 mb-1">Agresif</h4>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Menyampaikan pendapat dengan memaksakan kehendak, merendahkan, atau menyakiti orang lain.
+            </p>
+          </div>
+
+          <div className="bg-white/90 border border-purple-100/80 rounded-3xl p-5 shadow-sm border-t-4 border-t-purple-600">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200 mb-2 inline-block">
+              DIANJURKAN
+            </span>
+            <h4 className="font-bold text-sm text-purple-900 mb-1">Asertif</h4>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Menyampaikan pendapat dan perasaan secara jelas, tegas, serta tetap menghargai orang lain.
+            </p>
+          </div>
+        </div>
+
+        {/* Rumus I-Message */}
+        <div className="bg-gradient-to-r from-purple-50 via-indigo-50/50 to-sky-50 p-6 rounded-3xl border border-purple-200/80 shadow-sm">
+          <h4 className="font-bold text-sm text-purple-900 mb-2 flex items-center gap-2">
+            <Sparkles size={16} className="text-purple-600" />
+            <span>Gunakan Rumus I-Message!</span>
+          </h4>
+          <p className="text-xs text-slate-600 mb-3">
+            Kamu bisa menggunakan pola berikut ketika ingin menyampaikan perasaan atau keberatan terhadap perilaku seseorang:
+          </p>
+          <div className="bg-white p-4 rounded-2xl border border-purple-100 mb-3 shadow-2xs">
+            <p className="text-sm font-bold text-purple-900 font-mono">
+              "Aku merasa <span className="text-purple-600">[perasaan]</span> ketika kamu <span className="text-indigo-600">[kejadian spesifik]</span>. Aku berharap ke depannya <span className="text-sky-700">[harapanmu]</span>."
+            </p>
+          </div>
+          <div className="bg-purple-100/70 p-3.5 rounded-2xl border border-purple-200/60 text-xs text-slate-700 leading-relaxed">
+            <strong className="text-purple-900">Contoh:</strong> "Aku merasa kurang nyaman ketika pendapatku dipotong saat sedang berbicara. Aku berharap ke depannya kita bisa saling mendengarkan."
+          </div>
+          <p className="text-[11px] text-purple-800 mt-3 font-medium">
+            Dengan komunikasi asertif, kamu dapat menyampaikan kebutuhan tanpa harus merendahkan atau menyalahkan orang lain.
+          </p>
+        </div>
+      </div>
+
+      {/* 3. Membangun Pertemanan yang Sehat */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-slate-900 mb-1 flex items-center gap-2">
+            <HeartHandshake size={20} className="text-rose-500" />
+            <span>3. Membangun Pertemanan yang Sehat</span>
+          </h3>
+          <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider mb-2">
+            Kenali Hubungan Pertemanan yang Positif
+          </p>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Pertemanan yang sehat bukan berarti harus selalu memiliki pendapat yang sama atau selalu bersama. Hubungan pertemanan yang baik dibangun melalui rasa saling menghargai, kepercayaan, dan dukungan.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {[
+            'Saling menghargai perasaan dan pendapat.',
+            'Tidak memaksakan kehendak kepada teman.',
+            'Dapat saling mendukung dalam kegiatan positif.',
+            'Menghargai perbedaan dan tidak melakukan diskriminasi.',
+            'Mampu meminta maaf dan menyelesaikan kesalahpahaman.',
+            'Memberikan ruang bagi setiap orang untuk memiliki kehidupan dan aktivitas masing-masing.',
+          ].map((ciri, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -3 }}
+              className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-5 transition-all flex items-start gap-3"
+            >
+              <div className="w-8 h-8 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 flex-shrink-0 mt-0.5">
+                <CheckCircle2 size={16} />
+              </div>
+              <p className="text-xs text-slate-700 leading-relaxed font-medium">{ciri}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-950 flex items-start gap-2.5 leading-relaxed">
+          <Info size={16} className="text-emerald-700 flex-shrink-0 mt-0.5" />
+          <span>
+            <strong className="text-emerald-900">Ingat!</strong> Kamu tidak harus mengubah kepribadian atau mengorbankan kenyamanan diri hanya agar diterima oleh suatu kelompok pertemanan.
+          </span>
+        </div>
+      </div>
+
+      {/* 4. Menjaga Batasan Pribadi (Personal Boundaries) */}
+      <div className="mb-4">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-slate-900 mb-1 flex items-center gap-2">
+            <CheckCircle2 size={20} className="text-indigo-600" />
+            <span>4. Menjaga Batasan Pribadi (Personal Boundaries)</span>
+          </h3>
+          <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider mb-2">
+            Berani Menentukan Batasan dalam Hubungan Sosial
+          </p>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Batasan pribadi merupakan batas yang ditetapkan seseorang untuk menjaga kenyamanan, kebutuhan, dan hak dirinya dalam berinteraksi dengan orang lain.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {/* Contoh Menerapkan Batasan */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm rounded-3xl p-6">
+            <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+              <Shield size={17} className="text-indigo-600" />
+              <span>Contoh Menerapkan Batasan Pribadi:</span>
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-700">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                <span>Berani mengatakan tidak terhadap ajakan yang membuatmu tidak nyaman.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                <span>Tidak membagikan informasi pribadi jika tidak menginginkannya.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                <span>Menghargai privasi dan rahasia teman.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                <span>Tidak membiarkan orang lain memaksakan kehendaknya.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
+                <span>Menghormati keputusan dan batasan yang ditetapkan orang lain.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contoh Kalimat Asertif */}
+          <div className="bg-white/90 border border-purple-100/80 shadow-sm rounded-3xl p-6">
+            <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+              <MessageSquare size={17} className="text-sky-600" />
+              <span>Contoh Kalimat Asertif:</span>
+            </h4>
+            <div className="space-y-3">
+              <div className="bg-indigo-50/60 p-3.5 rounded-2xl border border-indigo-100 text-xs text-slate-700 italic">
+                "Maaf, aku belum bisa ikut karena ada hal lain yang harus aku kerjakan."
+              </div>
+              <div className="bg-indigo-50/60 p-3.5 rounded-2xl border border-indigo-100 text-xs text-slate-700 italic">
+                "Aku kurang nyaman kalau percakapan pribadiku dibagikan kepada orang lain. Tolong hargai privasiku, ya."
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card-pastel-mint border border-emerald-200/80 rounded-3xl p-5 shadow-sm flex items-start gap-3">
+          <Sparkles size={20} className="text-emerald-700 flex-shrink-0 mt-0.5" />
+          <p className="text-xs lg:text-sm text-emerald-950 leading-relaxed font-medium">
+            Menetapkan batasan bukan berarti tidak peduli kepada orang lain. Justru, batasan membantu menciptakan hubungan yang lebih saling menghargai.
+          </p>
+        </div>
       </div>
     </div>
   ),
