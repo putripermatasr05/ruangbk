@@ -16,39 +16,124 @@ const misiList = [
 
 const materiBK = [
   {
-    title: 'Pengertian Bimbingan dan Konseling',
-    content: 'Bimbingan dan Konseling (BK) merupakan layanan bantuan yang diberikan kepada peserta didik untuk membantu memahami diri, mengembangkan potensi, mengatasi permasalahan, serta merencanakan masa depan secara optimal. BK bertujuan mendukung perkembangan pribadi, sosial, belajar, dan karier peserta didik agar menjadi individu yang mandiri, bertanggung jawab, dan berkarakter.'
-  },
-  {
-    title: 'Tujuan Bimbingan dan Konseling',
-    content: 'Layanan Bimbingan dan Konseling bertujuan membantu peserta didik mencapai perkembangan yang optimal, mandiri, dan bertanggung jawab dalam aspek pribadi, sosial, belajar, dan karier. Selain itu, BK membantu peserta didik memahami diri dan lingkungan, mengembangkan potensi, mengatasi permasalahan, serta merencanakan masa depan dengan baik.'
-  },
-  {
-    title: 'Komponen Layanan BK',
-    content: `<div class="space-y-3 text-slate-600">
-      <div><strong class="text-slate-900 font-bold">1. Layanan Dasar</strong><br/>Layanan yang diberikan kepada seluruh peserta didik melalui kegiatan bimbingan untuk mengembangkan potensi, keterampilan hidup, serta kemampuan penyesuaian diri.</div>
-      <div><strong class="text-slate-900 font-bold">2. Layanan Peminatan dan Perencanaan Individual</strong><br/>Layanan yang membantu peserta didik mengenali minat, bakat, dan kemampuannya sehingga dapat merencanakan pendidikan dan karier sesuai potensi yang dimiliki.</div>
-      <div><strong class="text-slate-900 font-bold">3. Layanan Responsif</strong><br/>Layanan yang diberikan kepada peserta didik yang sedang menghadapi masalah dan memerlukan bantuan segera agar tidak menghambat perkembangan dirinya.</div>
-      <div><strong class="text-slate-900 font-bold">4. Layanan Dukungan Sistem</strong><br/>Layanan yang mendukung pelaksanaan program BK melalui kerja sama dengan guru, orang tua, sekolah, dan pihak terkait untuk menciptakan lingkungan yang mendukung perkembangan peserta didik.</div>
+    title: 'Definisi Bimbingan dan Konseling',
+    content: `<div class="space-y-3 text-slate-600 leading-relaxed">
+      <p>
+        Bimbingan dan konseling merupakan dua kegiatan yang saling berkaitan dan melengkapi. Bimbingan membantu individu memahami serta mengembangkan potensi dirinya, sedangkan konseling membantu individu mengatasi masalah dan menemukan solusi yang tepat. Melalui kegiatan ini, siswa dapat lebih mengenal dirinya, memahami kemampuan yang dimiliki, mengatasi kesulitan, serta mengembangkan diri agar menjadi pribadi yang lebih baik.
+      </p>
+      <div class="mt-3 text-xs text-purple-700 font-semibold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200">
+        Sumber: Wibowo & Pranoto (2023)
+      </div>
     </div>`
   },
   {
-    title: 'Bidang Layanan BK',
-    content: `<div class="space-y-3 text-slate-600">
-      <div><strong class="text-slate-900 font-bold">Pribadi:</strong> Membantu peserta didik memahami dan mengembangkan diri secara positif.</div>
-      <div><strong class="text-slate-900 font-bold">Sosial:</strong> Membantu peserta didik membangun hubungan yang baik dengan lingkungan dan meningkatkan keterampilan sosial.</div>
-      <div><strong class="text-slate-900 font-bold">Belajar:</strong> Membantu peserta didik mengembangkan kebiasaan belajar yang efektif dan mencapai prestasi optimal.</div>
-      <div><strong class="text-slate-900 font-bold">Karier:</strong> Membantu peserta didik mengenali potensi diri, merencanakan pendidikan lanjutan, dan mempersiapkan pilihan karier di masa depan.</div>
+    title: 'Tujuan Bimbingan dan Konseling',
+    content: `<div class="space-y-3 text-slate-600 leading-relaxed">
+      <p>
+        Bimbingan dan konseling bertujuan membantu siswa memahami dirinya sendiri, mengenali minat dan kemampuan, mengembangkan potensi, serta mengatasi berbagai masalah yang dihadapi. Masalah tersebut dapat berkaitan dengan kehidupan pribadi, hubungan sosial, belajar, maupun karier. Selain itu, BK membantu siswa mengembangkan kepercayaan diri, mengelola emosi, menyesuaikan diri dengan lingkungan, dan mengambil keputusan secara mandiri agar dapat mencapai perkembangan diri yang optimal.
+      </p>
+      <div class="mt-3 text-xs text-purple-700 font-semibold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200">
+        Sumber: Wibowo & Pranoto (2023)
+      </div>
     </div>`
   },
   {
     title: 'Fungsi Bimbingan dan Konseling',
-    content: `<div class="space-y-3 text-slate-600">
-      <div><strong class="text-slate-900 font-bold">1. Fungsi Pemahaman:</strong> Membantu peserta didik memahami diri, potensi, kebutuhan, permasalahan, dan lingkungan sekitar sebagai dasar pengambilan keputusan yang tepat.</div>
-      <div><strong class="text-slate-900 font-bold">2. Fungsi Pencegahan:</strong> Membantu peserta didik mengantisipasi dan mencegah munculnya berbagai masalah yang dapat menghambat perkembangan diri.</div>
-      <div><strong class="text-slate-900 font-bold">3. Fungsi Pengentasan:</strong> Membantu peserta didik menyelesaikan masalah yang sedang dihadapi agar dapat kembali berkembang secara optimal.</div>
-      <div><strong class="text-slate-900 font-bold">4. Fungsi Pemeliharaan:</strong> Membantu peserta didik mempertahankan kondisi dan perilaku positif yang telah dimiliki agar tetap berkembang dengan baik.</div>
-      <div><strong class="text-slate-900 font-bold">5. Fungsi Pengembangan:</strong> Membantu peserta didik mengembangkan potensi, bakat, minat, serta keterampilan hidup untuk mencapai keberhasilan di masa depan.</div>
+    content: `<div class="space-y-3 text-slate-600 leading-relaxed">
+      <p>Bimbingan dan konseling memiliki beberapa fungsi yang membantu siswa dalam menjalani kehidupan dan mengembangkan dirinya, yaitu:</p>
+      <div class="space-y-2.5 pl-1">
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">1. Fungsi Pencegahan</strong>
+          Membantu siswa mengenali dan menghindari hal-hal yang dapat menimbulkan masalah melalui pemberian informasi, pemahaman, dan keterampilan untuk menghadapi berbagai kesulitan.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">2. Fungsi Pengembangan</strong>
+          Membantu siswa mengembangkan potensi, minat, bakat, kemampuan, serta keterampilan agar dapat tumbuh menjadi pribadi yang lebih baik.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">3. Fungsi Penyaluran</strong>
+          Membantu siswa menentukan pilihan pendidikan, kegiatan, maupun karier sesuai dengan minat, bakat, kemampuan, dan kepribadiannya.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">4. Fungsi Perbaikan</strong>
+          Membantu siswa mengatasi dan memperbaiki sikap, perasaan, pikiran, maupun perilaku yang kurang tepat agar dapat berkembang dan menjalani kehidupan dengan lebih baik.
+        </div>
+      </div>
+      <div class="mt-3 text-xs text-purple-700 font-semibold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200">
+        Sumber: Wibowo & Pranoto (2023)
+      </div>
+    </div>`
+  },
+  {
+    title: 'Bidang-Bidang Layanan Bimbingan dan Konseling',
+    content: `<div class="space-y-3 text-slate-600 leading-relaxed">
+      <p>
+        Bimbingan dan konseling memiliki beberapa bidang layanan yang membantu siswa dalam mengembangkan diri dan menghadapi berbagai permasalahan. Bidang layanan BK meliputi pribadi, sosial, belajar, dan karier:
+      </p>
+      <div class="grid sm:grid-cols-2 gap-3 mt-2">
+        <div class="p-3.5 bg-pink-50/60 rounded-2xl border border-pink-100">
+          <strong class="text-pink-900 font-bold text-sm block mb-1">
+            • Bimbingan Pribadi
+          </strong>
+          <p class="text-xs leading-relaxed text-slate-700">
+            Layanan yang membantu siswa memahami dirinya sendiri, mulai dari kelebihan, kekurangan, minat, bakat, hingga potensi yang dimiliki. Layanan ini juga membantu siswa meningkatkan kepercayaan diri, mengelola emosi, menghadapi stres, serta mengatasi masalah pribadi sehingga mampu menerima diri sendiri, mengambil keputusan secara mandiri, dan mengembangkan sikap positif dalam kehidupan sehari-hari.
+          </p>
+        </div>
+        <div class="p-3.5 bg-blue-50/60 rounded-2xl border border-blue-100">
+          <strong class="text-blue-900 font-bold text-sm block mb-1">
+            • Bimbingan Sosial
+          </strong>
+          <p class="text-xs leading-relaxed text-slate-700">
+            Layanan yang membantu siswa mengembangkan kemampuan dalam berinteraksi dan menjalin hubungan baik dengan orang lain. Mengajarkan siswa untuk memiliki sikap empati, toleransi, saling menghargai, bekerja sama, dan menghormati perbedaan, serta mengatasi masalah dalam hubungan sosial dengan teman, orang tua, guru, maupun masyarakat sehingga mampu menyesuaikan diri dengan lingkungan.
+          </p>
+        </div>
+        <div class="p-3.5 bg-emerald-50/60 rounded-2xl border border-emerald-100">
+          <strong class="text-emerald-900 font-bold text-sm block mb-1">
+            • Bimbingan Belajar (Akademik)
+          </strong>
+          <p class="text-xs leading-relaxed text-slate-700">
+            Layanan yang membantu siswa mengatasi kesulitan dalam proses pembelajaran dan meningkatkan prestasi akademik. Mencakup bantuan dalam mengatur waktu belajar, memahami materi pelajaran, meningkatkan konsentrasi, serta menerapkan cara belajar yang efektif agar siswa menjadi lebih mandiri, termotivasi, dan mampu mencapai hasil belajar yang optimal.
+          </p>
+        </div>
+        <div class="p-3.5 bg-amber-50/60 rounded-2xl border border-amber-100">
+          <strong class="text-amber-900 font-bold text-sm block mb-1">
+            • Bimbingan Karier
+          </strong>
+          <p class="text-xs leading-relaxed text-slate-700">
+            Layanan yang membantu siswa mengenali minat, bakat, kemampuan, dan potensi diri sebagai dasar dalam merencanakan masa depan. Memberikan pemahaman mengenai dunia kerja, pilihan pendidikan lanjutan, serta peluang karier agar siswa dapat menentukan pilihan pendidikan dan pekerjaan yang sesuai dengan kemampuan serta minatnya.
+          </p>
+        </div>
+      </div>
+      <div class="mt-3 text-xs text-purple-700 font-semibold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200">
+        Sumber: Wibowo & Pranoto (2023)
+      </div>
+    </div>`
+  },
+  {
+    title: 'Komponen Layanan Bimbingan dan Konseling',
+    content: `<div class="space-y-3 text-slate-600 leading-relaxed">
+      <p>Program bimbingan dan konseling memiliki empat komponen utama, yaitu:</p>
+      <div class="space-y-2.5 pl-1">
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">1. Layanan Dasar</strong>
+          Layanan yang diberikan kepada seluruh siswa untuk membantu mengembangkan kemampuan, sikap, dan keterampilan hidup yang sesuai dengan tugas perkembangannya.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">2. Layanan Responsif</strong>
+          Layanan yang diberikan untuk membantu siswa mengatasi kebutuhan atau permasalahan yang sedang dihadapi dan membutuhkan penanganan segera. Layanan ini dapat dilakukan melalui konseling individu maupun kelompok, dengan membahas masalah pribadi, sosial, belajar, karier, dan permasalahan lainnya.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">3. Layanan Perencanaan Individual</strong>
+          Layanan yang membantu siswa merencanakan dan menentukan arah perkembangan dirinya, baik dalam bidang pendidikan, karier, sosial, maupun pribadi. Melalui layanan ini, siswa dibantu untuk mengenali potensi serta memantau perkembangan dirinya.
+        </div>
+        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+          <strong class="text-slate-900 font-bold block mb-0.5">4. Dukungan Sistem</strong>
+          Kegiatan yang dilakukan untuk mendukung kelancaran dan keberhasilan seluruh program BK. Kegiatan ini mencakup pengelolaan program, kerja sama dengan berbagai pihak, serta penyediaan fasilitas yang diperlukan dalam pelaksanaan layanan BK.
+        </div>
+      </div>
+      <div class="mt-3 text-xs text-purple-700 font-semibold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200">
+        Sumber: Wahid (2022)
+      </div>
     </div>`
   }
 ]
