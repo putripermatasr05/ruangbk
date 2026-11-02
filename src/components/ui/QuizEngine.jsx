@@ -8,7 +8,7 @@ const slideVariants = {
   exit: (dir) => ({ opacity: 0, x: dir < 0 ? 40 : -40, transition: { duration: 0.2 } }),
 }
 
-export default function QuizEngine({ id, title, subtitle, questions, getResult }) {
+export default function QuizEngine({ id, title, subtitle, description, instructions, questions, getResult }) {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState({})
   const [direction, setDirection] = useState(1)
@@ -47,6 +47,18 @@ export default function QuizEngine({ id, title, subtitle, questions, getResult }
   }
 
   if (result) {
+    if (result.render) {
+      return (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="glass-card p-6 lg:p-8"
+        >
+          {result.render({ reset })}
+        </motion.div>
+      )
+    }
+
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -95,6 +107,18 @@ export default function QuizEngine({ id, title, subtitle, questions, getResult }
         <p className="text-slate-400 text-sm">{subtitle}</p>
       </div>
 
+      {/* Description / Instructions */}
+      {(description || instructions) && (
+        <div className="mb-6 p-4 rounded-xl bg-surface-2/60 border border-white/5 text-xs text-slate-300 leading-relaxed space-y-2">
+          {description && <p>{description}</p>}
+          {instructions && (
+            <p className="text-slate-400 text-[11px] pt-2 border-t border-white/5">
+              <strong className="text-primary-light">Petunjuk:</strong> {instructions}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Progress */}
       <div className="mb-6" role="progressbar" aria-valuenow={currentQ} aria-valuemin={0} aria-valuemax={total} aria-label="Progres kuis">
         <div className="flex justify-between items-center mb-1.5">
@@ -120,10 +144,15 @@ export default function QuizEngine({ id, title, subtitle, questions, getResult }
           animate="center"
           exit="exit"
         >
-          <p className="text-xs font-bold text-primary-light uppercase tracking-wider mb-3">
+          <p className="text-xs font-bold text-primary-light uppercase tracking-wider mb-2">
             Pertanyaan {currentQ + 1}
           </p>
-          <p className="font-semibold text-base lg:text-lg leading-snug mb-5">{q.text}</p>
+          <p className="font-semibold text-base lg:text-lg leading-snug mb-2">{q.text}</p>
+          {q.hint && (
+            <p className="text-xs text-slate-400 italic mb-4">
+              💡 {q.hint}
+            </p>
+          )}
 
           {/* Radio options */}
           {q.type === 'radio' && (

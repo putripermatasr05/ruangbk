@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Briefcase, ChevronDown, Heart, Users } from 'lucide-react'
+import { BookOpen, Briefcase, ChevronDown, Heart, RotateCcw, Users } from 'lucide-react'
 import QuizEngine from '../ui/QuizEngine'
 
 /* ─── DATA ─── */
@@ -11,68 +11,598 @@ const tabs = [
   { id: 'sosial', label: 'Sosial', icon: '🤝', Icon: Users },
 ]
 
-/* Quiz Data: Belajar */
-const quizBelajar = {
-  title: '🧩 Temukan Gaya Belajar Dominanmu',
-  subtitle: 'Jawab 5 pertanyaan berikut dengan jujur untuk menemukan metode belajar yang paling efektif untukmu.',
+/* Quiz Data: Belajar - KUIS 1 */
+const quizBelajar1 = {
+  title: 'KUIS 1 — FIND YOUR LEARNING STYLE',
+  subtitle: 'Kenali Kecenderungan Gaya Belajarmu!',
+  description: 'Setiap orang memiliki cara yang berbeda dalam memahami informasi. Ada yang lebih menyukai gambar, mendengarkan penjelasan, atau melakukan praktik secara langsung. Yuk, jawab pertanyaan berikut untuk mengenali kecenderungan cara belajar yang kamu sukai!',
+  instructions: 'Terdapat 10 pertanyaan. Pilih satu jawaban yang paling menggambarkan dirimu. Tidak ada jawaban benar atau salah. Jawablah sesuai kebiasaanmu sehari-hari.',
   questions: [
     {
-      id: 'q1', type: 'radio',
-      text: '1. Saat merakit barang baru (misal: rak buku), apa yang pertama kali kamu lakukan?',
+      id: 'kb1_q1', type: 'radio',
+      text: '1. Ketika mempelajari materi baru, kamu lebih suka ...',
       options: [
-        { label: 'A', value: 'visual', text: 'Melihat buku panduan bergambar secara detail.' },
-        { label: 'B', value: 'auditori', text: 'Meminta bantuan orang lain membacakan instruksinya.' },
-        { label: 'C', value: 'kinestetik', text: 'Langsung mencoba merakit bagian-bagiannya sambil jalan.' },
+        { label: 'A', value: 'visual', text: 'Melihat gambar, diagram, atau ilustrasi materi.' },
+        { label: 'B', value: 'auditori', text: 'Mendengarkan penjelasan dari guru atau teman.' },
+        { label: 'C', value: 'kinestetik', text: 'Mencoba langsung kegiatan yang berkaitan dengan materi.' },
       ],
     },
     {
-      id: 'q2', type: 'radio',
-      text: '2. Jika harus menghafal materi penting, bagaimana caramu?',
+      id: 'kb1_q2', type: 'radio',
+      text: '2. Ketika guru menjelaskan materi di kelas, kamu biasanya ...',
       options: [
-        { label: 'A', value: 'visual', text: 'Membuat mind-map, memakai stabilo warna-warni, atau membaca berulang.' },
-        { label: 'B', value: 'auditori', text: 'Mengucapkan materinya keras-keras atau berdiskusi dengan teman.' },
-        { label: 'C', value: 'kinestetik', text: 'Menulis ulang materi berulang kali atau belajar sambil berjalan mondar-mandir.' },
+        { label: 'A', value: 'visual', text: 'Memperhatikan tulisan dan gambar di papan tulis.' },
+        { label: 'B', value: 'auditori', text: 'Mendengarkan penjelasan guru dengan saksama.' },
+        { label: 'C', value: 'kinestetik', text: 'Lebih memahami materi ketika ada praktik atau demonstrasi.' },
       ],
     },
     {
-      id: 'q3', type: 'radio',
-      text: '3. Apa hal yang paling mengganggu konsentrasimu saat sedang belajar?',
+      id: 'kb1_q3', type: 'radio',
+      text: '3. Ketika menghafalkan materi untuk ujian, kamu lebih suka ...',
       options: [
-        { label: 'A', value: 'visual', text: 'Meja belajar atau kamar yang sangat berantakan.' },
-        { label: 'B', value: 'auditori', text: 'Suara bising, musik keras, atau orang ngobrol.' },
-        { label: 'C', value: 'kinestetik', text: 'Harus duduk diam terlalu lama tanpa bergerak.' },
+        { label: 'A', value: 'visual', text: 'Membuat rangkuman dengan warna dan simbol.' },
+        { label: 'B', value: 'auditori', text: 'Membaca materi dengan suara keras atau mendengarkannya.' },
+        { label: 'C', value: 'kinestetik', text: 'Menulis ulang materi atau mempraktikkannya.' },
       ],
     },
     {
-      id: 'q4', type: 'radio',
-      text: '4. Saat membaca cerita, apa yang paling sering terjadi di kepalamu?',
+      id: 'kb1_q4', type: 'radio',
+      text: '4. Ketika mencari informasi dari internet, kamu lebih tertarik membuka ...',
       options: [
-        { label: 'A', value: 'visual', text: 'Membayangkan adegan dan wajah karakter dengan sangat jelas.' },
-        { label: 'B', value: 'auditori', text: 'Mendengar intonasi suara percakapan karakter di pikiran.' },
-        { label: 'C', value: 'kinestetik', text: 'Ikut merasakan emosi karakter atau tanpa sadar meniru ekspresi mereka.' },
+        { label: 'A', value: 'visual', text: 'Infografis, gambar, dan video animasi.' },
+        { label: 'B', value: 'auditori', text: 'Podcast atau video yang berisi penjelasan lisan.' },
+        { label: 'C', value: 'kinestetik', text: 'Video tutorial atau demonstrasi langsung.' },
       ],
     },
     {
-      id: 'q5', type: 'radio',
-      text: '5. Saat tersesat di tempat baru, apa yang biasanya kamu lakukan?',
+      id: 'kb1_q5', type: 'radio',
+      text: '5. Ketika belajar bersama teman, kamu lebih suka ...',
       options: [
-        { label: 'A', value: 'visual', text: 'Melihat peta atau Google Maps untuk mencari rute visual.' },
-        { label: 'B', value: 'auditori', text: 'Langsung bertanya arah kepada orang sekitar atau satpam.' },
-        { label: 'C', value: 'kinestetik', text: 'Terus berjalan mencoba-coba mencari jalan yang benar.' },
+        { label: 'A', value: 'visual', text: 'Membuat catatan atau peta konsep bersama.' },
+        { label: 'B', value: 'auditori', text: 'Berdiskusi dan saling menjelaskan materi.' },
+        { label: 'C', value: 'kinestetik', text: 'Melakukan latihan atau praktik bersama.' },
+      ],
+    },
+    {
+      id: 'kb1_q6', type: 'radio',
+      text: '6. Ketika mencoba memahami suatu konsep yang sulit, kamu biasanya ...',
+      options: [
+        { label: 'A', value: 'visual', text: 'Mencari gambar atau ilustrasi yang menjelaskan konsep tersebut.' },
+        { label: 'B', value: 'auditori', text: 'Meminta seseorang menjelaskan konsep tersebut kepadamu.' },
+        { label: 'C', value: 'kinestetik', text: 'Mencoba melakukan simulasi atau praktik sederhana.' },
+      ],
+    },
+    {
+      id: 'kb1_q7', type: 'radio',
+      text: '7. Ketika mengingat arah menuju suatu tempat, kamu lebih mudah mengingat melalui ...',
+      options: [
+        { label: 'A', value: 'visual', text: 'Peta atau petunjuk visual.' },
+        { label: 'B', value: 'auditori', text: 'Penjelasan lisan mengenai arah perjalanan.' },
+        { label: 'C', value: 'kinestetik', text: 'Mengunjungi tempat tersebut secara langsung.' },
+      ],
+    },
+    {
+      id: 'kb1_q8', type: 'radio',
+      text: '8. Aktivitas pembelajaran yang paling menarik bagimu adalah ...',
+      options: [
+        { label: 'A', value: 'visual', text: 'Membuat poster, mind map, atau presentasi visual.' },
+        { label: 'B', value: 'auditori', text: 'Presentasi, diskusi, dan tanya jawab.' },
+        { label: 'C', value: 'kinestetik', text: 'Eksperimen, permainan edukatif, dan simulasi.' },
+      ],
+    },
+    {
+      id: 'kb1_q9', type: 'radio',
+      text: '9. Ketika mengingat kembali materi yang sudah dipelajari, kamu cenderung mengingat ...',
+      options: [
+        { label: 'A', value: 'visual', text: 'Bentuk tulisan, gambar, atau susunan catatan.' },
+        { label: 'B', value: 'auditori', text: 'Penjelasan atau percakapan yang pernah didengar.' },
+        { label: 'C', value: 'kinestetik', text: 'Pengalaman atau kegiatan yang pernah dilakukan.' },
+      ],
+    },
+    {
+      id: 'kb1_q10', type: 'radio',
+      text: '10. Jika diberikan tugas untuk memahami materi baru, kamu akan memilih ...',
+      options: [
+        { label: 'A', value: 'visual', text: 'Membaca buku dan melihat video atau gambar pendukung.' },
+        { label: 'B', value: 'auditori', text: 'Mendengarkan penjelasan atau berdiskusi dengan teman.' },
+        { label: 'C', value: 'kinestetik', text: 'Mencoba langsung melalui latihan atau praktik.' },
       ],
     },
   ],
   getResult: (answers) => {
     const counts = { visual: 0, auditori: 0, kinestetik: 0 }
-    Object.values(answers).forEach((v) => { if (counts[v] !== undefined) counts[v]++ })
-    const winner = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0]
-    const map = {
-      visual: { icon: '👁️', title: 'Gaya Belajarmu: Visual!', desc: 'Kamu menangkap informasi lebih cepat melalui gambar dan visual. Manfaatkan diagram, mind-map, dan video ilustrasi. Jangan ragu menggunakan warna-warni untuk menandai catatanmu!', tags: ['Mind-Map', 'Video Edukasi', 'Catatan Berwarna'] },
-      auditori: { icon: '👂', title: 'Gaya Belajarmu: Auditori!', desc: 'Telingamu adalah senjata utamamu! Kamu sangat cepat paham jika mendengar penjelasan. Coba rekam suara gurumu, belajar sambil diskusi, atau jelaskan kembali materi ke dirimu sendiri bersuara.', tags: ['Rekam Penjelasan', 'Diskusi Kelompok', 'Podcast Belajar'] },
-      kinestetik: { icon: '🤸', title: 'Gaya Belajarmu: Kinestetik!', desc: 'Kamu tidak bisa hanya duduk diam! Kamu butuh praktik langsung. Sering-seringlah bergerak saat menghafal, lakukan eksperimen mini, atau gunakan benda nyata untuk simulasi.', tags: ['Praktik Langsung', 'Belajar Aktif', 'Role Play'] },
+    Object.values(answers).forEach((v) => {
+      if (counts[v] !== undefined) counts[v]++
+    })
+
+    const maxVal = Math.max(counts.visual, counts.auditori, counts.kinestetik)
+    const winners = Object.keys(counts).filter((k) => counts[k] === maxVal)
+
+    const styleInfo = {
+      visual: {
+        icon: '🌷',
+        name: 'Visual',
+        title: 'HASIL 1 — VISUAL 🌷',
+        tagline: 'Kamu memiliki kecenderungan belajar Visual!',
+        desc: 'Kamu cenderung menyukai informasi yang disajikan melalui gambar, tulisan, warna, dan ilustrasi.',
+        rekomendasi: [
+          'Gunakan mind map untuk merangkum materi.',
+          'Buat catatan dengan warna berbeda.',
+          'Manfaatkan diagram dan infografis.',
+          'Tonton video pembelajaran yang dilengkapi ilustrasi.',
+        ],
+        pesan: 'Jadikan kreativitas visual sebagai salah satu cara untuk mendukung kegiatan belajarmu!',
+      },
+      auditori: {
+        icon: '🎧',
+        name: 'Auditori',
+        title: 'HASIL 2 — AUDITORI 🎧',
+        tagline: 'Kamu memiliki kecenderungan belajar Auditori!',
+        desc: 'Kamu cenderung menyukai kegiatan belajar yang melibatkan suara, percakapan, dan penjelasan secara lisan.',
+        rekomendasi: [
+          'Coba belajar melalui diskusi kelompok.',
+          'Dengarkan podcast pendidikan.',
+          'Rekam penjelasan materi menggunakan suaramu sendiri.',
+          'Biasakan menjelaskan kembali materi yang sudah dipelajari.',
+        ],
+        pesan: 'Manfaatkan kemampuanmu dalam menyimak dan berdiskusi untuk memperkaya pemahaman!',
+      },
+      kinestetik: {
+        icon: '🏃',
+        name: 'Kinestetik',
+        title: 'HASIL 3 — KINESTETIK 🏃',
+        tagline: 'Kamu memiliki kecenderungan belajar Kinestetik!',
+        desc: 'Kamu cenderung menyukai kegiatan belajar yang melibatkan praktik, pengalaman langsung, dan aktivitas fisik.',
+        rekomendasi: [
+          'Gunakan alat peraga ketika belajar.',
+          'Coba eksperimen sederhana.',
+          'Praktikkan materi yang sedang dipelajari.',
+          'Ikuti simulasi atau permainan edukatif.',
+        ],
+        pesan: 'Belajar melalui pengalaman bisa menjadi salah satu cara menarik untuk mengembangkan pemahamanmu!',
+      },
     }
-    return map[winner]
+
+    const isCombination = winners.length > 1
+    const primary = styleInfo[winners[0]]
+
+    return {
+      render: ({ reset }) => (
+        <div className="space-y-6">
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+              className="text-6xl mb-4"
+              aria-hidden="true"
+            >
+              {isCombination ? '✨' : primary.icon}
+            </motion.div>
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+              {isCombination
+                ? `HASIL KOMBINASI — ${winners.map((w) => styleInfo[w].name).join(' & ')} ${winners.map((w) => styleInfo[w].icon).join(' ')}`
+                : primary.title}
+            </h3>
+            <p className="text-primary-light font-semibold text-base mb-2">
+              {isCombination
+                ? `Kamu memiliki kombinasi kecenderungan belajar ${winners.map((w) => styleInfo[w].name).join(' & ')}!`
+                : primary.tagline}
+            </p>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+              {isCombination
+                ? 'Skor kecenderunganmu seimbang di lebih dari satu kategori. Kamu dapat menggabungkan indera visual, pendengaran, dan praktik secara fleksibel sesuai mata pelajaran yang kamu pelajari.'
+                : primary.desc}
+            </p>
+          </div>
+
+          {/* Breakdown Skor */}
+          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-5">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+              Distribusi Skor Pilihanmu (Total 10 Soal)
+            </h4>
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { label: 'Visual 🌷', val: counts.visual, color: 'text-pink-400', bg: 'bg-pink-500' },
+                { label: 'Auditori 🎧', val: counts.auditori, color: 'text-sky-400', bg: 'bg-sky-500' },
+                { label: 'Kinestetik 🏃', val: counts.kinestetik, color: 'text-emerald-400', bg: 'bg-emerald-500' },
+              ].map((item) => (
+                <div key={item.label} className="bg-surface p-3 rounded-xl border border-white/[0.05] text-center">
+                  <p className="text-xs font-semibold text-slate-300 mb-1">{item.label}</p>
+                  <p className={`font-display font-bold text-xl lg:text-2xl ${item.color}`}>
+                    {item.val} <span className="text-xs text-slate-500 font-normal">poin</span>
+                  </p>
+                  <div className="h-1.5 bg-surface-3 rounded-full mt-2 overflow-hidden">
+                    <div
+                      className={`h-full ${item.bg} rounded-full`}
+                      style={{ width: `${(item.val / 10) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Rekomendasi */}
+          <div className="glass-card p-5 border border-white/[0.08]">
+            <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
+              <span>🎯</span> Rekomendasi untukmu:
+            </h4>
+            <ul className="space-y-2 text-xs lg:text-sm text-slate-300">
+              {(isCombination
+                ? winners.flatMap((w) => styleInfo[w].rekomendasi.slice(0, 2))
+                : primary.rekomendasi
+              ).map((rek, idx) => (
+                <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-primary-light flex-shrink-0 mt-0.5">•</span>
+                  <span>{rek}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Pesan TemanBK */}
+          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
+            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
+              <span>💌</span> Pesan TemanBK:
+            </p>
+            <p className="leading-relaxed text-slate-300">
+              {isCombination
+                ? 'Jadikan perpaduan gaya belajarmu sebagai kekuatan unik. Sesuaikan cara belajarmu dengan karakteristik materi yang sedang kamu hadapi!'
+                : primary.pesan}
+            </p>
+          </div>
+
+          <div className="text-center pt-2">
+            <button
+              onClick={reset}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+            >
+              <RotateCcw size={15} /> Ulangi Kuis
+            </button>
+          </div>
+        </div>
+      ),
+    }
   },
+}
+
+/* Opsi Kebiasaan Kuis 2 */
+const habitOptions = [
+  { label: 'A', value: 3, text: 'Selalu' },
+  { label: 'B', value: 2, text: 'Sering' },
+  { label: 'C', value: 1, text: 'Kadang-kadang' },
+  { label: 'D', value: 0, text: 'Tidak Pernah' },
+]
+
+/* Quiz Data: Belajar - KUIS 2 */
+const quizBelajar2 = {
+  title: 'KUIS 2 — HOW EFFECTIVE IS YOUR STUDY HABIT?',
+  subtitle: 'Seberapa Efektif Kebiasaan Belajarmu?',
+  description: 'Sudah mengenali kecenderungan cara belajarmu? Sekarang, saatnya mengenali kebiasaan belajarmu! Kuis ini akan membantumu merefleksikan bagaimana kamu mengatur waktu, memahami materi, dan mengingat informasi. Jawablah sesuai kebiasaan yang benar-benar kamu lakukan, bukan berdasarkan jawaban yang menurutmu paling baik.',
+  instructions: 'Pilih jawaban yang paling menggambarkan kebiasaanmu: Selalu (3), Sering (2), Kadang-kadang (1), Tidak Pernah (0).',
+  questions: [
+    {
+      id: 'kb2_q1', type: 'radio',
+      text: '1. Ketika mengerjakan tugas atau belajar, saya membagi waktu belajar menjadi beberapa sesi agar tetap fokus.',
+      hint: 'Mengukur kebiasaan pengelolaan waktu (Pomodoro)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q2', type: 'radio',
+      text: '2. Saya memberikan waktu istirahat singkat setelah belajar atau mengerjakan tugas dalam waktu tertentu.',
+      hint: 'Mengukur kebiasaan pengelolaan waktu (Pomodoro)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q3', type: 'radio',
+      text: '3. Setelah membaca materi, saya mencoba menjelaskan kembali isinya menggunakan bahasa sendiri.',
+      hint: 'Mengukur kebiasaan memahami materi (Feynman)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q4', type: 'radio',
+      text: '4. Ketika ada materi yang belum saya pahami, saya mencoba menjelaskannya kembali sampai menemukan bagian yang masih membingungkan.',
+      hint: 'Mengukur kebiasaan memahami materi (Feynman)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q5', type: 'radio',
+      text: '5. Saya mengulang materi yang sudah dipelajari pada hari-hari berikutnya agar tidak mudah lupa.',
+      hint: 'Mengukur kebiasaan pengulangan materi (Spaced Repetition)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q6', type: 'radio',
+      text: '6. Saya memiliki jadwal untuk mempelajari kembali materi yang pernah diajarkan di sekolah.',
+      hint: 'Mengukur kebiasaan pengulangan materi (Spaced Repetition)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q7', type: 'radio',
+      text: '7. Setelah membaca materi, saya mencoba mengingat kembali isinya tanpa melihat buku atau catatan.',
+      hint: 'Mengukur kebiasaan mengingat kembali informasi (Active Recall)',
+      options: habitOptions,
+    },
+    {
+      id: 'kb2_q8', type: 'radio',
+      text: '8. Saya membuat pertanyaan atau latihan soal sendiri untuk menguji pemahaman terhadap materi yang telah dipelajari.',
+      hint: 'Mengukur kebiasaan mengingat kembali informasi (Active Recall)',
+      options: habitOptions,
+    },
+  ],
+  getResult: (answers) => {
+    const pomodoroScore = Number(answers[0] ?? 0) + Number(answers[1] ?? 0)
+    const feynmanScore = Number(answers[2] ?? 0) + Number(answers[3] ?? 0)
+    const spacedScore = Number(answers[4] ?? 0) + Number(answers[5] ?? 0)
+    const recallScore = Number(answers[6] ?? 0) + Number(answers[7] ?? 0)
+
+    const getInterpretation = (score) => {
+      if (score <= 2) {
+        return {
+          kategori: 'Perlu Dicoba',
+          badgeClass: 'bg-amber-500/15 border-amber-500/30 text-amber-300',
+          dotBg: 'bg-amber-400',
+        }
+      } else if (score <= 4) {
+        return {
+          kategori: 'Mulai Berkembang',
+          badgeClass: 'bg-sky-500/15 border-sky-500/30 text-sky-300',
+          dotBg: 'bg-sky-400',
+        }
+      } else {
+        return {
+          kategori: 'Sudah Menjadi Kebiasaan',
+          badgeClass: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300',
+          dotBg: 'bg-emerald-400',
+        }
+      }
+    }
+
+    const pomodoroInfo = getInterpretation(pomodoroScore)
+    const feynmanInfo = getInterpretation(feynmanScore)
+    const spacedInfo = getInterpretation(spacedScore)
+    const recallInfo = getInterpretation(recallScore)
+
+    const rekomendasiMap = {
+      pomodoro: {
+        'Perlu Dicoba': 'Kamu dapat mulai membiasakan diri membagi waktu belajar menjadi sesi fokus dan istirahat. Cobalah menggunakan timer agar kegiatan belajar lebih teratur.',
+        'Mulai Berkembang': 'Kamu sudah mulai membagi sesi belajar dan istirahat. Tingkatkan konsistensi durasi fokus (misal 25 menit) agar ritme belajarmu semakin optimal.',
+        'Sudah Menjadi Kebiasaan': 'Pertahankan ritme belajarmu dengan timer dan istirahat teratur agar fokus tetap tajam tanpa burnout.',
+      },
+      feynman: {
+        'Perlu Dicoba': 'Cobalah mulai menjelaskan konsep materi dengan kata-katamu sendiri kepada teman atau dirimu sendiri untuk menguji pemahaman.',
+        'Mulai Berkembang': 'Kamu sudah mulai mencoba memahami materi, tetapi masih bisa mengembangkan kebiasaan menjelaskan kembali materi menggunakan bahasamu sendiri.',
+        'Sudah Menjadi Kebiasaan': 'Luar biasa! Terus asah pemahaman mendalammu dengan rutin mengajarkan atau menyederhanakan materi sulit.',
+      },
+      spaced: {
+        'Perlu Dicoba': 'Hindari Sistem Kebut Semalam. Buat jadwal pengulangan materi berkala (misal H+1, H+3, H+7) agar ingatan bertahan lebih lama.',
+        'Mulai Berkembang': 'Kamu sesekali mengulang materi, cobalah buat jadwal atau alarm pengingat rutin di kalender ponselmu.',
+        'Sudah Menjadi Kebiasaan': 'Pertahankan kebiasaan mengulang materi secara berkala. Jangan hanya mengulang materi ketika akan menghadapi ujian.',
+      },
+      recall: {
+        'Perlu Dicoba': 'Berhenti hanya membaca ulang catatan secara pasif. Tutup buku dan latih ingatanmu dengan menuliskan apa yang masih kamu ingat.',
+        'Mulai Berkembang': 'Cobalah lebih sering menguji ingatan tanpa melihat catatan. Kamu bisa menggunakan flashcard atau membuat pertanyaan sendiri.',
+        'Sudah Menjadi Kebiasaan': 'Hebat! Kebiasaan aktif menguji ingatan ini melatih memori jangka panjangmu bekerja dengan sangat efektif.',
+      },
+    }
+
+    const techniquesResult = [
+      {
+        id: 'pomodoro',
+        icon: '🍅',
+        name: 'Pomodoro',
+        subtitle: 'Pengelolaan Waktu',
+        borderLeft: 'border-l-accent',
+        score: pomodoroScore,
+        ...pomodoroInfo,
+        rekomendasi: rekomendasiMap.pomodoro[pomodoroInfo.kategori],
+      },
+      {
+        id: 'feynman',
+        icon: '🗣️',
+        name: 'Feynman',
+        subtitle: 'Pemahaman Materi',
+        borderLeft: 'border-l-royal',
+        score: feynmanScore,
+        ...feynmanInfo,
+        rekomendasi: rekomendasiMap.feynman[feynmanInfo.kategori],
+      },
+      {
+        id: 'spaced',
+        icon: '🔄',
+        name: 'Spaced Repetition',
+        subtitle: 'Pengulangan Berkala',
+        borderLeft: 'border-l-emerald-500',
+        score: spacedScore,
+        ...spacedInfo,
+        rekomendasi: rekomendasiMap.spaced[spacedInfo.kategori],
+      },
+      {
+        id: 'recall',
+        icon: '📝',
+        name: 'Active Recall',
+        subtitle: 'Mengingat Aktif',
+        borderLeft: 'border-l-rose-500',
+        score: recallScore,
+        ...recallInfo,
+        rekomendasi: rekomendasiMap.recall[recallInfo.kategori],
+      },
+    ]
+
+    return {
+      render: ({ reset }) => (
+        <div className="space-y-6">
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+              className="text-5xl mb-3"
+              aria-hidden="true"
+            >
+              💗
+            </motion.div>
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+              Hasil Refleksi Kebiasaan Belajarmu! 💗
+            </h3>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+              Kamu sudah mulai membangun kebiasaan belajar yang baik. Namun, masih ada beberapa strategi yang bisa dikembangkan agar kegiatan belajarmu lebih terarah.
+            </p>
+          </div>
+
+          {/* Grid Skor Teknik */}
+          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-4 lg:p-5">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+              Ringkasan Skor per Teknik Belajar (Maks 6 poin tiap teknik)
+            </h4>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {techniquesResult.map((t) => (
+                <div key={t.id} className="bg-surface p-3.5 rounded-xl border border-white/[0.05] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-lg">{t.icon}</span>
+                      <span className="font-bold text-sm text-slate-200">{t.name}</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400 mb-2">{t.subtitle}</p>
+                  </div>
+                  <div>
+                    <div className="flex items-baseline justify-between mb-1.5">
+                      <span className="text-xs text-slate-400">Skor:</span>
+                      <span className="font-display font-bold text-base text-white">{t.score} / 6</span>
+                    </div>
+                    <div className="h-1.5 bg-surface-3 rounded-full mb-2 overflow-hidden">
+                      <div
+                        className={`h-full ${t.dotBg} rounded-full`}
+                        style={{ width: `${(t.score / 6) * 100}%` }}
+                      />
+                    </div>
+                    <span className={`inline-block w-full text-center text-[11px] font-semibold px-2 py-0.5 rounded-md border ${t.badgeClass}`}>
+                      {t.kategori}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Rekomendasi Berdasarkan Hasilmu */}
+          <div>
+            <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
+              <span>📋</span> Rekomendasi Berdasarkan Hasilmu:
+            </h4>
+            <div className="grid lg:grid-cols-2 gap-3">
+              {techniquesResult.map((t) => (
+                <div key={t.id} className={`glass-card p-4 border-l-4 ${t.borderLeft} border border-white/[0.06] flex flex-col justify-between`}>
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <h5 className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                        <span>{t.icon}</span> {t.name}
+                      </h5>
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${t.badgeClass}`}>
+                        {t.kategori}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed mb-1">
+                      {t.rekomendasi}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pesan TemanBK */}
+          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
+            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
+              <span>💌</span> Pesan TemanBK:
+            </p>
+            <p className="leading-relaxed text-slate-300">
+              Tidak harus langsung menguasai semua teknik belajar. Mulailah dari satu kebiasaan kecil, lakukan secara konsisten, dan evaluasi perkembanganmu!
+            </p>
+          </div>
+
+          <div className="text-center pt-2">
+            <button
+              onClick={reset}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+            >
+              <RotateCcw size={15} /> Ulangi Kuis
+            </button>
+          </div>
+        </div>
+      ),
+    }
+  },
+}
+
+/* Komponen Switcher Kuis Tab Belajar */
+function QuizBelajarSection() {
+  const [activeQuiz, setActiveQuiz] = useState('kuis1')
+
+  return (
+    <div>
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <button
+          onClick={() => setActiveQuiz('kuis1')}
+          className={`flex-1 p-4 rounded-2xl border text-left transition-all ${
+            activeQuiz === 'kuis1'
+              ? 'bg-grad-primary/10 border-primary text-white shadow-glow-primary'
+              : 'bg-surface-2 border-white/[0.07] text-slate-400 hover:text-slate-200 hover:border-white/20'
+          }`}
+        >
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
+              <span>🌷</span> Kuis 1: Find Your Learning Style
+            </span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
+              10 Soal
+            </span>
+          </div>
+          <p className="text-xs text-slate-400">
+            Kenali kecenderungan gaya belajarmu: Visual, Auditori, atau Kinestetik.
+          </p>
+        </button>
+
+        <button
+          onClick={() => setActiveQuiz('kuis2')}
+          className={`flex-1 p-4 rounded-2xl border text-left transition-all ${
+            activeQuiz === 'kuis2'
+              ? 'bg-grad-primary/10 border-primary text-white shadow-glow-primary'
+              : 'bg-surface-2 border-white/[0.07] text-slate-400 hover:text-slate-200 hover:border-white/20'
+          }`}
+        >
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
+              <span>⏱️</span> Kuis 2: How Effective Is Your Study Habit?
+            </span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
+              8 Soal
+            </span>
+          </div>
+          <p className="text-xs text-slate-400">
+            Refleksikan kebiasaan belajarmu dalam menerapkan 4 teknik belajar saintifik.
+          </p>
+        </button>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeQuiz}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+        >
+          {activeQuiz === 'kuis1' ? (
+            <QuizEngine id="belajar-1" {...quizBelajar1} />
+          ) : (
+            <QuizEngine id="belajar-2" {...quizBelajar2} />
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
 }
 
 /* Quiz Data: Karir */
@@ -672,7 +1202,7 @@ const MateriContent = {
   ),
 }
 
-const quizData = { belajar: quizBelajar, karir: quizKarir, pribadi: quizPribadi, sosial: quizSosial }
+const quizData = { karir: quizKarir, pribadi: quizPribadi, sosial: quizSosial }
 
 const tabPanelVariants = {
   initial: { opacity: 0, y: 10 },
@@ -764,7 +1294,9 @@ export default function Layanan() {
             >
               {mode[activeTab] === 'materi'
                 ? MateriContent[activeTab]()
-                : <QuizEngine id={activeTab} {...quizData[activeTab]} />
+                : activeTab === 'belajar'
+                  ? <QuizBelajarSection />
+                  : <QuizEngine id={activeTab} {...quizData[activeTab]} />
               }
             </motion.div>
           </AnimatePresence>
