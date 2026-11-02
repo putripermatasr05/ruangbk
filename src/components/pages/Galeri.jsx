@@ -15,77 +15,57 @@ const getYoutubeId = (url) => {
 }
 
 const FeaturedMedia = () => {
+  useEffect(() => {
+    // Load TikTok script
+    if (!document.getElementById('tiktok-script')) {
+      const script = document.createElement('script')
+      script.id = 'tiktok-script'
+      script.src = 'https://www.tiktok.com/embed.js'
+      script.async = true
+      document.body.appendChild(script)
+    }
+    // Load Instagram script
+    if (!document.getElementById('ig-script')) {
+      const script = document.createElement('script')
+      script.id = 'ig-script'
+      script.src = 'https://www.instagram.com/embed.js'
+      script.async = true
+      document.body.appendChild(script)
+    } else if (window.instgrm) {
+      window.instgrm.Embeds.process()
+    }
+  }, [])
+
+  const tiktokHtml = `<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@audere24a/video/7642554946507820308" data-video-id="7642554946507820308" style="max-width: 100%; min-width: 100%; margin: 0;" > <section> <a target="_blank" title="@audere24a" href="https://www.tiktok.com/@audere24a?refer=embed">@audere24a</a> </section> </blockquote>`
+
+  const igHtml = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYhLUH7u3QD/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; margin: 0; max-width:100%; min-width:100%; padding:0; width:100%;"></blockquote>`
+
   return (
-    <div className="mb-10">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display font-bold text-xl sm:text-2xl text-slate-900 flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-purple-600" /> Highlight Edukasi Pilihan
-        </h2>
-        <span className="text-xs text-slate-500 font-medium hidden sm:inline">Tonton langsung materi edukasi</span>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-5">
-        {/* Highlight 1: Stop Overthinking */}
-        <div className="bg-white/90 border border-purple-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div className="aspect-video relative bg-black">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/5VMdH_GkKTU"
-              title="Stop Overthinking"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <div className="p-4">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 border border-pink-200 mb-1.5 inline-block">
-              Bidang Pribadi
-            </span>
-            <h3 className="font-bold text-sm text-slate-900 mb-1">Stop Overthinking</h3>
-            <p className="text-xs text-slate-500">Meredakan beban pikiran dan menenangkan diri.</p>
-          </div>
+    <div className="mb-12">
+      <h2 className="font-display font-bold text-2xl text-slate-900 mb-6 flex items-center gap-2">
+        <Sparkles className="w-5 h-5 text-purple-600" /> Highlight Edukasi
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        {/* YouTube */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-black shadow-lg">
+          <iframe 
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube.com/embed/T6kNNmVtrls?autoplay=1&mute=1&loop=1&playlist=T6kNNmVtrls&controls=0"
+            title="YouTube Shorts"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
 
-        {/* Highlight 2: Tips Menghadapi Stres Ujian */}
-        <div className="bg-white/90 border border-purple-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div className="aspect-video relative bg-black">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/qwXCf91JDaI"
-              title="Tips Menghadapi Stres Saat Ujian"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <div className="p-4">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 mb-1.5 inline-block">
-              Bidang Belajar
-            </span>
-            <h3 className="font-bold text-sm text-slate-900 mb-1">Tips Menghadapi Stres Saat Ujian</h3>
-            <p className="text-xs text-slate-500">Ketenangan pikiran menjelang ujian sekolah.</p>
-          </div>
+        {/* TikTok */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-black shadow-lg">
+          <div className="absolute inset-0 overflow-y-auto custom-scroll bg-black flex items-center" dangerouslySetInnerHTML={{ __html: tiktokHtml }} />
         </div>
 
-        {/* Highlight 3: Minat dan Bakat Siswa */}
-        <div className="bg-white/90 border border-purple-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div className="aspect-video relative bg-black">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/tvQFj6GAFE0"
-              title="Memahami Minat dan Bakat Siswa"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <div className="p-4">
-            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700 border border-purple-200 mb-1.5 inline-block">
-              Bidang Karier
-            </span>
-            <h3 className="font-bold text-sm text-slate-900 mb-1">Memahami Minat dan Bakat Siswa</h3>
-            <p className="text-xs text-slate-500">Menemukan potensi diri untuk menentukan karier.</p>
-          </div>
+        {/* Instagram */}
+        <div className="glass-card rounded-2xl overflow-hidden aspect-[9/16] relative bg-white shadow-lg">
+          <div className="absolute inset-0 overflow-y-auto custom-scroll bg-white flex items-center" dangerouslySetInnerHTML={{ __html: igHtml }} />
         </div>
       </div>
     </div>
@@ -454,24 +434,14 @@ const bidangFilters = [
   { id: 'sosial', label: 'Sosial (7)' },
 ]
 
-const platformFilters = [
-  { id: 'semua', label: 'Semua Platform', Icon: LayoutGrid },
-  { id: 'youtube', label: 'YouTube', Icon: Play },
-  { id: 'tiktok', label: 'TikTok', Icon: Video },
-  { id: 'instagram', label: 'Instagram', Icon: Camera },
-]
-
 export default function Galeri() {
   const [activeBidang, setActiveBidang] = useState('semua')
-  const [activePlatform, setActivePlatform] = useState('semua')
   const [selectedItem, setSelectedItem] = useState(null)
   const dialogRef = useRef(null)
 
-  const filtered = galeriData.filter((item) => {
-    const matchBidang = activeBidang === 'semua' || item.bidang === activeBidang
-    const matchPlatform = activePlatform === 'semua' || item.platform === activePlatform
-    return matchBidang && matchPlatform
-  })
+  const filtered = activeBidang === 'semua'
+    ? galeriData
+    : galeriData.filter((item) => item.bidang === activeBidang)
 
   const openModal = useCallback((item) => {
     setSelectedItem(item)
@@ -535,47 +505,22 @@ export default function Galeri() {
       {/* Highlight Videos */}
       <FeaturedMedia />
 
-      {/* Filter Section */}
-      <div className="space-y-3 mb-8">
-        {/* Bidang Filters */}
-        <div className="flex gap-2 flex-wrap" role="group" aria-label="Filter berdasarkan bidang">
-          {bidangFilters.map((b) => (
-            <button
-              key={b.id}
-              onClick={() => setActiveBidang(b.id)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold transition-all
-                ${activeBidang === b.id
-                  ? 'bg-[#1E1B2E] text-white shadow-md'
-                  : 'bg-white/80 text-slate-600 border border-purple-100 shadow-sm hover:text-purple-700 hover:bg-white'
-                }`}
-            >
-              {b.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Platform Filters */}
-        <div className="flex gap-2 flex-wrap items-center" role="group" aria-label="Filter berdasarkan platform">
-          <span className="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">Platform:</span>
-          {platformFilters.map((p) => {
-            const Icon = p.Icon
-            const isActive = activePlatform === p.id
-            return (
-              <button
-                key={p.id}
-                onClick={() => setActivePlatform(p.id)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all
-                  ${isActive
-                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm'
-                    : 'bg-purple-50 text-slate-600 hover:text-purple-700 hover:bg-purple-100/70 border border-purple-100/70'
-                  }`}
-              >
-                <Icon size={13} />
-                <span>{p.label}</span>
-              </button>
-            )
-          })}
-        </div>
+      {/* Filter Bidang */}
+      <div className="flex gap-2 flex-wrap mb-8" role="group" aria-label="Filter berdasarkan bidang">
+        {bidangFilters.map((b) => (
+          <button
+            key={b.id}
+            onClick={() => setActiveBidang(b.id)}
+            aria-pressed={activeBidang === b.id}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all
+              ${activeBidang === b.id
+                ? 'bg-[#1E1B2E] text-white shadow-md'
+                : 'bg-white/80 text-slate-600 border border-purple-100 shadow-sm hover:text-purple-700 hover:bg-white'
+              }`}
+          >
+            {b.label}
+          </button>
+        ))}
       </div>
 
       {/* Grid */}
