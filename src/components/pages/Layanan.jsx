@@ -1046,70 +1046,312 @@ const MateriContent = {
 
   karir: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {/* Header Banner */}
       <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)]">
         <span className="text-6xl flex-shrink-0" aria-hidden="true">🚀</span>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Perencanaan Karir & Kampus Impian</h2>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Perencanaan Karier & Kampus Impian</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
-            Pahami rumpun ilmu, temukan Ikigai-mu, dan bersiap hadapi dunia pasca-sekolah! Memilih jurusan dan karir butuh strategi yang matang, bukan sekadar ikut-ikutan teman.
+            Kenali berbagai bidang ilmu, pahami potensi diri, dan rencanakan masa depanmu! Memilih jurusan kuliah dan karier bukan sekadar mengikuti pilihan teman, tetapi perlu mempertimbangkan minat, kemampuan, nilai-nilai pribadi, serta peluang yang tersedia.
           </p>
         </div>
       </div>
 
-      <h3 className="font-bold text-lg mb-4 text-emerald-400">Peta Rumpun Ilmu Pengetahuan</h3>
-      <div className="grid lg:grid-cols-3 gap-4 mb-8">
-        {[
-          { icon: '🔬', title: 'SAINTEK', border: 'border-t-emerald-500', contoh: 'Kedokteran, Ilmu Komputer, Teknik Industri, Statistika.', desc: 'Sains & Teknologi. Cocok untuk pemikir logis yang suka angka, logika pasti, eksperimen, dan inovasi.' },
-          { icon: '📖', title: 'SOSHUM', border: 'border-t-accent', contoh: 'Psikologi, Manajemen, Hukum, Hubungan Internasional, Sastra.', desc: 'Sosial & Humaniora. Fokus pada interaksi masyarakat, dinamika ekonomi, dan hukum. Butuh keahlian analisa sosial.' },
-          { icon: '🛠️', title: 'VOKASI (Terapan)', border: 'border-t-royal', contoh: 'D4 Animasi, D3 Perhotelan, D4 K3, D3 Akuntansi.', desc: '70% Praktik, 30% Teori. Pilihan terbaik jika ingin langsung siap kerja dan mahir secara teknis operasional.' },
-        ].map(({ icon, title, border, contoh, desc }) => (
-          <motion.div key={title} whileHover={{ y: -4 }} className={`glass-card p-6 border-t-4 ${border} hover:bg-white/[0.02] transition-colors`}>
-            <span className="text-4xl mb-3 block" aria-hidden="true">{icon}</span>
-            <h3 className="font-bold text-lg tracking-wider mb-2">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
-            <div className="bg-surface-2 p-3 rounded-xl border border-white/[0.05]">
-              <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold mb-1">Contoh Jurusan</p>
-              <p className="text-xs text-slate-300 font-medium">{contoh}</p>
-            </div>
-          </motion.div>
-        ))}
+      {/* 1. Mengenal Rumpun dan Bidang Ilmu Pengetahuan */}
+      <div className="mb-10">
+        <div className="mb-4">
+          <h3 className="font-bold text-xl text-emerald-400 mb-1">
+            1. Mengenal Rumpun dan Bidang Ilmu Pengetahuan
+          </h3>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Setiap program studi memiliki karakteristik dan bidang keilmuan yang berbeda. Mengenali berbagai bidang ilmu dapat membantumu menemukan jurusan yang sesuai dengan minat dan potensi diri.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          {[
+            {
+              icon: '🔬',
+              title: 'SAINS DAN TEKNOLOGI',
+              badge: 'SAINTEK',
+              border: 'border-t-emerald-500',
+              badgeBg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+              desc: 'Bidang ini mempelajari ilmu pengetahuan alam, matematika, teknologi, serta penerapannya dalam kehidupan. Cocok bagi siswa yang tertarik pada penelitian, pemecahan masalah, perhitungan, dan pengembangan teknologi.',
+              prodi: ['Kedokteran', 'Ilmu Komputer', 'Teknik Industri', 'Statistika', 'Farmasi', 'Biologi'],
+            },
+            {
+              icon: '📖',
+              title: 'SOSIAL DAN HUMANIORA',
+              badge: 'SOSHUM',
+              border: 'border-t-accent',
+              badgeBg: 'bg-accent/10 text-accent border-accent/20',
+              desc: 'Bidang ini mempelajari manusia, masyarakat, budaya, ekonomi, hukum, serta hubungan antarmanusia. Cocok bagi siswa yang tertarik pada fenomena sosial, komunikasi, interaksi masyarakat, dan analisis permasalahan sosial.',
+              prodi: ['Psikologi', 'Manajemen', 'Ilmu Hukum', 'Hubungan Internasional', 'Ilmu Komunikasi', 'Sastra'],
+            },
+            {
+              icon: '🎓',
+              title: 'PENDIDIKAN DAN KEGURUAN',
+              badge: 'PENDIDIKAN',
+              border: 'border-t-amber-500',
+              badgeBg: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+              desc: 'Bidang ini berfokus pada proses pendidikan, pembelajaran, perkembangan peserta didik, serta pendampingan individu dalam lingkungan pendidikan.',
+              prodi: ['Pendidikan Guru Sekolah Dasar (PGSD)', 'Pendidikan Anak Usia Dini (PAUD)', 'Bimbingan dan Konseling', 'Pendidikan Bahasa Indonesia', 'Pendidikan Matematika'],
+            },
+            {
+              icon: '🎨',
+              title: 'SENI DAN INDUSTRI KREATIF',
+              badge: 'KREATIF',
+              border: 'border-t-purple-500',
+              badgeBg: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+              desc: 'Bidang ini berkaitan dengan kreativitas, ekspresi, desain, serta pengembangan karya yang memiliki nilai estetika dan fungsi.',
+              prodi: ['Desain Komunikasi Visual (DKV)', 'Desain Interior', 'Seni Musik', 'Film dan Televisi', 'Animasi'],
+            },
+            {
+              icon: '🛠️',
+              title: 'PENDIDIKAN VOKASI (TERAPAN)',
+              badge: 'VOKASI',
+              border: 'border-t-royal',
+              badgeBg: 'bg-royal/10 text-royal-light border-royal/20',
+              desc: 'Pendidikan vokasi berorientasi pada pengembangan keterampilan praktis dan keahlian terapan yang dibutuhkan dalam dunia kerja. Pembelajarannya menggabungkan teori, praktik, dan pengalaman lapangan sesuai karakteristik program studi.',
+              prodi: ['D3 Perhotelan', 'D4 Animasi', 'D4 Keselamatan dan Kesehatan Kerja (K3)', 'D3 Akuntansi', 'D4 Manajemen Informatika'],
+            },
+          ].map(({ icon, title, badge, border, badgeBg, desc, prodi }) => (
+            <motion.div
+              key={title}
+              whileHover={{ y: -4 }}
+              className={`glass-card p-6 border-t-4 ${border} hover:bg-white/[0.02] transition-all flex flex-col justify-between`}
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-3xl" aria-hidden="true">{icon}</span>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeBg}`}>
+                    {badge}
+                  </span>
+                </div>
+                <h4 className="font-bold text-base tracking-wide text-slate-100 mb-2">{title}</h4>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">{desc}</p>
+              </div>
+              <div className="bg-surface-2 p-3.5 rounded-xl border border-white/[0.05]">
+                <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold mb-2">
+                  Contoh Program Studi
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {prodi.map((p) => (
+                    <span key={p} className="text-[11px] px-2 py-0.5 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.05]">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-xs text-slate-400 bg-surface-2/60 p-3.5 rounded-xl border border-white/5 flex items-start gap-2 leading-relaxed">
+          <span className="text-sm">📌</span>
+          <span>
+            <strong>Catatan:</strong> Pengelompokan bidang ilmu di atas hanya membantu mengenali karakteristik jurusan. Satu program studi dapat memiliki keterkaitan dengan beberapa bidang ilmu sekaligus.
+          </span>
+        </div>
       </div>
 
-      <h3 className="font-bold text-lg mb-4 text-amber-400">Konsep IKIGAI: Merancang Masa Depan</h3>
-      <div className="glass-card p-6 lg:p-8 mb-8 border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-transparent relative overflow-hidden">
-        <div className="relative z-10 text-sm leading-relaxed text-slate-300">
-          <p className="mb-4">Karir impianmu idealnya terletak di irisan 4 pilar <strong>IKIGAI (Alasan untuk hidup)</strong> ala Jepang:</p>
-          <ul className="space-y-3 mb-6 list-disc list-inside marker:text-amber-500">
-            <li><strong>Apa yang kamu CINTAI</strong> (Passion) — Hobimu, ketertarikan utamamu.</li>
-            <li><strong>Apa KEAHLIAN/Bakatmu</strong> (Profession) — Hal yang secara natural kamu kuasai.</li>
-            <li><strong>Apa yang dunia BUTUHKAN</strong> (Mission) — Solusi untuk masalah di sekitarmu.</li>
-            <li><strong>Bagaimana kamu bisa DIBAYAR</strong> (Vocation) — Peluang industri dan prospek kerja nyata.</li>
-          </ul>
-          <p className="text-amber-200 bg-amber-500/10 p-4 rounded-xl border border-amber-500/20">
-            <em>💡 Jangan pilih jurusan hanya karena gengsi. Pilihlah di mana passion dan peluang pasar bertemu.</em>
+      {/* 2. Mengenal Diri Melalui Kerangka Refleksi IKIGAI */}
+      <div className="mb-10">
+        <h3 className="font-bold text-xl text-amber-400 mb-2">
+          2. Mengenal Diri Melalui Kerangka Refleksi IKIGAI
+        </h3>
+        <p className="text-slate-300 text-sm leading-relaxed mb-5">
+          Sebelum menentukan jurusan dan pekerjaan impian, penting untuk mengenali hal-hal yang bermakna bagi dirimu. Salah satu kerangka refleksi yang dapat digunakan adalah <strong>IKIGAI</strong>. Dalam pengembangan karier, kerangka empat pilar ini dapat membantumu mengeksplorasi beberapa pertanyaan berikut:
+        </p>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {[
+            {
+              icon: '❤️',
+              pilar: 'Passion',
+              pertanyaan: 'Apa yang kamu CINTAI',
+              desc: 'Kegiatan, bidang, atau hal apa yang membuatmu tertarik dan bersemangat?',
+              border: 'border-t-rose-500',
+              color: 'text-rose-400',
+            },
+            {
+              icon: '⭐',
+              pilar: 'Profession',
+              pertanyaan: 'Apa yang menjadi KEAHLIANMU',
+              desc: 'Kemampuan dan keterampilan apa yang kamu miliki atau ingin kembangkan?',
+              border: 'border-t-amber-500',
+              color: 'text-amber-400',
+            },
+            {
+              icon: '🌍',
+              pilar: 'Mission',
+              pertanyaan: 'Apa yang DIBUTUHKAN LINGKUNGAN',
+              desc: 'Permasalahan apa yang ingin kamu bantu selesaikan melalui kemampuanmu?',
+              border: 'border-t-emerald-500',
+              color: 'text-emerald-400',
+            },
+            {
+              icon: '💼',
+              pilar: 'Vocation',
+              pertanyaan: 'Apa yang MEMILIKI PELUANG PENGHASILAN',
+              desc: 'Bidang pekerjaan apa yang memiliki peluang untuk memberikan penghasilan?',
+              border: 'border-t-sky-500',
+              color: 'text-sky-400',
+            },
+          ].map((item) => (
+            <div key={item.pilar} className={`glass-card p-5 border-t-4 ${item.border} flex flex-col justify-between`}>
+              <div>
+                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <span className={`text-[11px] font-bold uppercase tracking-wider block ${item.color}`}>
+                  {item.pilar}
+                </span>
+                <h4 className="font-bold text-sm text-slate-100 mt-1 mb-2">
+                  {item.pertanyaan}
+                </h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
+          <p className="font-bold text-amber-300 mb-1 flex items-center gap-2">
+            <span>💡</span> Tips:
+          </p>
+          <p className="leading-relaxed text-slate-300">
+            Jangan memilih jurusan hanya karena gengsi atau mengikuti pilihan orang lain. Pertimbangkan kesesuaian antara minat, kemampuan, nilai pribadi, kondisi, dan peluang karier. Ingat, pilihan karier dapat berkembang seiring pengalaman dan proses belajar.
           </p>
         </div>
       </div>
 
-      <h3 className="font-bold text-base mb-3 flex items-center gap-2"><span className="text-rose-500">❌</span> Mitos vs <span className="text-emerald-500">✅</span> Fakta Perkuliahan</h3>
-      <div className="grid lg:grid-cols-2 gap-4">
-        {[
-          { mitos: '"Lulusan kampus PTN top pasti langsung dapat kerja."', fakta: 'Perusahaan modern merekrut berdasarkan Portofolio, Soft Skill, dan Pengalaman Magang. Kampus top hanya membantu screening awal.' },
-          { mitos: '"Salah jurusan berarti kiamat masa depan."', fakta: 'Sangat banyak profesional sukses berkarir lintas jurusan. Kemampuan adaptasi dan belajar mandiri lebih menentukan kesuksesan.' },
-          { mitos: '"Anak IPS/Soshum tidak bisa kerja di perusahaan Teknologi (Tech Company)."', fakta: 'Tech company butuh anak Soshum untuk UI/UX Researcher, Digital Marketer, HRD, dan Business Development.' },
-          { mitos: '"IPK tinggi adalah kunci sukses tunggal."', fakta: 'Di dunia kerja nyata: Komunikasi, Etos kerja, dan Problem Solving adalah Rajanya. IPK penting, namun bukan satu-satunya tolok ukur.' },
-        ].map(({ mitos, fakta }, idx) => (
-          <div key={idx} className="glass-card p-5 text-sm flex flex-col gap-3">
-            <div>
-              <span className="inline-block text-xs font-black px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 mb-1">MITOS</span>
-              <p className="text-slate-400 italic">"{mitos}"</p>
+      {/* 3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja */}
+      <div className="mb-10">
+        <h3 className="font-bold text-xl text-primary-light mb-4 flex items-center gap-2">
+          <span>⚖️</span> 3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja
+        </h3>
+        <div className="grid lg:grid-cols-2 gap-4">
+          {[
+            {
+              no: 'MITOS 1',
+              mitos: 'Lulusan kampus ternama pasti langsung mendapatkan pekerjaan.',
+              fakta: 'Nama perguruan tinggi dapat memberikan keuntungan dalam membangun jaringan dan memperoleh kesempatan tertentu. Namun, mendapatkan pekerjaan juga dipengaruhi oleh kompetensi, pengalaman, keterampilan, portofolio, serta kebutuhan perusahaan.',
+            },
+            {
+              no: 'MITOS 2',
+              mitos: 'Salah memilih jurusan berarti masa depan sudah berakhir.',
+              fakta: 'Pilihan jurusan memang perlu dipertimbangkan dengan matang, tetapi perjalanan karier tidak selalu harus berjalan lurus sesuai jurusan kuliah. Seseorang dapat mengembangkan keterampilan baru, mengikuti pelatihan, dan mengeksplorasi bidang pekerjaan yang berbeda.',
+            },
+            {
+              no: 'MITOS 3',
+              mitos: 'Lulusan bidang sosial dan humaniora tidak bisa bekerja di perusahaan teknologi.',
+              fakta: 'Perusahaan teknologi membutuhkan berbagai latar belakang pendidikan. Selain tenaga teknis, terdapat pekerjaan yang berkaitan dengan komunikasi, bisnis, pengelolaan sumber daya manusia, pemasaran digital, dan penelitian pengalaman pengguna (UX Research).',
+            },
+            {
+              no: 'MITOS 4',
+              mitos: 'IPK tinggi adalah satu-satunya penentu kesuksesan karier.',
+              fakta: 'IPK dapat menjadi salah satu pertimbangan dalam proses seleksi kerja, terutama untuk posisi tertentu atau pekerjaan pertama. Namun, perusahaan juga dapat mempertimbangkan kemampuan komunikasi, kerja sama, pemecahan masalah, pengalaman, dan keterampilan sesuai bidang pekerjaan.',
+            },
+          ].map(({ no, mitos, fakta }) => (
+            <div key={no} className="glass-card p-5 text-xs lg:text-sm flex flex-col gap-3.5 border border-white/[0.07]">
+              <div>
+                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 mb-1.5 border border-rose-500/30">
+                  {no}
+                </span>
+                <p className="text-slate-300 italic font-medium leading-snug">"{mitos}"</p>
+              </div>
+              <div className="pt-3 border-t border-white/[0.06]">
+                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 mb-1.5 border border-emerald-500/30">
+                  FAKTA
+                </span>
+                <p className="text-slate-300 leading-relaxed">{fakta}</p>
+              </div>
             </div>
-            <div>
-              <span className="inline-block text-xs font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 mb-1">FAKTA</span>
-              <p className="text-slate-200">{fakta}</p>
-            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. Tips Memilih Kampus dan Program Studi */}
+      <div className="mb-4">
+        <h3 className="font-bold text-xl text-accent mb-2 flex items-center gap-2">
+          <span>🎯</span> 4. Tips Memilih Kampus dan Program Studi
+        </h3>
+        <p className="text-slate-400 text-sm leading-relaxed mb-5">
+          Sebelum menentukan kampus impian, coba pertimbangkan beberapa hal berikut:
+        </p>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+          {[
+            {
+              num: 1,
+              title: 'Kenali minat dan kemampuan diri',
+              desc: 'Pilih bidang yang sesuai dengan ketertarikan dan kemampuan yang ingin kamu kembangkan.',
+              icon: '🧭',
+            },
+            {
+              num: 2,
+              title: 'Pelajari kurikulum program studi',
+              desc: 'Cari tahu mata kuliah, kegiatan praktik, dan kompetensi yang akan dipelajari.',
+              icon: '📚',
+            },
+            {
+              num: 3,
+              title: 'Periksa akreditasi dan kualitas program studi',
+              desc: 'Cari informasi melalui sumber resmi perguruan tinggi dan lembaga terkait.',
+              icon: '🏛️',
+            },
+            {
+              num: 4,
+              title: 'Pertimbangkan biaya pendidikan',
+              desc: 'Sesuaikan pilihan dengan kondisi finansial dan cari informasi mengenai beasiswa.',
+              icon: '💰',
+            },
+            {
+              num: 5,
+              title: 'Cari tahu peluang karier lulusan',
+              desc: 'Pelajari bidang pekerjaan yang dapat dimasuki setelah menyelesaikan pendidikan.',
+              icon: '📈',
+            },
+            {
+              num: 6,
+              title: 'Perhatikan lokasi dan lingkungan kampus',
+              desc: 'Pertimbangkan akses, fasilitas, serta lingkungan belajar yang mendukung.',
+              icon: '📍',
+            },
+          ].map((item) => (
+            <motion.div
+              key={item.num}
+              whileHover={{ y: -3 }}
+              className="glass-card p-5 border border-white/[0.06] hover:border-accent/30 transition-all flex flex-col justify-between"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-sm flex items-center justify-center">
+                  {item.num}
+                </span>
+                <span className="text-xl">{item.icon}</span>
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-slate-100 mb-1.5 leading-snug">
+                  {item.title}
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent border border-emerald-500/30 rounded-2xl p-5 flex items-start gap-3.5">
+          <span className="text-2xl flex-shrink-0">🌱</span>
+          <div>
+            <h4 className="font-bold text-emerald-300 text-sm mb-1">Ingat!</h4>
+            <p className="text-xs lg:text-sm text-slate-300 leading-relaxed">
+              Kampus impian bukan hanya tentang nama besar perguruan tinggi, tetapi juga tentang tempat yang dapat mendukung perkembangan kemampuan, pengetahuan, dan tujuan kariermu.
+            </p>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   ),
