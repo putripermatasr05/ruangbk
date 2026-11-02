@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Sparkles, RotateCcw } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Sparkles, RotateCcw, Lightbulb } from 'lucide-react'
 
 const slideVariants = {
   enter: (dir) => ({ opacity: 0, x: dir > 0 ? 40 : -40 }),
@@ -69,10 +69,16 @@ export default function QuizEngine({ id, title, subtitle, description, instructi
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-          className="text-6xl mb-5"
+          className="mb-5 flex justify-center text-primary-light"
           aria-hidden="true"
         >
-          {result.icon}
+          {result.Icon ? (
+            <result.Icon size={56} />
+          ) : typeof result.icon === 'string' ? (
+            <span className="text-5xl">{result.icon}</span>
+          ) : (
+            result.icon
+          )}
         </motion.div>
         <h3 className="font-display font-bold text-2xl mb-3">{result.title}</h3>
         <p className="text-slate-400 leading-relaxed max-w-md mx-auto mb-5">{result.desc}</p>
@@ -149,8 +155,9 @@ export default function QuizEngine({ id, title, subtitle, description, instructi
           </p>
           <p className="font-semibold text-base lg:text-lg leading-snug mb-2">{q.text}</p>
           {q.hint && (
-            <p className="text-xs text-slate-400 italic mb-4">
-              💡 {q.hint}
+            <p className="text-xs text-slate-400 italic mb-4 flex items-center gap-1.5">
+              <Lightbulb size={13} className="text-amber-400 flex-shrink-0" />
+              <span>{q.hint}</span>
             </p>
           )}
 

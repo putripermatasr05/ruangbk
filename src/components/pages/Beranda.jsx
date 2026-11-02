@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Play, ArrowRight, Lock, Wifi, Lightbulb, GraduationCap } from 'lucide-react'
+import { Play, ArrowRight, Lock, Wifi, Lightbulb, GraduationCap, Target, Rocket, MessageCircle } from 'lucide-react'
 
 const floatVariants = {
   animate: { y: [0, -12, 0], transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' } }
@@ -12,10 +12,10 @@ const floatVariants3 = {
 }
 
 const featureItems = [
-  { icon: Lock, emoji: '🔒', title: 'Kerahasiaan', desc: 'Setiap sesi konsultasi dijamin kerahasiaannya sepenuhnya.' },
-  { icon: Wifi, emoji: '📡', title: 'Etika Digital', desc: 'Konten kami bebas dari SARA, kekerasan, dan hoaks.' },
-  { icon: Lightbulb, emoji: '💡', title: 'Inovatif', desc: 'Pendekatan modern berbasis teknologi untuk generasi Z.' },
-  { icon: GraduationCap, emoji: '🎓', title: 'Interaktif', desc: 'Kuis, materi, dan konsultasi real-time untuk pengalaman terbaik.' },
+  { icon: Lock, title: 'Kerahasiaan', desc: 'Setiap sesi konsultasi dijamin kerahasiaannya sepenuhnya.' },
+  { icon: Wifi, title: 'Etika Digital', desc: 'Konten kami bebas dari SARA, kekerasan, dan hoaks.' },
+  { icon: Lightbulb, title: 'Inovatif', desc: 'Pendekatan modern berbasis teknologi untuk generasi Z.' },
+  { icon: GraduationCap, title: 'Interaktif', desc: 'Kuis, materi, dan konsultasi real-time untuk pengalaman terbaik.' },
 ]
 
 export default function Beranda({ navigate }) {
@@ -117,7 +117,9 @@ export default function Beranda({ navigate }) {
             className="absolute top-10 left-2 glass-card px-4 py-3 shadow-card"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🎯</span>
+              <div className="w-10 h-10 rounded-xl bg-accent/15 border border-accent/25 flex items-center justify-center text-accent">
+                <Target size={20} />
+              </div>
               <div>
                 <p className="font-bold text-sm">Temukan Bakat</p>
                 <p className="text-xs text-slate-400">Gali potensimu</p>
@@ -132,7 +134,9 @@ export default function Beranda({ navigate }) {
             className="absolute top-10 right-2 glass-card px-4 py-3 shadow-card"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🚀</span>
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+                <Rocket size={20} />
+              </div>
               <div>
                 <p className="font-bold text-sm">Rencanakan Karir</p>
                 <p className="text-xs text-slate-400">Masa depan cerah</p>
@@ -147,7 +151,9 @@ export default function Beranda({ navigate }) {
             className="absolute bottom-10 left-1/2 -translate-x-1/2 glass-card px-4 py-3 shadow-card"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl">💬</span>
+              <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center text-primary-light">
+                <MessageCircle size={20} />
+              </div>
               <div>
                 <p className="font-bold text-sm">Konsultasi Aman</p>
                 <p className="text-xs text-slate-400">Rahasia terjaga</p>
@@ -186,7 +192,7 @@ export default function Beranda({ navigate }) {
           </motion.p>
 
           <div className="grid grid-cols-2 gap-3">
-            {featureItems.map(({ emoji, title, desc }, i) => (
+            {featureItems.map(({ icon: Icon, title, desc }, i) => (
               <motion.div
                 key={title}
                 initial={{ opacity: 0, y: 16 }}
@@ -196,7 +202,9 @@ export default function Beranda({ navigate }) {
                 whileHover={{ y: -3 }}
                 className="glass-card p-4 hover:border-white/[0.14] transition-colors"
               >
-                <span className="text-2xl mb-3 block" aria-hidden="true">{emoji}</span>
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary-light mb-3" aria-hidden="true">
+                  <Icon size={20} />
+                </div>
                 <h3 className="font-bold text-sm mb-1">{title}</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">{desc}</p>
               </motion.div>

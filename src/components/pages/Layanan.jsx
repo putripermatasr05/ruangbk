@@ -1,14 +1,21 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Briefcase, ChevronDown, Heart, RotateCcw, Users } from 'lucide-react'
+import {
+  Activity, AlertCircle, AlertTriangle, Atom, Award, BookOpen, Brain, Briefcase,
+  CheckCircle2, ChevronDown, Clock, Compass, Eye, FileEdit, FileText, Globe,
+  GraduationCap, Headphones, Heart, HeartHandshake, HeartPulse, HelpCircle,
+  Info, Lightbulb, ListChecks, MapPin, MessageCircle, MessageSquare,
+  MessageSquareQuote, Palette, Repeat, Rocket, RotateCcw, Scale, Shield,
+  Smartphone, Sparkles, Target, Timer, TrendingUp, Users, Wallet, Wind, Wrench
+} from 'lucide-react'
 import QuizEngine from '../ui/QuizEngine'
 
 /* ─── DATA ─── */
 const tabs = [
-  { id: 'belajar', label: 'Belajar', icon: '📚', Icon: BookOpen },
-  { id: 'karir', label: 'Karir', icon: '🎯', Icon: Briefcase },
-  { id: 'pribadi', label: 'Pribadi', icon: '🌱', Icon: Heart },
-  { id: 'sosial', label: 'Sosial', icon: '🤝', Icon: Users },
+  { id: 'belajar', label: 'Belajar', Icon: BookOpen },
+  { id: 'karir', label: 'Karir', Icon: Briefcase },
+  { id: 'pribadi', label: 'Pribadi', Icon: Heart },
+  { id: 'sosial', label: 'Sosial', Icon: Users },
 ]
 
 /* Quiz Data: Belajar - KUIS 1 */
@@ -120,9 +127,9 @@ const quizBelajar1 = {
 
     const styleInfo = {
       visual: {
-        icon: '🌷',
+        Icon: Eye,
         name: 'Visual',
-        title: 'HASIL 1 — VISUAL 🌷',
+        title: 'HASIL 1 — VISUAL',
         tagline: 'Kamu memiliki kecenderungan belajar Visual!',
         desc: 'Kamu cenderung menyukai informasi yang disajikan melalui gambar, tulisan, warna, dan ilustrasi.',
         rekomendasi: [
@@ -134,9 +141,9 @@ const quizBelajar1 = {
         pesan: 'Jadikan kreativitas visual sebagai salah satu cara untuk mendukung kegiatan belajarmu!',
       },
       auditori: {
-        icon: '🎧',
+        Icon: Headphones,
         name: 'Auditori',
-        title: 'HASIL 2 — AUDITORI 🎧',
+        title: 'HASIL 2 — AUDITORI',
         tagline: 'Kamu memiliki kecenderungan belajar Auditori!',
         desc: 'Kamu cenderung menyukai kegiatan belajar yang melibatkan suara, percakapan, dan penjelasan secara lisan.',
         rekomendasi: [
@@ -148,9 +155,9 @@ const quizBelajar1 = {
         pesan: 'Manfaatkan kemampuanmu dalam menyimak dan berdiskusi untuk memperkaya pemahaman!',
       },
       kinestetik: {
-        icon: '🏃',
+        Icon: Activity,
         name: 'Kinestetik',
-        title: 'HASIL 3 — KINESTETIK 🏃',
+        title: 'HASIL 3 — KINESTETIK',
         tagline: 'Kamu memiliki kecenderungan belajar Kinestetik!',
         desc: 'Kamu cenderung menyukai kegiatan belajar yang melibatkan praktik, pengalaman langsung, dan aktivitas fisik.',
         rekomendasi: [
@@ -165,6 +172,7 @@ const quizBelajar1 = {
 
     const isCombination = winners.length > 1
     const primary = styleInfo[winners[0]]
+    const PrimaryIcon = primary.Icon
 
     return {
       render: ({ reset }) => (
@@ -174,14 +182,14 @@ const quizBelajar1 = {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="text-6xl mb-4"
+              className="w-16 h-16 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center text-primary-light mx-auto mb-4"
               aria-hidden="true"
             >
-              {isCombination ? '✨' : primary.icon}
+              {isCombination ? <Sparkles size={32} /> : <PrimaryIcon size={32} />}
             </motion.div>
             <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
               {isCombination
-                ? `HASIL KOMBINASI — ${winners.map((w) => styleInfo[w].name).join(' & ')} ${winners.map((w) => styleInfo[w].icon).join(' ')}`
+                ? `HASIL KOMBINASI — ${winners.map((w) => styleInfo[w].name).join(' & ')}`
                 : primary.title}
             </h3>
             <p className="text-primary-light font-semibold text-base mb-2">
@@ -203,12 +211,15 @@ const quizBelajar1 = {
             </h4>
             <div className="grid grid-cols-3 gap-3">
               {[
-                { label: 'Visual 🌷', val: counts.visual, color: 'text-pink-400', bg: 'bg-pink-500' },
-                { label: 'Auditori 🎧', val: counts.auditori, color: 'text-sky-400', bg: 'bg-sky-500' },
-                { label: 'Kinestetik 🏃', val: counts.kinestetik, color: 'text-emerald-400', bg: 'bg-emerald-500' },
+                { label: 'Visual', Icon: Eye, val: counts.visual, color: 'text-pink-400', bg: 'bg-pink-500' },
+                { label: 'Auditori', Icon: Headphones, val: counts.auditori, color: 'text-sky-400', bg: 'bg-sky-500' },
+                { label: 'Kinestetik', Icon: Activity, val: counts.kinestetik, color: 'text-emerald-400', bg: 'bg-emerald-500' },
               ].map((item) => (
                 <div key={item.label} className="bg-surface p-3 rounded-xl border border-white/[0.05] text-center">
-                  <p className="text-xs font-semibold text-slate-300 mb-1">{item.label}</p>
+                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-300 mb-1">
+                    <item.Icon size={14} className={item.color} />
+                    <span>{item.label}</span>
+                  </div>
                   <p className={`font-display font-bold text-xl lg:text-2xl ${item.color}`}>
                     {item.val} <span className="text-xs text-slate-500 font-normal">poin</span>
                   </p>
@@ -226,7 +237,8 @@ const quizBelajar1 = {
           {/* Rekomendasi */}
           <div className="glass-card p-5 border border-white/[0.08]">
             <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
-              <span>🎯</span> Rekomendasi untukmu:
+              <Target size={16} className="text-primary-light" />
+              <span>Rekomendasi untukmu:</span>
             </h4>
             <ul className="space-y-2 text-xs lg:text-sm text-slate-300">
               {(isCombination
@@ -234,7 +246,7 @@ const quizBelajar1 = {
                 : primary.rekomendasi
               ).map((rek, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
-                  <span className="text-primary-light flex-shrink-0 mt-0.5">•</span>
+                  <CheckCircle2 size={14} className="text-primary-light flex-shrink-0 mt-0.5" />
                   <span>{rek}</span>
                 </li>
               ))}
@@ -244,7 +256,8 @@ const quizBelajar1 = {
           {/* Pesan TemanBK */}
           <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
             <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
-              <span>💌</span> Pesan TemanBK:
+              <MessageSquareQuote size={16} className="text-primary-light" />
+              <span>Pesan TemanBK:</span>
             </p>
             <p className="leading-relaxed text-slate-300">
               {isCombination
@@ -390,7 +403,7 @@ const quizBelajar2 = {
     const techniquesResult = [
       {
         id: 'pomodoro',
-        icon: '🍅',
+        Icon: Timer,
         name: 'Pomodoro',
         subtitle: 'Pengelolaan Waktu',
         borderLeft: 'border-l-accent',
@@ -400,7 +413,7 @@ const quizBelajar2 = {
       },
       {
         id: 'feynman',
-        icon: '🗣️',
+        Icon: MessageSquare,
         name: 'Feynman',
         subtitle: 'Pemahaman Materi',
         borderLeft: 'border-l-royal',
@@ -410,7 +423,7 @@ const quizBelajar2 = {
       },
       {
         id: 'spaced',
-        icon: '🔄',
+        Icon: Repeat,
         name: 'Spaced Repetition',
         subtitle: 'Pengulangan Berkala',
         borderLeft: 'border-l-emerald-500',
@@ -420,7 +433,7 @@ const quizBelajar2 = {
       },
       {
         id: 'recall',
-        icon: '📝',
+        Icon: FileText,
         name: 'Active Recall',
         subtitle: 'Mengingat Aktif',
         borderLeft: 'border-l-rose-500',
@@ -438,13 +451,13 @@ const quizBelajar2 = {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="text-5xl mb-3"
+              className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-400 mx-auto mb-3"
               aria-hidden="true"
             >
-              💗
+              <CheckCircle2 size={32} />
             </motion.div>
             <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
-              Hasil Refleksi Kebiasaan Belajarmu! 💗
+              Hasil Refleksi Kebiasaan Belajarmu!
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
               Kamu sudah mulai membangun kebiasaan belajar yang baik. Namun, masih ada beberapa strategi yang bisa dikembangkan agar kegiatan belajarmu lebih terarah.
@@ -461,7 +474,7 @@ const quizBelajar2 = {
                 <div key={t.id} className="bg-surface p-3.5 rounded-xl border border-white/[0.05] flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg">{t.icon}</span>
+                      <t.Icon size={18} className="text-primary-light" />
                       <span className="font-bold text-sm text-slate-200">{t.name}</span>
                     </div>
                     <p className="text-[11px] text-slate-400 mb-2">{t.subtitle}</p>
@@ -489,7 +502,8 @@ const quizBelajar2 = {
           {/* Rekomendasi Berdasarkan Hasilmu */}
           <div>
             <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
-              <span>📋</span> Rekomendasi Berdasarkan Hasilmu:
+              <ListChecks size={16} className="text-primary-light" />
+              <span>Rekomendasi Berdasarkan Hasilmu:</span>
             </h4>
             <div className="grid lg:grid-cols-2 gap-3">
               {techniquesResult.map((t) => (
@@ -497,7 +511,8 @@ const quizBelajar2 = {
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <h5 className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
-                        <span>{t.icon}</span> {t.name}
+                        <t.Icon size={16} className="text-primary-light" />
+                        <span>{t.name}</span>
                       </h5>
                       <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${t.badgeClass}`}>
                         {t.kategori}
@@ -515,7 +530,8 @@ const quizBelajar2 = {
           {/* Pesan TemanBK */}
           <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
             <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
-              <span>💌</span> Pesan TemanBK:
+              <MessageSquareQuote size={16} className="text-primary-light" />
+              <span>Pesan TemanBK:</span>
             </p>
             <p className="leading-relaxed text-slate-300">
               Tidak harus langsung menguasai semua teknik belajar. Mulailah dari satu kebiasaan kecil, lakukan secara konsisten, dan evaluasi perkembanganmu!
@@ -553,7 +569,7 @@ function QuizBelajarSection() {
         >
           <div className="flex items-center justify-between mb-1">
             <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
-              <span>🌷</span> Kuis 1: Find Your Learning Style
+              <Compass size={17} className="text-primary-light" /> Kuis 1: Find Your Learning Style
             </span>
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
               10 Soal
@@ -574,7 +590,7 @@ function QuizBelajarSection() {
         >
           <div className="flex items-center justify-between mb-1">
             <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
-              <span>⏱️</span> Kuis 2: How Effective Is Your Study Habit?
+              <Clock size={17} className="text-primary-light" /> Kuis 2: How Effective Is Your Study Habit?
             </span>
             <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
               8 Soal
@@ -607,7 +623,7 @@ function QuizBelajarSection() {
 
 /* Quiz Data: Karir */
 const quizKarir = {
-  title: '🎯 Asesmen Minat Karir (RIASEC Lengkap)',
+  title: 'Asesmen Minat Karir (RIASEC Lengkap)',
   subtitle: 'Nilai setiap pernyataan dari skala 1–5 (1: Sangat Tidak Setuju, 5: Sangat Setuju).',
   questions: [
     { id: 'qk1', type: 'scale', text: '1. Aku suka merakit mesin, memperbaiki peralatan, atau bekerja di luar ruangan dengan alat.', key: 'R' },
@@ -638,10 +654,10 @@ const quizKarir = {
     
     const winner = Object.entries(rumpun).sort((a, b) => b[1] - a[1])[0][0]
     const map = {
-      teknis_sains: { icon: '🔬', title: 'Tipe Pemikir & Praktisi (R/I)', desc: 'Kamu logis, analitis, dan suka hal yang pasti. Kamu unggul memecahkan masalah teknis atau ilmiah. Bidang STEM sangat menjanjikan untukmu.', tags: ['Teknik', 'Kedokteran', 'MIPA', 'IT / Programmer'] },
-      seni_kreatif: { icon: '🎨', title: 'Tipe Kreator (Artistik)', desc: 'Jiwa senimu tak terbendung! Kamu out-of-the-box dan ekspresif. Dunia membutuhkan inovasi dan sentuhan keindahan dari karyamu.', tags: ['DKV', 'Arsitektur', 'Ilmu Komunikasi', 'Seni Musik/Rupa'] },
-      sosial_edukasi: { icon: '🤝', title: 'Tipe Pembimbing (Sosial)', desc: 'Empatimu tinggi. Kamu senang interaksi manusia, mendengarkan, dan membantu orang berkembang. Lingkungan edukasi dan kesehatan masyarakat menantimu.', tags: ['Psikologi', 'Pendidikan', 'Keperawatan', 'Sosiologi'] },
-      bisnis_manajemen: { icon: '📊', title: 'Tipe Penggerak (E/C)', desc: 'Kamu memiliki jiwa kepemimpinan, suka mengorganisir, dan berorientasi pada target. Kamu sangat cocok memimpin proyek, menata administrasi, atau membangun usaha.', tags: ['Manajemen Bisnis', 'Akuntansi', 'Ilmu Hukum', 'Hubungan Internasional'] },
+      teknis_sains: { Icon: Atom, title: 'Tipe Pemikir & Praktisi (R/I)', desc: 'Kamu logis, analitis, dan suka hal yang pasti. Kamu unggul memecahkan masalah teknis atau ilmiah. Bidang STEM sangat menjanjikan untukmu.', tags: ['Teknik', 'Kedokteran', 'MIPA', 'IT / Programmer'] },
+      seni_kreatif: { Icon: Palette, title: 'Tipe Kreator (Artistik)', desc: 'Jiwa senimu tak terbendung! Kamu out-of-the-box dan ekspresif. Dunia membutuhkan inovasi dan sentuhan keindahan dari karyamu.', tags: ['DKV', 'Arsitektur', 'Ilmu Komunikasi', 'Seni Musik/Rupa'] },
+      sosial_edukasi: { Icon: HeartHandshake, title: 'Tipe Pembimbing (Sosial)', desc: 'Empatimu tinggi. Kamu senang interaksi manusia, mendengarkan, dan membantu orang berkembang. Lingkungan edukasi dan kesehatan masyarakat menantimu.', tags: ['Psikologi', 'Pendidikan', 'Keperawatan', 'Sosiologi'] },
+      bisnis_manajemen: { Icon: TrendingUp, title: 'Tipe Penggerak (E/C)', desc: 'Kamu memiliki jiwa kepemimpinan, suka mengorganisir, dan berorientasi pada target. Kamu sangat cocok memimpin proyek, menata administrasi, atau membangun usaha.', tags: ['Manajemen Bisnis', 'Akuntansi', 'Ilmu Hukum', 'Hubungan Internasional'] },
     }
     return map[winner]
   },
@@ -649,7 +665,7 @@ const quizKarir = {
 
 /* Quiz Data: Pribadi */
 const quizPribadi = {
-  title: '🌱 Evaluasi Kesejahteraan Emosional (Pribadi)',
+  title: 'Evaluasi Kesejahteraan Emosional (Pribadi)',
   subtitle: 'Pilih respons yang paling mencerminkan kondisi personalmu saat ini.',
   questions: [
     {
@@ -713,18 +729,18 @@ const quizPribadi = {
     const countSedang = vals.filter(v => v === 'sedang').length
     
     if (countKritis >= 3) {
-      return { icon: '🆘', title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran yang sangat berat sendirian. Tolong jangan sungkan mencari dukungan profesional atau jadwalkan sesi cerita dengan konselor BK kita. Kami di sini untukmu.', tags: ['Perlu Konseling', 'Darurat Self-Care', 'Jangan Sendirian'] }
+      return { Icon: AlertTriangle, title: 'Waktunya Meminta Bantuan', desc: 'Sepertinya kamu sedang membawa beban pikiran yang sangat berat sendirian. Tolong jangan sungkan mencari dukungan profesional atau jadwalkan sesi cerita dengan konselor BK kita. Kami di sini untukmu.', tags: ['Perlu Konseling', 'Darurat Self-Care', 'Jangan Sendirian'] }
     } else if (countKritis >= 1 || countSedang >= 3) {
-      return { icon: '💛', title: 'Beri Waktu untuk Dirimu', desc: 'Kamu sudah berjuang keras, tapi stres dan kelelahan mental mulai menumpuk. Coba kurangi ekspektasi perfeksionis dan mulailah lebih memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness', 'Take a Break'] }
+      return { Icon: HeartPulse, title: 'Beri Waktu untuk Dirimu', desc: 'Kamu sudah berjuang keras, tapi stres dan kelelahan mental mulai menumpuk. Coba kurangi ekspektasi perfeksionis dan mulailah lebih memperhatikan kebutuhan emosionalmu sendiri.', tags: ['Manajemen Stres', 'Mindfulness', 'Take a Break'] }
     } else {
-      return { icon: '🌟', title: 'Kondisimu Sangat Stabil', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sehat dan tangguh. Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental', 'Positive Vibes'] }
+      return { Icon: Sparkles, title: 'Kondisimu Sangat Stabil', desc: 'Luar biasa! Kamu memiliki kemampuan menghadapi masalah (coping mechanism) yang sehat dan tangguh. Pertahankan energi positif ini untuk menghadapi tantangan ke depan.', tags: ['Resiliensi Tinggi', 'Sehat Mental', 'Positive Vibes'] }
     }
   },
 }
 
 /* Quiz Data: Sosial */
 const quizSosial = {
-  title: '🤝 Evaluasi Dinamika Sosial',
+  title: 'Evaluasi Dinamika Sosial',
   subtitle: 'Pilih respons yang paling menggambarkan interaksimu dengan lingkungan sekitar.',
   questions: [
     {
@@ -788,11 +804,11 @@ const quizSosial = {
     const countSedang = vals.filter(v => v === 'sedang').length
     
     if (countKritis >= 3) {
-      return { icon: '🆘', title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena terjebak dalam lingkungan pertemanan yang toxic, menjadi people pleaser ekstrem, atau kendala komunikasi. Pertimbangkan untuk berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
+      return { Icon: AlertCircle, title: 'Lingkungan Sosialmu Sedang Rawan', desc: 'Ada hambatan besar dalam interaksimu, entah karena terjebak dalam lingkungan pertemanan yang toxic, menjadi people pleaser ekstrem, atau kendala komunikasi. Pertimbangkan untuk berdiskusi dengan konselor.', tags: ['Konflik Sosial', 'Isolasi', 'Konseling'] }
     } else if (countKritis >= 1 || countSedang >= 3) {
-      return { icon: '💛', title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang membuatmu kelelahan. Coba asah lagi teknik komunikasi asertif, beranikan diri untuk berkata "tidak", dan jangan ragu untuk menetapkan batasan personal (boundaries) yang sehat.', tags: ['Boundaries', 'Komunikasi Asertif', 'People Pleaser'] }
+      return { Icon: HeartPulse, title: 'Perlu Penguatan Relasi', desc: 'Hubungan sosialmu kadang membuatmu kelelahan. Coba asah lagi teknik komunikasi asertif, beranikan diri untuk berkata "tidak", dan jangan ragu untuk menetapkan batasan personal (boundaries) yang sehat.', tags: ['Boundaries', 'Komunikasi Asertif', 'People Pleaser'] }
     } else {
-      return { icon: '🌟', title: 'Sosialmu Sangat Cerdas!', desc: 'Hebat! Kamu memiliki kecerdasan sosial dan empati yang sangat baik. Kamu mampu menavigasi dinamika pertemanan dengan asertif, sehat, dan menjadi pengaruh positif bagi sekitarmu.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
+      return { Icon: Sparkles, title: 'Sosialmu Sangat Cerdas!', desc: 'Hebat! Kamu memiliki kecerdasan sosial dan empati yang sangat baik. Kamu mampu menavigasi dinamika pertemanan dengan asertif, sehat, dan menjadi pengaruh positif bagi sekitarmu.', tags: ['Empati Tinggi', 'Sahabat Baik', 'Upstander'] }
     }
   },
 }
@@ -801,7 +817,7 @@ const quizSosial = {
 const teknikBelajarList = [
   {
     id: 'pomodoro',
-    icon: '🍅',
+    Icon: Timer,
     letter: 'A',
     name: 'Teknik Pomodoro',
     subtitle: 'Belajar dengan Mengatur Waktu',
@@ -823,7 +839,7 @@ const teknikBelajarList = [
   },
   {
     id: 'feynman',
-    icon: '🗣️',
+    Icon: MessageSquare,
     letter: 'B',
     name: 'Teknik Feynman',
     subtitle: 'Belajar dengan Mengajarkan Kembali',
@@ -845,7 +861,7 @@ const teknikBelajarList = [
   },
   {
     id: 'spaced-repetition',
-    icon: '🔄',
+    Icon: Repeat,
     letter: 'C',
     name: 'Spaced Repetition',
     subtitle: 'Mengulang Materi Secara Berkala',
@@ -867,7 +883,7 @@ const teknikBelajarList = [
   },
   {
     id: 'active-recall',
-    icon: '📝',
+    Icon: FileText,
     letter: 'D',
     name: 'Active Recall',
     subtitle: 'Melatih Ingatan Tanpa Melihat Catatan',
@@ -910,7 +926,7 @@ function TeknikBelajarCard({ item }) {
       <div className="flex items-start justify-between gap-4 mb-1">
         <div>
           <h4 className="font-bold text-base flex items-center gap-2 text-slate-100">
-            <span>{item.icon}</span> {item.letter}. {item.name}
+            <item.Icon size={18} className={item.accentText} /> {item.letter}. {item.name}
           </h4>
           <p className="text-xs font-medium text-slate-400 italic mt-0.5">
             {item.subtitle}
@@ -979,7 +995,7 @@ function TeknikBelajarCard({ item }) {
 
               <div className="bg-surface-2/80 rounded-xl p-3.5 border border-white/[0.08]">
                 <p className="text-xs text-amber-400 font-bold mb-1 flex items-center gap-1.5">
-                  <span>💡</span> Contoh:
+                  <Lightbulb size={14} className="text-amber-400" /> Contoh:
                 </p>
                 <p className="text-xs text-slate-300 leading-relaxed">
                   {item.contoh}
@@ -988,7 +1004,7 @@ function TeknikBelajarCard({ item }) {
 
               <div className="bg-primary/10 border border-primary/20 rounded-xl p-3.5 text-xs text-primary-light">
                 <p className="font-bold mb-1 flex items-center gap-1.5 text-primary-light">
-                  <span>✨</span> Tips:
+                  <Sparkles size={14} className="text-primary-light" /> Tips:
                 </p>
                 <p className="leading-relaxed text-slate-300">
                   {item.tips}
@@ -1006,10 +1022,12 @@ function TeknikBelajarCard({ item }) {
 const MateriContent = {
   belajar: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-primary/10 to-accent/5 border border-primary/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-glow-primary">
-        <span className="text-6xl flex-shrink-0" aria-hidden="true">🧠</span>
+      <div className="flex gap-5 bg-gradient-to-r from-primary/10 to-accent/5 border border-primary/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-glow-primary items-center">
+        <div className="w-16 h-16 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary-light flex-shrink-0" aria-hidden="true">
+          <Brain size={36} />
+        </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Seni Belajar Efektif (Learn How to Learn)</h2>
+          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-2">Seni Belajar Efektif (Learn How to Learn)</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
             Belajar bukan tentang begadang 12 jam membaca buku, tapi tentang seberapa pintar otakmu menyandikan informasi. 
             Mengenali gaya belajar hanyalah langkah pertama. Langkah kedua adalah menerapkan teknik belajar saintifik!
@@ -1020,14 +1038,18 @@ const MateriContent = {
       <h3 className="font-bold text-lg mb-4 text-primary-light">1. Tiga Gaya Belajar Utama</h3>
       <div className="grid lg:grid-cols-3 gap-4 mb-8">
         {[
-          { icon: '👁️', title: 'Visual', tip: 'Gunakan mind-map, diagram, dan video.', desc: 'Otak visual memproses informasi bagaikan kamera. Warnai catatanmu, buat infografis, dan bayangkan konsep layaknya film di kepalamu.' },
-          { icon: '👂', title: 'Auditori', tip: 'Rekam penjelasan, diskusi, dengarkan podcast.', desc: 'Otak auditori memproses informasi melalui gelombang suara. Bacakan catatanmu keras-keras atau rekam suaramu sendiri untuk diulang.' },
-          { icon: '🤸', title: 'Kinestetik', tip: 'Praktek langsung, gerakan, role play.', desc: 'Tubuh adalah gurumu. Kamu gampang bosan duduk. Berjalanlah mondar-mandir saat menghafal rumus, atau gunakan benda nyata sebagai peraga.' },
-        ].map(({ icon, title, tip, desc }) => (
-          <motion.div key={title} whileHover={{ y: -4 }} className="glass-card p-6 border-t-4 border-t-primary/50 hover:border-primary/50 transition-all">
-            <span className="text-4xl mb-4 block" aria-hidden="true">{icon}</span>
-            <h3 className="font-bold text-lg mb-2">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+          { Icon: Eye, title: 'Visual', tip: 'Gunakan mind-map, diagram, dan video.', desc: 'Otak visual memproses informasi bagaikan kamera. Warnai catatanmu, buat infografis, dan bayangkan konsep layaknya film di kepalamu.' },
+          { Icon: Headphones, title: 'Auditori', tip: 'Rekam penjelasan, diskusi, dengarkan podcast.', desc: 'Otak auditori memproses informasi melalui gelombang suara. Bacakan catatanmu keras-keras atau rekam suaramu sendiri untuk diulang.' },
+          { Icon: Activity, title: 'Kinestetik', tip: 'Praktek langsung, gerakan, role play.', desc: 'Tubuh adalah gurumu. Kamu gampang bosan duduk. Berjalanlah mondar-mandir saat menghafal rumus, atau gunakan benda nyata sebagai peraga.' },
+        ].map(({ Icon, title, tip, desc }) => (
+          <motion.div key={title} whileHover={{ y: -4 }} className="glass-card p-6 border-t-4 border-t-primary/50 hover:border-primary/50 transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary-light mb-4" aria-hidden="true">
+                <Icon size={22} />
+              </div>
+              <h3 className="font-bold text-lg mb-2">{title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+            </div>
             <div className="text-xs text-primary-light bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
               <strong>Super-Tip:</strong> {tip}
             </div>
@@ -1047,8 +1069,10 @@ const MateriContent = {
   karir: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Header Banner */}
-      <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)]">
-        <span className="text-6xl flex-shrink-0" aria-hidden="true">🚀</span>
+      <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)] items-center">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0" aria-hidden="true">
+          <Rocket size={36} />
+        </div>
         <div>
           <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Perencanaan Karier & Kampus Impian</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
@@ -1071,7 +1095,7 @@ const MateriContent = {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           {[
             {
-              icon: '🔬',
+              Icon: Atom,
               title: 'SAINS DAN TEKNOLOGI',
               badge: 'SAINTEK',
               border: 'border-t-emerald-500',
@@ -1080,7 +1104,7 @@ const MateriContent = {
               prodi: ['Kedokteran', 'Ilmu Komputer', 'Teknik Industri', 'Statistika', 'Farmasi', 'Biologi'],
             },
             {
-              icon: '📖',
+              Icon: Globe,
               title: 'SOSIAL DAN HUMANIORA',
               badge: 'SOSHUM',
               border: 'border-t-accent',
@@ -1089,7 +1113,7 @@ const MateriContent = {
               prodi: ['Psikologi', 'Manajemen', 'Ilmu Hukum', 'Hubungan Internasional', 'Ilmu Komunikasi', 'Sastra'],
             },
             {
-              icon: '🎓',
+              Icon: GraduationCap,
               title: 'PENDIDIKAN DAN KEGURUAN',
               badge: 'PENDIDIKAN',
               border: 'border-t-amber-500',
@@ -1098,7 +1122,7 @@ const MateriContent = {
               prodi: ['Pendidikan Guru Sekolah Dasar (PGSD)', 'Pendidikan Anak Usia Dini (PAUD)', 'Bimbingan dan Konseling', 'Pendidikan Bahasa Indonesia', 'Pendidikan Matematika'],
             },
             {
-              icon: '🎨',
+              Icon: Palette,
               title: 'SENI DAN INDUSTRI KREATIF',
               badge: 'KREATIF',
               border: 'border-t-purple-500',
@@ -1107,7 +1131,7 @@ const MateriContent = {
               prodi: ['Desain Komunikasi Visual (DKV)', 'Desain Interior', 'Seni Musik', 'Film dan Televisi', 'Animasi'],
             },
             {
-              icon: '🛠️',
+              Icon: Wrench,
               title: 'PENDIDIKAN VOKASI (TERAPAN)',
               badge: 'VOKASI',
               border: 'border-t-royal',
@@ -1115,7 +1139,7 @@ const MateriContent = {
               desc: 'Pendidikan vokasi berorientasi pada pengembangan keterampilan praktis dan keahlian terapan yang dibutuhkan dalam dunia kerja. Pembelajarannya menggabungkan teori, praktik, dan pengalaman lapangan sesuai karakteristik program studi.',
               prodi: ['D3 Perhotelan', 'D4 Animasi', 'D4 Keselamatan dan Kesehatan Kerja (K3)', 'D3 Akuntansi', 'D4 Manajemen Informatika'],
             },
-          ].map(({ icon, title, badge, border, badgeBg, desc, prodi }) => (
+          ].map(({ Icon: CardIcon, title, badge, border, badgeBg, desc, prodi }) => (
             <motion.div
               key={title}
               whileHover={{ y: -4 }}
@@ -1123,7 +1147,9 @@ const MateriContent = {
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl" aria-hidden="true">{icon}</span>
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-200" aria-hidden="true">
+                    <CardIcon size={22} />
+                  </div>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeBg}`}>
                     {badge}
                   </span>
@@ -1148,7 +1174,7 @@ const MateriContent = {
         </div>
 
         <div className="text-xs text-slate-400 bg-surface-2/60 p-3.5 rounded-xl border border-white/5 flex items-start gap-2 leading-relaxed">
-          <span className="text-sm">📌</span>
+          <Info size={16} className="text-emerald-400 flex-shrink-0 mt-0.5" />
           <span>
             <strong>Catatan:</strong> Pengelompokan bidang ilmu di atas hanya membantu mengenali karakteristik jurusan. Satu program studi dapat memiliki keterkaitan dengan beberapa bidang ilmu sekaligus.
           </span>
@@ -1167,7 +1193,7 @@ const MateriContent = {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
           {[
             {
-              icon: '❤️',
+              Icon: Heart,
               pilar: 'Passion',
               pertanyaan: 'Apa yang kamu CINTAI',
               desc: 'Kegiatan, bidang, atau hal apa yang membuatmu tertarik dan bersemangat?',
@@ -1175,7 +1201,7 @@ const MateriContent = {
               color: 'text-rose-400',
             },
             {
-              icon: '⭐',
+              Icon: Award,
               pilar: 'Profession',
               pertanyaan: 'Apa yang menjadi KEAHLIANMU',
               desc: 'Kemampuan dan keterampilan apa yang kamu miliki atau ingin kembangkan?',
@@ -1183,7 +1209,7 @@ const MateriContent = {
               color: 'text-amber-400',
             },
             {
-              icon: '🌍',
+              Icon: Globe,
               pilar: 'Mission',
               pertanyaan: 'Apa yang DIBUTUHKAN LINGKUNGAN',
               desc: 'Permasalahan apa yang ingin kamu bantu selesaikan melalui kemampuanmu?',
@@ -1191,7 +1217,7 @@ const MateriContent = {
               color: 'text-emerald-400',
             },
             {
-              icon: '💼',
+              Icon: TrendingUp,
               pilar: 'Vocation',
               pertanyaan: 'Apa yang MEMILIKI PELUANG PENGHASILAN',
               desc: 'Bidang pekerjaan apa yang memiliki peluang untuk memberikan penghasilan?',
@@ -1201,7 +1227,9 @@ const MateriContent = {
           ].map((item) => (
             <div key={item.pilar} className={`glass-card p-5 border-t-4 ${item.border} flex flex-col justify-between`}>
               <div>
-                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-3" aria-hidden="true">
+                  <item.Icon size={20} className={item.color} />
+                </div>
                 <span className={`text-[11px] font-bold uppercase tracking-wider block ${item.color}`}>
                   {item.pilar}
                 </span>
@@ -1218,7 +1246,7 @@ const MateriContent = {
 
         <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
           <p className="font-bold text-amber-300 mb-1 flex items-center gap-2">
-            <span>💡</span> Tips:
+            <Lightbulb size={16} className="text-amber-400" /> Tips:
           </p>
           <p className="leading-relaxed text-slate-300">
             Jangan memilih jurusan hanya karena gengsi atau mengikuti pilihan orang lain. Pertimbangkan kesesuaian antara minat, kemampuan, nilai pribadi, kondisi, dan peluang karier. Ingat, pilihan karier dapat berkembang seiring pengalaman dan proses belajar.
@@ -1229,7 +1257,8 @@ const MateriContent = {
       {/* 3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja */}
       <div className="mb-10">
         <h3 className="font-bold text-xl text-primary-light mb-4 flex items-center gap-2">
-          <span>⚖️</span> 3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja
+          <Scale size={20} className="text-primary-light" />
+          <span>3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja</span>
         </h3>
         <div className="grid lg:grid-cols-2 gap-4">
           {[
@@ -1275,7 +1304,8 @@ const MateriContent = {
       {/* 4. Tips Memilih Kampus dan Program Studi */}
       <div className="mb-4">
         <h3 className="font-bold text-xl text-accent mb-2 flex items-center gap-2">
-          <span>🎯</span> 4. Tips Memilih Kampus dan Program Studi
+          <Target size={20} className="text-accent" />
+          <span>4. Tips Memilih Kampus dan Program Studi</span>
         </h3>
         <p className="text-slate-400 text-sm leading-relaxed mb-5">
           Sebelum menentukan kampus impian, coba pertimbangkan beberapa hal berikut:
@@ -1287,37 +1317,37 @@ const MateriContent = {
               num: 1,
               title: 'Kenali minat dan kemampuan diri',
               desc: 'Pilih bidang yang sesuai dengan ketertarikan dan kemampuan yang ingin kamu kembangkan.',
-              icon: '🧭',
+              Icon: Compass,
             },
             {
               num: 2,
               title: 'Pelajari kurikulum program studi',
               desc: 'Cari tahu mata kuliah, kegiatan praktik, dan kompetensi yang akan dipelajari.',
-              icon: '📚',
+              Icon: BookOpen,
             },
             {
               num: 3,
               title: 'Periksa akreditasi dan kualitas program studi',
               desc: 'Cari informasi melalui sumber resmi perguruan tinggi dan lembaga terkait.',
-              icon: '🏛️',
+              Icon: Award,
             },
             {
               num: 4,
               title: 'Pertimbangkan biaya pendidikan',
               desc: 'Sesuaikan pilihan dengan kondisi finansial dan cari informasi mengenai beasiswa.',
-              icon: '💰',
+              Icon: Wallet,
             },
             {
               num: 5,
               title: 'Cari tahu peluang karier lulusan',
               desc: 'Pelajari bidang pekerjaan yang dapat dimasuki setelah menyelesaikan pendidikan.',
-              icon: '📈',
+              Icon: TrendingUp,
             },
             {
               num: 6,
               title: 'Perhatikan lokasi dan lingkungan kampus',
               desc: 'Pertimbangkan akses, fasilitas, serta lingkungan belajar yang mendukung.',
-              icon: '📍',
+              Icon: MapPin,
             },
           ].map((item) => (
             <motion.div
@@ -1329,7 +1359,7 @@ const MateriContent = {
                 <span className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-sm flex items-center justify-center">
                   {item.num}
                 </span>
-                <span className="text-xl">{item.icon}</span>
+                <item.Icon size={20} className="text-accent" />
               </div>
               <div>
                 <h4 className="font-bold text-sm text-slate-100 mb-1.5 leading-snug">
@@ -1344,7 +1374,9 @@ const MateriContent = {
         </div>
 
         <div className="bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent border border-emerald-500/30 rounded-2xl p-5 flex items-start gap-3.5">
-          <span className="text-2xl flex-shrink-0">🌱</span>
+          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0" aria-hidden="true">
+            <Sparkles size={20} />
+          </div>
           <div>
             <h4 className="font-bold text-emerald-300 text-sm mb-1">Ingat!</h4>
             <p className="text-xs lg:text-sm text-slate-300 leading-relaxed">
@@ -1358,8 +1390,10 @@ const MateriContent = {
 
   pribadi: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
-        <span className="text-6xl flex-shrink-0" aria-hidden="true">🌱</span>
+      <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)] items-center">
+        <div className="w-16 h-16 rounded-2xl bg-royal/20 border border-royal/30 flex items-center justify-center text-royal-light flex-shrink-0" aria-hidden="true">
+          <HeartPulse size={36} />
+        </div>
         <div>
           <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Kesehatan Mental & Self-Care</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
@@ -1368,23 +1402,30 @@ const MateriContent = {
         </div>
       </div>
 
-      <h3 className="font-bold text-lg mb-4 text-royal-light">Toolkit P3K Psikologis (Pertolongan Pertama)</h3>
+      <h3 className="font-bold text-lg mb-4 text-royal-light flex items-center gap-2">
+        <Heart size={20} className="text-royal-light" />
+        <span>Toolkit P3K Psikologis (Pertolongan Pertama)</span>
+      </h3>
       <div className="grid lg:grid-cols-3 gap-4 mb-6">
         {[
-          { icon: '🌬️', title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
-          { icon: '📱', title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
-          { icon: '✍️', title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
-        ].map(({ icon, title, desc }) => (
-          <div key={title} className="glass-card p-5 border-t-2 border-t-white/10 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform scale-150 rotate-12">{icon}</div>
-            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{icon} {title}</h4>
+          { Icon: Wind, title: 'Grounding 5-4-3-2-1', desc: 'Saat panik (anxiety): Cari 5 benda dilihat, 4 diraba, 3 didengar, 2 dicium, 1 dicecap. Ini mengembalikan otakmu dari mode panik ke masa kini.' },
+          { Icon: Smartphone, title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
+          { Icon: FileEdit, title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
+        ].map(({ Icon: CardIcon, title, desc }) => (
+          <div key={title} className="glass-card p-5 border-t-2 border-t-royal/40 relative overflow-hidden group">
+            <div className="w-10 h-10 rounded-xl bg-royal/10 border border-royal/20 flex items-center justify-center text-royal-light mb-3" aria-hidden="true">
+              <CardIcon size={20} />
+            </div>
+            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{title}</h4>
             <p className="text-slate-400 text-xs leading-relaxed relative z-10">{desc}</p>
           </div>
         ))}
       </div>
 
       <div className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center">
-        <div className="text-5xl">❤️‍🩹</div>
+        <div className="w-16 h-16 rounded-2xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-400 flex-shrink-0" aria-hidden="true">
+          <AlertTriangle size={32} />
+        </div>
         <div>
           <h4 className="font-bold text-lg text-rose-300 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
           <p className="text-slate-300 text-sm leading-relaxed mb-4">
@@ -1400,8 +1441,10 @@ const MateriContent = {
 
   sosial: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-sky-500/10 to-teal-500/5 border border-sky-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(14,165,233,0.15)]">
-        <span className="text-6xl flex-shrink-0" aria-hidden="true">🤝</span>
+      <div className="flex gap-5 bg-gradient-to-r from-sky-500/10 to-teal-500/5 border border-sky-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(14,165,233,0.15)] items-center">
+        <div className="w-16 h-16 rounded-2xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 flex-shrink-0" aria-hidden="true">
+          <Users size={36} />
+        </div>
         <div>
           <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Dinamika Sosial & Pertemanan</h2>
           <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
@@ -1413,7 +1456,9 @@ const MateriContent = {
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
         <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-rose-400 hover:shadow-[0_8px_30px_rgba(251,113,133,0.1)] transition-all">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-rose-400/20 flex items-center justify-center text-xl">🛡️</div>
+            <div className="w-10 h-10 rounded-xl bg-rose-400/20 border border-rose-400/30 flex items-center justify-center text-rose-400">
+              <Shield size={20} />
+            </div>
             <h3 className="font-bold text-lg">Anti-Bullying & Cyberbullying</h3>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed mb-4">
@@ -1428,7 +1473,9 @@ const MateriContent = {
 
         <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-sky-400 hover:shadow-[0_8px_30px_rgba(56,189,248,0.1)] transition-all">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-sky-400/20 flex items-center justify-center text-xl">🗣️</div>
+            <div className="w-10 h-10 rounded-xl bg-sky-400/20 border border-sky-400/30 flex items-center justify-center text-sky-400">
+              <MessageCircle size={20} />
+            </div>
             <h3 className="font-bold text-lg">Komunikasi Asertif (I-Message)</h3>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed mb-4">
@@ -1477,7 +1524,7 @@ export default function Layanan() {
         role="tablist"
         aria-label="Bidang layanan BK"
       >
-        {tabs.map(({ id, label, icon }) => (
+        {tabs.map(({ id, label, Icon: TabIcon }) => (
           <button
             key={id}
             id={`tab-${id}`}
@@ -1491,7 +1538,7 @@ export default function Layanan() {
                 : 'text-slate-400 hover:text-slate-200'
               }`}
           >
-            <span aria-hidden="true">{icon}</span> {label}
+            <TabIcon size={16} /> {label}
           </button>
         ))}
       </div>
@@ -1515,13 +1562,23 @@ export default function Layanan() {
                 key={m}
                 onClick={() => setTabMode(activeTab, m)}
                 aria-pressed={mode[activeTab] === m}
-                className={`px-4 py-2 rounded-full text-sm font-bold border transition-all
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border transition-all
                   ${mode[activeTab] === m
                     ? 'bg-surface-2 text-slate-200 border-white/15'
                     : 'text-slate-500 border-transparent hover:text-slate-300 hover:border-white/10'
                   }`}
               >
-                {m === 'materi' ? '📖 Baca Materi' : '🧩 Ikuti Kuis'}
+                {m === 'materi' ? (
+                  <>
+                    <BookOpen size={14} />
+                    <span>Baca Materi</span>
+                  </>
+                ) : (
+                  <>
+                    <HelpCircle size={14} />
+                    <span>Ikuti Kuis</span>
+                  </>
+                )}
               </button>
             ))}
           </div>

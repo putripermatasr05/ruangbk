@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion'
-import { X, ExternalLink, Play } from 'lucide-react'
+import {
+  X, ExternalLink, Play, Sparkles, LayoutGrid, Camera, Video,
+  Eye, BookOpen, GraduationCap, Search, HeartPulse, Compass, Brain, ShieldCheck
+} from 'lucide-react'
 
 const FeaturedMedia = () => {
   useEffect(() => {
@@ -31,7 +34,7 @@ const FeaturedMedia = () => {
   return (
     <div className="mb-12">
       <h2 className="font-display font-bold text-2xl mb-6 flex items-center gap-2">
-        <span>✨</span> Highlight Edukasi
+        <Sparkles className="w-5 h-5 text-accent" /> Highlight Edukasi
       </h2>
       <div className="grid md:grid-cols-3 gap-6">
         
@@ -68,49 +71,49 @@ const galeriData = [
   {
     id: 1, platform: 'instagram', title: 'Mengenal 3 Gaya Belajar: Visual, Auditori & Kinestetik',
     desc: 'Infografis interaktif tentang cara menemukan gaya belajarmu yang dominan.',
-    emoji: '👁️', bg: 'from-violet-600 to-purple-800', link: 'https://instagram.com',
+    Icon: Eye, bg: 'from-violet-600 to-purple-800', link: 'https://instagram.com',
     type: 'image',
   },
   {
     id: 2, platform: 'tiktok', title: '5 Tips Belajar Efektif untuk Siswa SMA',
     desc: 'Video singkat berisi strategi belajar yang terbukti meningkatkan fokus dan pemahaman.',
-    emoji: '📚', bg: 'from-slate-800 to-slate-900', link: 'https://tiktok.com',
+    Icon: BookOpen, bg: 'from-slate-800 to-slate-900', link: 'https://tiktok.com',
     type: 'video',
   },
   {
     id: 3, platform: 'youtube', title: 'Saintek vs Soshum: Mana yang Cocok Untukmu?',
     desc: 'Pembahasan mendalam tentang perbedaan dua rumpun ilmu dan prospek karirnya.',
-    emoji: '🎓', bg: 'from-red-700 to-red-900', link: 'https://youtube.com',
+    Icon: GraduationCap, bg: 'from-red-700 to-red-900', link: 'https://youtube.com',
     type: 'video',
   },
   {
     id: 4, platform: 'instagram', title: 'Mitos & Fakta Dunia Perkuliahan',
     desc: 'Carousel informatif membongkar mitos-mitos yang sering dipercaya siswa SMA.',
-    emoji: '🔍', bg: 'from-pink-600 to-rose-800', link: 'https://instagram.com',
+    Icon: Search, bg: 'from-pink-600 to-rose-800', link: 'https://instagram.com',
     type: 'image',
   },
   {
     id: 5, platform: 'tiktok', title: 'Cara Mengelola Stres Saat Ujian',
     desc: 'Teknik pernapasan dan mindfulness sederhana yang bisa dipraktikkan di mana saja.',
-    emoji: '🧘', bg: 'from-teal-600 to-cyan-800', link: 'https://tiktok.com',
+    Icon: HeartPulse, bg: 'from-teal-600 to-cyan-800', link: 'https://tiktok.com',
     type: 'video',
   },
   {
     id: 6, platform: 'youtube', title: 'Tips Memilih Jurusan Kuliah yang Tepat',
     desc: 'Panduan lengkap dari riset minat hingga analisis prospek karir masa depan.',
-    emoji: '🗺️', bg: 'from-amber-600 to-orange-800', link: 'https://youtube.com',
+    Icon: Compass, bg: 'from-amber-600 to-orange-800', link: 'https://youtube.com',
     type: 'video',
   },
   {
     id: 7, platform: 'instagram', title: 'Mengenal RIASEC: Tipe Kepribadian Pekerja',
     desc: 'Infografis penjelasan 6 tipe kepribadian Holland dan jurusan yang cocok.',
-    emoji: '🧩', bg: 'from-indigo-600 to-blue-800', link: 'https://instagram.com',
+    Icon: Brain, bg: 'from-indigo-600 to-blue-800', link: 'https://instagram.com',
     type: 'image',
   },
   {
     id: 8, platform: 'tiktok', title: 'Anti-Bullying: Cara Merespons dengan Bijak',
     desc: 'Video edukasi tentang cara mengenali dan merespons perundungan di sekolah.',
-    emoji: '🛡️', bg: 'from-emerald-600 to-green-800', link: 'https://tiktok.com',
+    Icon: ShieldCheck, bg: 'from-emerald-600 to-green-800', link: 'https://tiktok.com',
     type: 'video',
   },
 ]
@@ -201,13 +204,21 @@ export default function Galeri() {
             whileTap={{ scale: 0.96 }}
             onClick={() => setActiveFilter(f)}
             aria-pressed={activeFilter === f}
-            className={`px-4 py-2 rounded-full text-sm font-bold capitalize border transition-all
+            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold capitalize border transition-all
               ${activeFilter === f
                 ? 'bg-grad-primary text-white border-transparent shadow-glow-primary'
                 : 'text-slate-400 border-white/[0.07] hover:border-white/15 hover:text-slate-200'
               }`}
           >
-            {f === 'semua' ? '🎨 Semua' : f === 'instagram' ? '📸 Instagram' : f === 'tiktok' ? '🎵 TikTok' : '▶️ YouTube'}
+            {f === 'semua' ? (
+              <><LayoutGrid size={15} /> Semua</>
+            ) : f === 'instagram' ? (
+              <><Camera size={15} /> Instagram</>
+            ) : f === 'tiktok' ? (
+              <><Video size={15} /> TikTok</>
+            ) : (
+              <><Play size={15} /> YouTube</>
+            )}
           </motion.button>
         ))}
       </div>
@@ -238,8 +249,8 @@ export default function Galeri() {
               >
                 {/* Thumbnail */}
                 <div className={`relative aspect-video bg-gradient-to-br ${item.bg} overflow-hidden`}>
-                  <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-60 group-hover:scale-110 transition-transform duration-500">
-                    {item.emoji}
+                  <div className="absolute inset-0 flex items-center justify-center text-white/40 group-hover:scale-110 transition-transform duration-500">
+                    <item.Icon size={52} />
                   </div>
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -281,8 +292,8 @@ export default function Galeri() {
               className="bg-surface border border-white/[0.1] rounded-2xl overflow-hidden max-w-lg w-full shadow-card-lg"
             >
               {/* Media area */}
-              <div className={`aspect-video bg-gradient-to-br ${selectedItem.bg} flex items-center justify-center`}>
-                <span className="text-8xl opacity-70" aria-hidden="true">{selectedItem.emoji}</span>
+              <div className={`aspect-video bg-gradient-to-br ${selectedItem.bg} flex items-center justify-center text-white/50`}>
+                <selectedItem.Icon size={72} />
               </div>
 
               {/* Info */}

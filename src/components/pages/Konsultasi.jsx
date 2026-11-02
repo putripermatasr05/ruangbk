@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Lock } from 'lucide-react'
+import { Send, Lock, Bot, User } from 'lucide-react'
 import avatarGendis from '../../assets/tim/gendis.jpg'
 import avatarGina from '../../assets/tim/gina.jpg'
 import avatarNasywa from '../../assets/tim/nasywa.jpeg'
@@ -11,11 +11,11 @@ import avatarZourika from '../../assets/tim/zourika.jpeg'
 /* ─── Bot Response Logic ─── */
 const getBotResponse = (msgCount) => {
   const responses = [
-    "Terima kasih sudah berani berbagi 💙 Kebingungan itu sangat wajar dialami. Apakah kamu sudah mencoba **Kuis Minat Karir** di menu Layanan Edukasi kami?",
-    "Kami mengerti kondisimu. Untuk diskusi lebih dalam dan personal, mari jadwalkan sesi tatap muka atau video call dengan konselor. Silakan tinggalkan **nama dan kelasmu** ya ✨",
-    "Terima kasih sudah mau terbuka 🙏 Ingat, setiap langkah kecil menuju pemahaman dirimu adalah langkah yang berani. Kami selalu siap mendampingimu.",
-    "Itu pertanyaan yang sangat bagus! Konselor kami siap membantu kamu mengeksplorasi lebih dalam. Apakah ada hal lain yang ingin kamu ceritakan? 😊",
-    "Kamu tidak sendirian menghadapi ini. Banyak siswa merasakan hal yang sama. Bersama TemanBK, kita hadapi satu langkah demi satu langkah 🌟",
+    "Terima kasih sudah berani berbagi. Kebingungan itu sangat wajar dialami. Apakah kamu sudah mencoba **Kuis Minat Karir** di menu Layanan Edukasi kami?",
+    "Kami mengerti kondisimu. Untuk diskusi lebih dalam dan personal, mari jadwalkan sesi tatap muka atau pertemuan dengan konselor. Silakan tinggalkan **nama dan kelasmu** ya.",
+    "Terima kasih sudah mau terbuka. Ingat, setiap langkah kecil menuju pemahaman dirimu adalah langkah yang berani. Kami selalu siap mendampingimu.",
+    "Itu pertanyaan yang sangat bagus! Konselor kami siap membantu kamu mengeksplorasi lebih dalam. Apakah ada hal lain yang ingin kamu ceritakan?",
+    "Kamu tidak sendirian menghadapi ini. Banyak siswa merasakan hal yang sama. Bersama TemanBK, kita hadapi satu langkah demi satu langkah.",
   ]
   return responses[Math.min(msgCount, responses.length - 1)]
 }
@@ -51,7 +51,7 @@ export default function Konsultasi({ navigate }) {
       setMessages([{
         id: 'init',
         type: 'bot',
-        text: 'Halo! Selamat datang di ruang konsultasi 👋 Ada yang mengganjal di pikiranmu atau ingin berdiskusi tentang karir? Ketik pesanmu di bawah ya.',
+        text: 'Halo! Selamat datang di ruang konsultasi. Ada yang mengganjal di pikiranmu atau ingin berdiskusi tentang studi dan karir? Ketik pesanmu di bawah ya.',
         time: formatTime(),
       }])
     }, 600)
@@ -185,12 +185,12 @@ export default function Konsultasi({ navigate }) {
               >
                 {/* Avatar */}
                 {msg.type === 'bot' ? (
-                  <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center flex-shrink-0 self-end text-sm" aria-hidden="true">
-                    🤖
+                  <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center flex-shrink-0 self-end text-white" aria-hidden="true">
+                    <Bot size={16} />
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0 self-end text-sm" aria-hidden="true">
-                    👤
+                  <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0 self-end text-slate-300" aria-hidden="true">
+                    <User size={16} />
                   </div>
                 )}
 
@@ -221,7 +221,9 @@ export default function Konsultasi({ navigate }) {
                 role="status"
                 aria-label="Konselor sedang mengetik"
               >
-                <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center text-sm" aria-hidden="true">🤖</div>
+                <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center text-white" aria-hidden="true">
+                  <Bot size={16} />
+                </div>
                 <div className="bg-surface-2 border border-white/[0.07] px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5 items-center">
                   <span className="w-2 h-2 rounded-full bg-primary-light animate-typing-1" />
                   <span className="w-2 h-2 rounded-full bg-primary-light animate-typing-2" />
