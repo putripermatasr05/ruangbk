@@ -32,12 +32,20 @@ export default function App() {
   const PageComponent = pages[activePage]
 
   return (
-    <div className="flex min-h-screen bg-bg">
+    <div className="flex min-h-screen bg-[#FAF8FF] text-slate-800 relative overflow-hidden">
+      {/* Background Aurora Ambient Glows */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <div className="orb orb-1 absolute w-[520px] h-[520px] bg-purple-300/35 -top-24 -left-20" />
+        <div className="orb orb-2 absolute w-[460px] h-[460px] bg-amber-200/40 top-1/4 -right-16" />
+        <div className="orb orb-3 absolute w-[480px] h-[480px] bg-pink-200/35 bottom-0 left-1/4" />
+        <div className="orb orb-1 absolute w-[380px] h-[380px] bg-emerald-200/30 -bottom-10 right-10" />
+      </div>
+
       {/* Desktop Sidebar */}
       <Sidebar activePage={activePage} navigate={navigate} />
 
       {/* Main content */}
-      <main className="flex-1 ml-0 lg:ml-64 min-h-screen pb-16 lg:pb-0 relative overflow-hidden">
+      <main className="flex-1 ml-0 lg:ml-64 min-h-screen pb-24 lg:pb-0 relative z-10 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activePage}
@@ -48,7 +56,7 @@ export default function App() {
             className="w-full h-full"
           >
             <div className="overflow-y-auto h-screen custom-scroll">
-              <div className="max-w-6xl mx-auto px-5 lg:px-10 py-8 lg:py-10">
+              <div className="max-w-6xl mx-auto px-5 lg:px-10 py-6 lg:py-10">
                 <PageComponent navigate={navigate} />
               </div>
             </div>

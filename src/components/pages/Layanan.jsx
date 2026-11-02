@@ -182,22 +182,22 @@ const quizBelajar1 = {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="w-16 h-16 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center text-primary-light mx-auto mb-4"
+              className="w-16 h-16 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-600 shadow-sm mx-auto mb-4"
               aria-hidden="true"
             >
               {isCombination ? <Sparkles size={32} /> : <PrimaryIcon size={32} />}
             </motion.div>
-            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-slate-900">
               {isCombination
                 ? `HASIL KOMBINASI — ${winners.map((w) => styleInfo[w].name).join(' & ')}`
                 : primary.title}
             </h3>
-            <p className="text-primary-light font-semibold text-base mb-2">
+            <p className="text-purple-600 font-semibold text-base mb-2">
               {isCombination
                 ? `Kamu memiliki kombinasi kecenderungan belajar ${winners.map((w) => styleInfo[w].name).join(' & ')}!`
                 : primary.tagline}
             </p>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
               {isCombination
                 ? 'Skor kecenderunganmu seimbang di lebih dari satu kategori. Kamu dapat menggabungkan indera visual, pendengaran, dan praktik secara fleksibel sesuai mata pelajaran yang kamu pelajari.'
                 : primary.desc}
@@ -205,25 +205,25 @@ const quizBelajar1 = {
           </div>
 
           {/* Breakdown Skor */}
-          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-5">
-            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center">
               Distribusi Skor Pilihanmu (Total 10 Soal)
             </h4>
             <div className="grid grid-cols-3 gap-3">
               {[
-                { label: 'Visual', Icon: Eye, val: counts.visual, color: 'text-pink-400', bg: 'bg-pink-500' },
-                { label: 'Auditori', Icon: Headphones, val: counts.auditori, color: 'text-sky-400', bg: 'bg-sky-500' },
-                { label: 'Kinestetik', Icon: Activity, val: counts.kinestetik, color: 'text-emerald-400', bg: 'bg-emerald-500' },
+                { label: 'Visual', Icon: Eye, val: counts.visual, color: 'text-pink-600', bg: 'bg-pink-500' },
+                { label: 'Auditori', Icon: Headphones, val: counts.auditori, color: 'text-sky-600', bg: 'bg-sky-500' },
+                { label: 'Kinestetik', Icon: Activity, val: counts.kinestetik, color: 'text-emerald-600', bg: 'bg-emerald-500' },
               ].map((item) => (
-                <div key={item.label} className="bg-surface p-3 rounded-xl border border-white/[0.05] text-center">
-                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-300 mb-1">
+                <div key={item.label} className="bg-purple-50/60 p-3.5 rounded-2xl border border-purple-100/70 text-center">
+                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-700 mb-1">
                     <item.Icon size={14} className={item.color} />
                     <span>{item.label}</span>
                   </div>
                   <p className={`font-display font-bold text-xl lg:text-2xl ${item.color}`}>
                     {item.val} <span className="text-xs text-slate-500 font-normal">poin</span>
                   </p>
-                  <div className="h-1.5 bg-surface-3 rounded-full mt-2 overflow-hidden">
+                  <div className="h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden">
                     <div
                       className={`h-full ${item.bg} rounded-full`}
                       style={{ width: `${(item.val / 10) * 100}%` }}
@@ -235,18 +235,18 @@ const quizBelajar1 = {
           </div>
 
           {/* Rekomendasi */}
-          <div className="glass-card p-5 border border-white/[0.08]">
-            <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
-              <Target size={16} className="text-primary-light" />
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+              <Target size={16} className="text-purple-600" />
               <span>Rekomendasi untukmu:</span>
             </h4>
-            <ul className="space-y-2 text-xs lg:text-sm text-slate-300">
+            <ul className="space-y-2 text-xs lg:text-sm text-slate-600">
               {(isCombination
                 ? winners.flatMap((w) => styleInfo[w].rekomendasi.slice(0, 2))
                 : primary.rekomendasi
               ).map((rek, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
-                  <CheckCircle2 size={14} className="text-primary-light flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 size={14} className="text-purple-600 flex-shrink-0 mt-0.5" />
                   <span>{rek}</span>
                 </li>
               ))}
@@ -254,12 +254,12 @@ const quizBelajar1 = {
           </div>
 
           {/* Pesan TemanBK */}
-          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
-            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
-              <MessageSquareQuote size={16} className="text-primary-light" />
+          <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+            <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+              <MessageSquareQuote size={16} className="text-amber-800" />
               <span>Pesan TemanBK:</span>
             </p>
-            <p className="leading-relaxed text-slate-300">
+            <p className="leading-relaxed text-slate-700">
               {isCombination
                 ? 'Jadikan perpaduan gaya belajarmu sebagai kekuatan unik. Sesuaikan cara belajarmu dengan karakteristik materi yang sedang kamu hadapi!'
                 : primary.pesan}
@@ -269,7 +269,7 @@ const quizBelajar1 = {
           <div className="text-center pt-2">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-purple-200 text-sm font-bold text-slate-700 hover:text-purple-800 hover:border-purple-400 shadow-sm hover:shadow-md transition-all"
             >
               <RotateCcw size={15} /> Ulangi Kuis
             </button>
@@ -451,40 +451,40 @@ const quizBelajar2 = {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-400 mx-auto mb-3"
+              className="w-14 h-14 rounded-2xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 shadow-sm mx-auto mb-3"
               aria-hidden="true"
             >
               <CheckCircle2 size={32} />
             </motion.div>
-            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-slate-900">
               Hasil Refleksi Kebiasaan Belajarmu!
             </h3>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
               Kamu sudah mulai membangun kebiasaan belajar yang baik. Namun, masih ada beberapa strategi yang bisa dikembangkan agar kegiatan belajarmu lebih terarah.
             </p>
           </div>
 
           {/* Grid Skor Teknik */}
-          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-4 lg:p-5">
-            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center">
               Ringkasan Skor per Teknik Belajar (Maks 6 poin tiap teknik)
             </h4>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {techniquesResult.map((t) => (
-                <div key={t.id} className="bg-surface p-3.5 rounded-xl border border-white/[0.05] flex flex-col justify-between">
+                <div key={t.id} className="bg-purple-50/60 p-3.5 rounded-2xl border border-purple-100/70 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <t.Icon size={18} className="text-primary-light" />
-                      <span className="font-bold text-sm text-slate-200">{t.name}</span>
+                      <t.Icon size={18} className="text-purple-600" />
+                      <span className="font-bold text-sm text-slate-800">{t.name}</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 mb-2">{t.subtitle}</p>
+                    <p className="text-[11px] text-slate-500 mb-2">{t.subtitle}</p>
                   </div>
                   <div>
                     <div className="flex items-baseline justify-between mb-1.5">
-                      <span className="text-xs text-slate-400">Skor:</span>
-                      <span className="font-display font-bold text-base text-white">{t.score} / 6</span>
+                      <span className="text-xs text-slate-500">Skor:</span>
+                      <span className="font-display font-bold text-base text-slate-900">{t.score} / 6</span>
                     </div>
-                    <div className="h-1.5 bg-surface-3 rounded-full mb-2 overflow-hidden">
+                    <div className="h-1.5 bg-slate-200 rounded-full mb-2 overflow-hidden">
                       <div
                         className={`h-full ${t.dotBg} rounded-full`}
                         style={{ width: `${(t.score / 6) * 100}%` }}
@@ -501,24 +501,24 @@ const quizBelajar2 = {
 
           {/* Rekomendasi Berdasarkan Hasilmu */}
           <div>
-            <h4 className="font-bold text-sm text-slate-200 mb-3 flex items-center gap-2">
-              <ListChecks size={16} className="text-primary-light" />
+            <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+              <ListChecks size={16} className="text-purple-600" />
               <span>Rekomendasi Berdasarkan Hasilmu:</span>
             </h4>
             <div className="grid lg:grid-cols-2 gap-3">
               {techniquesResult.map((t) => (
-                <div key={t.id} className={`glass-card p-4 border-l-4 ${t.borderLeft} border border-white/[0.06] flex flex-col justify-between`}>
+                <div key={t.id} className={`bg-white/90 border border-purple-100 rounded-3xl p-4 shadow-sm border-l-4 ${t.borderLeft} flex flex-col justify-between`}>
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
-                      <h5 className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
-                        <t.Icon size={16} className="text-primary-light" />
+                      <h5 className="font-bold text-sm text-slate-900 flex items-center gap-1.5">
+                        <t.Icon size={16} className="text-purple-600" />
                         <span>{t.name}</span>
                       </h5>
                       <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${t.badgeClass}`}>
                         {t.kategori}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed mb-1">
+                    <p className="text-xs text-slate-600 leading-relaxed mb-1">
                       {t.rekomendasi}
                     </p>
                   </div>
@@ -528,12 +528,12 @@ const quizBelajar2 = {
           </div>
 
           {/* Pesan TemanBK */}
-          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
-            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
-              <MessageSquareQuote size={16} className="text-primary-light" />
+          <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+            <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+              <MessageSquareQuote size={16} className="text-amber-800" />
               <span>Pesan TemanBK:</span>
             </p>
-            <p className="leading-relaxed text-slate-300">
+            <p className="leading-relaxed text-slate-700">
               Tidak harus langsung menguasai semua teknik belajar. Mulailah dari satu kebiasaan kecil, lakukan secara konsisten, dan evaluasi perkembanganmu!
             </p>
           </div>
@@ -541,7 +541,7 @@ const quizBelajar2 = {
           <div className="text-center pt-2">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-purple-200 text-sm font-bold text-slate-700 hover:text-purple-800 hover:border-purple-400 shadow-sm hover:shadow-md transition-all"
             >
               <RotateCcw size={15} /> Ulangi Kuis
             </button>
@@ -561,42 +561,42 @@ function QuizBelajarSection() {
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <button
           onClick={() => setActiveQuiz('kuis1')}
-          className={`flex-1 p-4 rounded-2xl border text-left transition-all ${
+          className={`flex-1 p-5 rounded-3xl border text-left transition-all ${
             activeQuiz === 'kuis1'
-              ? 'bg-grad-primary/10 border-primary text-white shadow-glow-primary'
-              : 'bg-surface-2 border-white/[0.07] text-slate-400 hover:text-slate-200 hover:border-white/20'
+              ? 'card-pastel-purple border-2 border-purple-500 shadow-md'
+              : 'bg-white/80 border-purple-100 shadow-sm text-slate-600 hover:border-purple-300'
           }`}
         >
           <div className="flex items-center justify-between mb-1">
-            <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
-              <Compass size={17} className="text-primary-light" /> Kuis 1: Find Your Learning Style
+            <span className="font-bold text-sm lg:text-base text-slate-900 flex items-center gap-2">
+              <Compass size={17} className="text-purple-600" /> Kuis 1: Find Your Learning Style
             </span>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold">
               10 Soal
             </span>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Kenali kecenderungan gaya belajarmu: Visual, Auditori, atau Kinestetik.
           </p>
         </button>
 
         <button
           onClick={() => setActiveQuiz('kuis2')}
-          className={`flex-1 p-4 rounded-2xl border text-left transition-all ${
+          className={`flex-1 p-5 rounded-3xl border text-left transition-all ${
             activeQuiz === 'kuis2'
-              ? 'bg-grad-primary/10 border-primary text-white shadow-glow-primary'
-              : 'bg-surface-2 border-white/[0.07] text-slate-400 hover:text-slate-200 hover:border-white/20'
+              ? 'card-pastel-purple border-2 border-purple-500 shadow-md'
+              : 'bg-white/80 border-purple-100 shadow-sm text-slate-600 hover:border-purple-300'
           }`}
         >
           <div className="flex items-center justify-between mb-1">
-            <span className="font-bold text-sm lg:text-base text-slate-100 flex items-center gap-2">
-              <Clock size={17} className="text-primary-light" /> Kuis 2: How Effective Is Your Study Habit?
+            <span className="font-bold text-sm lg:text-base text-slate-900 flex items-center gap-2">
+              <Clock size={17} className="text-purple-600" /> Kuis 2: How Effective Is Your Study Habit?
             </span>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold">
               8 Soal
             </span>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Refleksikan kebiasaan belajarmu dalam menerapkan 4 teknik belajar saintifik.
           </p>
         </button>
@@ -716,10 +716,10 @@ const quizKarir = {
         title: 'Tipe Pemikir & Peneliti (SAINTEK)',
         tagline: 'Kamu memiliki ketertarikan tinggi pada analisis data, sains, dan penalaran logis!',
         badge: 'SAINTEK',
-        color: 'text-emerald-400',
-        bg: 'bg-emerald-500/15',
-        border: 'border-emerald-500/30',
-        borderBadge: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+        color: 'text-emerald-700',
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-200',
+        borderBadge: 'border-emerald-200 text-emerald-800 bg-emerald-50',
         barColor: 'bg-emerald-500',
         desc: 'Kamu senang mencari tahu akar penyebab suatu fenomena melalui observasi, eksperimen, dan penalaran yang mendalam. Kamu unggul dalam memproses data, konsep ilmiah, dan pemecahan masalah teknis.',
         rumpun: 'Sains dan Teknologi (SAINTEK)',
@@ -734,11 +734,11 @@ const quizKarir = {
         title: 'Tipe Praktisi & Keteknikan (VOKASI & Rekayasa)',
         tagline: 'Kamu menyukai kegiatan praktis terapan, merakit alat, dan keterampilan nyata!',
         badge: 'VOKASI / TEKNIK',
-        color: 'text-royal-light',
-        bg: 'bg-royal/15',
-        border: 'border-royal/30',
-        borderBadge: 'border-royal/30 text-royal-light bg-royal/10',
-        barColor: 'bg-royal',
+        color: 'text-indigo-700',
+        bg: 'bg-indigo-50',
+        border: 'border-indigo-200',
+        borderBadge: 'border-indigo-200 text-indigo-800 bg-indigo-50',
+        barColor: 'bg-indigo-500',
         desc: 'Kamu menyukai hal-hal yang konkret dan langsung terlihat hasilnya. Kamu menikmati merakit komponen mesin/elektronik, menggunakan alat kerja teknis, atau mengaplikasikan keterampilan tangan secara langsung.',
         rumpun: 'Pendidikan Vokasi (Terapan) & Teknik',
         prodi: ['Teknik Mesin', 'Teknik Elektro', 'D4 Animasi', 'D4 Keselamatan dan Kesehatan Kerja (K3)', 'D3 Perhotelan', 'D4 Manajemen Informatika'],
@@ -752,10 +752,10 @@ const quizKarir = {
         title: 'Tipe Kreator & Inovator (KREATIF & Desain)',
         tagline: 'Kamu adalah pribadi yang imajinatif, ekspresif, dan senang melahirkan karya orisinal!',
         badge: 'INDUSTRI KREATIF',
-        color: 'text-purple-400',
-        bg: 'bg-purple-500/15',
-        border: 'border-purple-500/30',
-        borderBadge: 'border-purple-500/30 text-purple-400 bg-purple-500/10',
+        color: 'text-purple-700',
+        bg: 'bg-purple-50',
+        border: 'border-purple-200',
+        borderBadge: 'border-purple-200 text-purple-800 bg-purple-50',
         barColor: 'bg-purple-500',
         desc: 'Kamu memiliki kepekaan visual, audio, atau estetik yang kuat. Kamu menyukai kebebasan berkreasi, melahirkan inovasi ide baru, dan kurang nyaman dengan tugas yang terlalu kaku dan monoton.',
         rumpun: 'Seni dan Industri Kreatif',
@@ -770,10 +770,10 @@ const quizKarir = {
         title: 'Tipe Pembimbing & Humanis (PENDIDIKAN & Humaniora)',
         tagline: 'Kamu berjiwa sosial tinggi, senang mengajar, mendengarkan, dan membantu orang lain!',
         badge: 'PENDIDIKAN / SOSIAL',
-        color: 'text-rose-400',
-        bg: 'bg-rose-500/15',
-        border: 'border-rose-500/30',
-        borderBadge: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+        color: 'text-rose-700',
+        bg: 'bg-rose-50',
+        border: 'border-rose-200',
+        borderBadge: 'border-rose-200 text-rose-800 bg-rose-50',
         barColor: 'bg-rose-500',
         desc: 'Kamu memiliki kecerdasan emosional dan empati yang tinggi. Kamu nyaman berinteraksi, mendampingi proses perkembangan sesama, dan senang memberikan dampak positif bagi kehidupan orang lain.',
         rumpun: 'Pendidikan & Keguruan, Sosial & Humaniora',
@@ -788,10 +788,10 @@ const quizKarir = {
         title: 'Tipe Penggerak & Pengorganisir (SOSHUM & Bisnis)',
         tagline: 'Kamu cakap memimpin tim, mengambil inisiatif, dan menata dokumen secara teratur!',
         badge: 'BISNIS & MANAJEMEN',
-        color: 'text-amber-400',
-        bg: 'bg-amber-500/15',
-        border: 'border-amber-500/30',
-        borderBadge: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+        color: 'text-amber-800',
+        bg: 'bg-amber-50',
+        border: 'border-amber-200',
+        borderBadge: 'border-amber-200 text-amber-800 bg-amber-50',
         barColor: 'bg-amber-500',
         desc: 'Kamu memiliki perpaduan jiwa kepemimpinan dalam mencapai target bersama, serta ketelitian dalam mengelola data, laporan, dan dokumen operasional yang rapi terstruktur.',
         rumpun: 'Sosial dan Humaniora (Ekonomi & Manajemen)',
@@ -816,7 +816,7 @@ const quizKarir = {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className={`w-16 h-16 rounded-2xl ${primary.bg} border ${primary.border} flex items-center justify-center ${primary.color} mx-auto mb-4`}
+              className={`w-16 h-16 rounded-2xl ${primary.bg} border ${primary.border} flex items-center justify-center ${primary.color} mx-auto mb-4 shadow-sm`}
               aria-hidden="true"
             >
               {isCombination ? <Sparkles size={32} /> : <PrimaryIcon size={32} />}
@@ -824,24 +824,24 @@ const quizKarir = {
             <span className={`inline-block text-[11px] font-bold px-3 py-1 rounded-full border mb-2 ${primary.borderBadge}`}>
               {isCombination ? 'KOMBINASI MULTI-MINAT' : primary.badge}
             </span>
-            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-slate-900">
               {isCombination
                 ? `Kombinasi Minat: ${topWinners.map((w) => profiles[w].name).join(' & ')}`
                 : primary.title}
             </h3>
-            <p className="text-primary-light font-semibold text-base mb-2">
+            <p className="text-purple-600 font-semibold text-base mb-2">
               {isCombination
                 ? `Kamu memiliki potensi seimbang di bidang ${topWinners.map((w) => profiles[w].name).join(' dan ')}!`
                 : primary.tagline}
             </p>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
               {primary.desc}
             </p>
           </div>
 
           {/* Breakdown Skor Minat */}
-          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-5">
-            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-500 mb-3 text-center">
               Distribusi Skor Minat Karier (Maks. 10 Poin per Bidang)
             </h4>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
@@ -854,9 +854,9 @@ const quizKarir = {
               ].map((item) => {
                 const sc = scores[item.id]
                 return (
-                  <div key={item.id} className="bg-surface p-3.5 rounded-xl border border-white/[0.05] flex flex-col justify-between">
+                  <div key={item.id} className="bg-purple-50/60 p-3.5 rounded-2xl border border-purple-100/70 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 mb-1">
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 mb-1">
                         <item.Icon size={14} className={item.color} />
                         <span>{item.name}</span>
                       </div>
@@ -864,7 +864,7 @@ const quizKarir = {
                         {sc} <span className="text-xs text-slate-500 font-normal">/ 10</span>
                       </p>
                     </div>
-                    <div className="h-1.5 bg-surface-3 rounded-full mt-2.5 overflow-hidden">
+                    <div className="h-1.5 bg-slate-200 rounded-full mt-2.5 overflow-hidden">
                       <div
                         className={`h-full ${item.barColor} rounded-full`}
                         style={{ width: `${(sc / 10) * 100}%` }}
@@ -878,34 +878,34 @@ const quizKarir = {
 
           {/* Rekomendasi Rumpun & Jurusan */}
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="glass-card p-5 border border-white/[0.08]">
-              <h4 className="font-bold text-sm text-slate-200 mb-2 flex items-center gap-2">
-                <GraduationCap size={16} className="text-emerald-400" />
+            <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+              <h4 className="font-bold text-sm text-slate-900 mb-2 flex items-center gap-2">
+                <GraduationCap size={16} className="text-emerald-600" />
                 <span>Rekomendasi Program Studi / Jurusan:</span>
               </h4>
-              <p className="text-xs text-slate-400 mb-3">
+              <p className="text-xs text-slate-500 mb-3">
                 Kesesuaian dengan <strong>{primary.rumpun}</strong>:
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {primary.prodi.map((p) => (
-                  <span key={p} className="text-xs px-2.5 py-1 rounded-lg bg-surface-2 text-slate-200 border border-white/[0.07]">
+                  <span key={p} className="text-xs px-2.5 py-1 rounded-lg bg-purple-50 text-slate-700 border border-purple-100">
                     {p}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="glass-card p-5 border border-white/[0.08]">
-              <h4 className="font-bold text-sm text-slate-200 mb-2 flex items-center gap-2">
-                <Briefcase size={16} className="text-sky-400" />
+            <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm">
+              <h4 className="font-bold text-sm text-slate-900 mb-2 flex items-center gap-2">
+                <Briefcase size={16} className="text-sky-600" />
                 <span>Peluang Jalur Karier Masa Depan:</span>
               </h4>
-              <p className="text-xs text-slate-400 mb-3">
+              <p className="text-xs text-slate-500 mb-3">
                 Profesi yang memanfaatkan kekuatan bidang ini:
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {primary.karir.map((k) => (
-                  <span key={k} className="text-xs px-2.5 py-1 rounded-lg bg-surface-2 text-slate-200 border border-white/[0.07]">
+                  <span key={k} className="text-xs px-2.5 py-1 rounded-lg bg-purple-50 text-slate-700 border border-purple-100">
                     {k}
                   </span>
                 ))}
@@ -914,27 +914,27 @@ const quizKarir = {
           </div>
 
           {/* Tips Pengembangan Diri */}
-          <div className="glass-card p-4.5 border border-white/[0.08] flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+          <div className="bg-white/90 border border-purple-100 rounded-3xl p-5 shadow-sm flex items-start gap-3">
+            <div className="w-9 h-9 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-700 flex-shrink-0 mt-0.5">
               <Lightbulb size={18} />
             </div>
             <div>
-              <h5 className="font-bold text-xs uppercase tracking-wider text-amber-300 mb-1">
+              <h5 className="font-bold text-xs uppercase tracking-wider text-amber-800 mb-1">
                 Langkah Pengembangan yang Disarankan
               </h5>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {primary.tips}
               </p>
             </div>
           </div>
 
           {/* Refleksi IKIGAI */}
-          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
-            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
-              <Sparkles size={16} className="text-primary-light" />
+          <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+            <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+              <Sparkles size={16} className="text-amber-800" />
               <span>Refleksi Kerangka IKIGAI:</span>
             </p>
-            <p className="leading-relaxed text-slate-300">
+            <p className="leading-relaxed text-slate-700">
               Hasil asesmen ini menggambarkan apa yang kamu <strong>CINTAI (Passion)</strong> dan potensi apa yang ingin kamu jadikan <strong>KEAHLIAN (Profession)</strong>. 
               Gabungkan dengan apa yang <strong>DIBUTUHKAN LINGKUNGAN (Mission)</strong> serta <strong>PELUANG PENGHASILAN (Vocation)</strong> agar pilihan kampus dan kariermu tepat sasaran!
             </p>
@@ -944,7 +944,7 @@ const quizKarir = {
           <div className="text-center pt-2">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-purple-200 text-sm font-bold text-slate-700 hover:text-purple-800 hover:border-purple-400 shadow-sm hover:shadow-md transition-all"
             >
               <RotateCcw size={15} /> Ulangi Kuis Karir
             </button>
@@ -1217,27 +1217,27 @@ function TeknikBelajarCard({ item }) {
     >
       <div className="flex items-start justify-between gap-4 mb-1">
         <div>
-          <h4 className="font-bold text-base flex items-center gap-2 text-slate-100">
+          <h4 className="font-display font-bold text-base flex items-center gap-2 text-slate-900">
             <item.Icon size={18} className={item.accentText} /> {item.letter}. {item.name}
           </h4>
-          <p className="text-xs font-medium text-slate-400 italic mt-0.5">
+          <p className="text-xs font-semibold text-slate-500 italic mt-0.5">
             {item.subtitle}
           </p>
         </div>
         <div
-          className={`w-7 h-7 rounded-lg bg-surface-2 border border-white/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
-            isOpen ? 'rotate-180 text-white' : 'text-slate-400'
+          className={`w-7 h-7 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
+            isOpen ? 'rotate-180 text-purple-700' : 'text-slate-500'
           }`}
         >
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
 
-      <p className="text-slate-300 text-sm leading-relaxed mb-3">
+      <p className="text-slate-600 text-sm leading-relaxed mb-3">
         {item.desc}
       </p>
 
-      <div className="flex items-center justify-between text-xs font-semibold pt-2.5 border-t border-white/[0.06]">
+      <div className="flex items-center justify-between text-xs font-bold pt-2.5 border-t border-purple-100">
         <span className={item.accentText}>
           {isOpen ? 'Tutup Detail' : 'Klik untuk lihat detail'}
         </span>
@@ -1258,24 +1258,24 @@ function TeknikBelajarCard({ item }) {
             className="overflow-hidden select-text cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="pt-4 mt-3 border-t border-white/10 space-y-4">
+            <div className="pt-4 mt-3 border-t border-purple-100 space-y-4">
               <div>
-                <p className="text-xs font-bold text-slate-200 uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                <p className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2.5 flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${item.dotBg}`}></span>
                   Cara melakukannya:
                 </p>
-                <div className="space-y-2 text-xs text-slate-300">
+                <div className="space-y-2 text-xs text-slate-700">
                   {item.cara.map((step, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 leading-relaxed bg-surface-2/40 rounded-lg p-2.5 border border-white/[0.04]"
+                      className="flex items-start gap-2.5 leading-relaxed bg-purple-50/50 rounded-xl p-3 border border-purple-100/60"
                     >
                       {item.isNumbered ? (
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-white/[0.08] text-slate-300 flex items-center justify-center font-bold text-[11px]">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-purple-200/80 text-purple-900 flex items-center justify-center font-bold text-[11px]">
                           {idx + 1}
                         </span>
                       ) : (
-                        <span className="flex-shrink-0 font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px]">
+                        <span className="flex-shrink-0 font-bold text-emerald-700 px-2 py-0.5 rounded-md bg-emerald-100/80 border border-emerald-200 text-[11px]">
                           {step.label}
                         </span>
                       )}
@@ -1285,20 +1285,20 @@ function TeknikBelajarCard({ item }) {
                 </div>
               </div>
 
-              <div className="bg-surface-2/80 rounded-xl p-3.5 border border-white/[0.08]">
-                <p className="text-xs text-amber-400 font-bold mb-1 flex items-center gap-1.5">
-                  <Lightbulb size={14} className="text-amber-400" /> Contoh:
+              <div className="bg-amber-50/80 rounded-2xl p-4 border border-amber-200/60">
+                <p className="text-xs text-amber-800 font-bold mb-1 flex items-center gap-1.5">
+                  <Lightbulb size={14} className="text-amber-600" /> Contoh:
                 </p>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed">
                   {item.contoh}
                 </p>
               </div>
 
-              <div className="bg-primary/10 border border-primary/20 rounded-xl p-3.5 text-xs text-primary-light">
-                <p className="font-bold mb-1 flex items-center gap-1.5 text-primary-light">
-                  <Sparkles size={14} className="text-primary-light" /> Tips:
+              <div className="bg-purple-50/80 border border-purple-200/70 rounded-2xl p-4 text-xs text-purple-900">
+                <p className="font-bold mb-1 flex items-center gap-1.5 text-purple-700">
+                  <Sparkles size={14} className="text-purple-600" /> Tips:
                 </p>
-                <p className="leading-relaxed text-slate-300">
+                <p className="leading-relaxed text-slate-700">
                   {item.tips}
                 </p>
               </div>
@@ -1314,42 +1314,42 @@ function TeknikBelajarCard({ item }) {
 const MateriContent = {
   belajar: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-primary/10 to-accent/5 border border-primary/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-glow-primary items-center">
-        <div className="w-16 h-16 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary-light flex-shrink-0" aria-hidden="true">
+      <div className="flex gap-5 bg-gradient-to-r from-purple-100/80 to-indigo-50 border border-purple-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-purple-200 flex items-center justify-center text-purple-700 flex-shrink-0 shadow-sm" aria-hidden="true">
           <Brain size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-2">Seni Belajar Efektif (Learn How to Learn)</h2>
-          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+          <h2 className="font-display font-extrabold text-2xl lg:text-3xl text-slate-900 mb-2">Seni Belajar Efektif (Learn How to Learn)</h2>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
             Belajar bukan tentang begadang 12 jam membaca buku, tapi tentang seberapa pintar otakmu menyandikan informasi. 
             Mengenali gaya belajar hanyalah langkah pertama. Langkah kedua adalah menerapkan teknik belajar saintifik!
           </p>
         </div>
       </div>
       
-      <h3 className="font-bold text-lg mb-4 text-primary-light">1. Tiga Gaya Belajar Utama</h3>
+      <h3 className="font-display font-bold text-lg mb-4 text-purple-700">1. Tiga Gaya Belajar Utama</h3>
       <div className="grid lg:grid-cols-3 gap-4 mb-8">
         {[
           { Icon: Eye, title: 'Visual', tip: 'Gunakan mind-map, diagram, dan video.', desc: 'Otak visual memproses informasi bagaikan kamera. Warnai catatanmu, buat infografis, dan bayangkan konsep layaknya film di kepalamu.' },
           { Icon: Headphones, title: 'Auditori', tip: 'Rekam penjelasan, diskusi, dengarkan podcast.', desc: 'Otak auditori memproses informasi melalui gelombang suara. Bacakan catatanmu keras-keras atau rekam suaramu sendiri untuk diulang.' },
           { Icon: Activity, title: 'Kinestetik', tip: 'Praktek langsung, gerakan, role play.', desc: 'Tubuh adalah gurumu. Kamu gampang bosan duduk. Berjalanlah mondar-mandir saat menghafal rumus, atau gunakan benda nyata sebagai peraga.' },
         ].map(({ Icon, title, tip, desc }) => (
-          <motion.div key={title} whileHover={{ y: -4 }} className="glass-card p-6 border-t-4 border-t-primary/50 hover:border-primary/50 transition-all flex flex-col justify-between">
+          <motion.div key={title} whileHover={{ y: -4 }} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md transition-all rounded-3xl p-6 flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary-light mb-4" aria-hidden="true">
+              <div className="w-10 h-10 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 mb-4 shadow-sm" aria-hidden="true">
                 <Icon size={22} />
               </div>
-              <h3 className="font-bold text-lg mb-2">{title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-2">{title}</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">{desc}</p>
             </div>
-            <div className="text-xs text-primary-light bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
-              <strong>Super-Tip:</strong> {tip}
+            <div className="text-xs text-purple-800 bg-purple-50 border border-purple-200/80 rounded-xl px-3.5 py-2.5 font-medium">
+              <strong className="text-purple-900 font-bold">Super-Tip:</strong> {tip}
             </div>
           </motion.div>
         ))}
       </div>
 
-      <h3 className="font-bold text-lg mb-4 text-accent">2. Teknik Belajar Anti Lupa (Wajib Coba!)</h3>
+      <h3 className="font-display font-bold text-lg mb-4 text-slate-900">2. Teknik Belajar Anti Lupa (Wajib Coba!)</h3>
       <div className="grid lg:grid-cols-2 gap-4 items-start mb-4">
         {teknikBelajarList.map((item) => (
           <TeknikBelajarCard key={item.id} item={item} />
@@ -1361,13 +1361,13 @@ const MateriContent = {
   karir: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Header Banner */}
-      <div className="flex gap-5 bg-gradient-to-r from-emerald-500/10 to-accent/5 border border-emerald-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)] items-center">
-        <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0" aria-hidden="true">
+      <div className="flex gap-5 bg-gradient-to-r from-emerald-100/80 to-teal-50 border border-emerald-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-sm" aria-hidden="true">
           <Rocket size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Perencanaan Karier & Kampus Impian</h2>
-          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-3">Perencanaan Karier & Kampus Impian</h2>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
             Kenali berbagai bidang ilmu, pahami potensi diri, dan rencanakan masa depanmu! Memilih jurusan kuliah dan karier bukan sekadar mengikuti pilihan teman, tetapi perlu mempertimbangkan minat, kemampuan, nilai-nilai pribadi, serta peluang yang tersedia.
           </p>
         </div>
@@ -1376,10 +1376,10 @@ const MateriContent = {
       {/* 1. Mengenal Rumpun dan Bidang Ilmu Pengetahuan */}
       <div className="mb-10">
         <div className="mb-4">
-          <h3 className="font-bold text-xl text-emerald-400 mb-1">
+          <h3 className="font-bold text-xl text-emerald-800 mb-1">
             1. Mengenal Rumpun dan Bidang Ilmu Pengetahuan
           </h3>
-          <p className="text-slate-400 text-sm leading-relaxed">
+          <p className="text-slate-600 text-sm leading-relaxed">
             Setiap program studi memiliki karakteristik dan bidang keilmuan yang berbeda. Mengenali berbagai bidang ilmu dapat membantumu menemukan jurusan yang sesuai dengan minat dan potensi diri.
           </p>
         </div>
@@ -1391,7 +1391,7 @@ const MateriContent = {
               title: 'SAINS DAN TEKNOLOGI',
               badge: 'SAINTEK',
               border: 'border-t-emerald-500',
-              badgeBg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+              badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-200',
               desc: 'Bidang ini mempelajari ilmu pengetahuan alam, matematika, teknologi, serta penerapannya dalam kehidupan. Cocok bagi siswa yang tertarik pada penelitian, pemecahan masalah, perhitungan, dan pengembangan teknologi.',
               prodi: ['Kedokteran', 'Ilmu Komputer', 'Teknik Industri', 'Statistika', 'Farmasi', 'Biologi'],
             },
@@ -1399,8 +1399,8 @@ const MateriContent = {
               Icon: Globe,
               title: 'SOSIAL DAN HUMANIORA',
               badge: 'SOSHUM',
-              border: 'border-t-accent',
-              badgeBg: 'bg-accent/10 text-accent border-accent/20',
+              border: 'border-t-amber-500',
+              badgeBg: 'bg-amber-50 text-amber-800 border-amber-200',
               desc: 'Bidang ini mempelajari manusia, masyarakat, budaya, ekonomi, hukum, serta hubungan antarmanusia. Cocok bagi siswa yang tertarik pada fenomena sosial, komunikasi, interaksi masyarakat, dan analisis permasalahan sosial.',
               prodi: ['Psikologi', 'Manajemen', 'Ilmu Hukum', 'Hubungan Internasional', 'Ilmu Komunikasi', 'Sastra'],
             },
@@ -1408,8 +1408,8 @@ const MateriContent = {
               Icon: GraduationCap,
               title: 'PENDIDIKAN DAN KEGURUAN',
               badge: 'PENDIDIKAN',
-              border: 'border-t-amber-500',
-              badgeBg: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+              border: 'border-t-rose-500',
+              badgeBg: 'bg-rose-50 text-rose-800 border-rose-200',
               desc: 'Bidang ini berfokus pada proses pendidikan, pembelajaran, perkembangan peserta didik, serta pendampingan individu dalam lingkungan pendidikan.',
               prodi: ['Pendidikan Guru Sekolah Dasar (PGSD)', 'Pendidikan Anak Usia Dini (PAUD)', 'Bimbingan dan Konseling', 'Pendidikan Bahasa Indonesia', 'Pendidikan Matematika'],
             },
@@ -1418,7 +1418,7 @@ const MateriContent = {
               title: 'SENI DAN INDUSTRI KREATIF',
               badge: 'KREATIF',
               border: 'border-t-purple-500',
-              badgeBg: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+              badgeBg: 'bg-purple-50 text-purple-800 border-purple-200',
               desc: 'Bidang ini berkaitan dengan kreativitas, ekspresi, desain, serta pengembangan karya yang memiliki nilai estetika dan fungsi.',
               prodi: ['Desain Komunikasi Visual (DKV)', 'Desain Interior', 'Seni Musik', 'Film dan Televisi', 'Animasi'],
             },
@@ -1426,8 +1426,8 @@ const MateriContent = {
               Icon: Wrench,
               title: 'PENDIDIKAN VOKASI (TERAPAN)',
               badge: 'VOKASI',
-              border: 'border-t-royal',
-              badgeBg: 'bg-royal/10 text-royal-light border-royal/20',
+              border: 'border-t-indigo-500',
+              badgeBg: 'bg-indigo-50 text-indigo-800 border-indigo-200',
               desc: 'Pendidikan vokasi berorientasi pada pengembangan keterampilan praktis dan keahlian terapan yang dibutuhkan dalam dunia kerja. Pembelajarannya menggabungkan teori, praktik, dan pengalaman lapangan sesuai karakteristik program studi.',
               prodi: ['D3 Perhotelan', 'D4 Animasi', 'D4 Keselamatan dan Kesehatan Kerja (K3)', 'D3 Akuntansi', 'D4 Manajemen Informatika'],
             },
@@ -1435,27 +1435,27 @@ const MateriContent = {
             <motion.div
               key={title}
               whileHover={{ y: -4 }}
-              className={`glass-card p-6 border-t-4 ${border} hover:bg-white/[0.02] transition-all flex flex-col justify-between`}
+              className={`bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-t-4 ${border} transition-all flex flex-col justify-between`}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-200" aria-hidden="true">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700" aria-hidden="true">
                     <CardIcon size={22} />
                   </div>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeBg}`}>
                     {badge}
                   </span>
                 </div>
-                <h4 className="font-bold text-base tracking-wide text-slate-100 mb-2">{title}</h4>
-                <p className="text-slate-400 text-xs leading-relaxed mb-4">{desc}</p>
+                <h4 className="font-bold text-base tracking-wide text-slate-900 mb-2">{title}</h4>
+                <p className="text-slate-600 text-xs leading-relaxed mb-4">{desc}</p>
               </div>
-              <div className="bg-surface-2 p-3.5 rounded-xl border border-white/[0.05]">
+              <div className="bg-purple-50/70 p-3.5 rounded-2xl border border-purple-100/80">
                 <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold mb-2">
                   Contoh Program Studi
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {prodi.map((p) => (
-                    <span key={p} className="text-[11px] px-2 py-0.5 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.05]">
+                    <span key={p} className="text-[11px] px-2 py-0.5 rounded-md bg-white text-slate-700 border border-purple-100 shadow-2xs">
                       {p}
                     </span>
                   ))}
@@ -1465,20 +1465,20 @@ const MateriContent = {
           ))}
         </div>
 
-        <div className="text-xs text-slate-400 bg-surface-2/60 p-3.5 rounded-xl border border-white/5 flex items-start gap-2 leading-relaxed">
-          <Info size={16} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+        <div className="text-xs text-emerald-950 bg-emerald-50 p-4 rounded-2xl border border-emerald-200 flex items-start gap-2.5 leading-relaxed">
+          <Info size={16} className="text-emerald-700 flex-shrink-0 mt-0.5" />
           <span>
-            <strong>Catatan:</strong> Pengelompokan bidang ilmu di atas hanya membantu mengenali karakteristik jurusan. Satu program studi dapat memiliki keterkaitan dengan beberapa bidang ilmu sekaligus.
+            <strong className="text-emerald-900">Catatan:</strong> Pengelompokan bidang ilmu di atas hanya membantu mengenali karakteristik jurusan. Satu program studi dapat memiliki keterkaitan dengan beberapa bidang ilmu sekaligus.
           </span>
         </div>
       </div>
 
       {/* 2. Mengenal Diri Melalui Kerangka Refleksi IKIGAI */}
       <div className="mb-10">
-        <h3 className="font-bold text-xl text-amber-400 mb-2">
+        <h3 className="font-bold text-xl text-amber-900 mb-2">
           2. Mengenal Diri Melalui Kerangka Refleksi IKIGAI
         </h3>
-        <p className="text-slate-300 text-sm leading-relaxed mb-5">
+        <p className="text-slate-600 text-sm leading-relaxed mb-5">
           Sebelum menentukan jurusan dan pekerjaan impian, penting untuk mengenali hal-hal yang bermakna bagi dirimu. Salah satu kerangka refleksi yang dapat digunakan adalah <strong>IKIGAI</strong>. Dalam pengembangan karier, kerangka empat pilar ini dapat membantumu mengeksplorasi beberapa pertanyaan berikut:
         </p>
 
@@ -1490,7 +1490,8 @@ const MateriContent = {
               pertanyaan: 'Apa yang kamu CINTAI',
               desc: 'Kegiatan, bidang, atau hal apa yang membuatmu tertarik dan bersemangat?',
               border: 'border-t-rose-500',
-              color: 'text-rose-400',
+              color: 'text-rose-600',
+              bgIcon: 'bg-rose-50 border-rose-200',
             },
             {
               Icon: Award,
@@ -1498,7 +1499,8 @@ const MateriContent = {
               pertanyaan: 'Apa yang menjadi KEAHLIANMU',
               desc: 'Kemampuan dan keterampilan apa yang kamu miliki atau ingin kembangkan?',
               border: 'border-t-amber-500',
-              color: 'text-amber-400',
+              color: 'text-amber-700',
+              bgIcon: 'bg-amber-50 border-amber-200',
             },
             {
               Icon: Globe,
@@ -1506,7 +1508,8 @@ const MateriContent = {
               pertanyaan: 'Apa yang DIBUTUHKAN LINGKUNGAN',
               desc: 'Permasalahan apa yang ingin kamu bantu selesaikan melalui kemampuanmu?',
               border: 'border-t-emerald-500',
-              color: 'text-emerald-400',
+              color: 'text-emerald-700',
+              bgIcon: 'bg-emerald-50 border-emerald-200',
             },
             {
               Icon: TrendingUp,
@@ -1514,21 +1517,22 @@ const MateriContent = {
               pertanyaan: 'Apa yang MEMILIKI PELUANG PENGHASILAN',
               desc: 'Bidang pekerjaan apa yang memiliki peluang untuk memberikan penghasilan?',
               border: 'border-t-sky-500',
-              color: 'text-sky-400',
+              color: 'text-sky-700',
+              bgIcon: 'bg-sky-50 border-sky-200',
             },
           ].map((item) => (
-            <div key={item.pilar} className={`glass-card p-5 border-t-4 ${item.border} flex flex-col justify-between`}>
+            <div key={item.pilar} className={`bg-white/90 border border-purple-100/80 shadow-sm rounded-3xl p-5 border-t-4 ${item.border} flex flex-col justify-between`}>
               <div>
-                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-3" aria-hidden="true">
+                <div className={`w-10 h-10 rounded-2xl ${item.bgIcon} border flex items-center justify-center mb-3`} aria-hidden="true">
                   <item.Icon size={20} className={item.color} />
                 </div>
                 <span className={`text-[11px] font-bold uppercase tracking-wider block ${item.color}`}>
                   {item.pilar}
                 </span>
-                <h4 className="font-bold text-sm text-slate-100 mt-1 mb-2">
+                <h4 className="font-bold text-sm text-slate-900 mt-1 mb-2">
                   {item.pertanyaan}
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -1536,11 +1540,11 @@ const MateriContent = {
           ))}
         </div>
 
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
-          <p className="font-bold text-amber-300 mb-1 flex items-center gap-2">
-            <Lightbulb size={16} className="text-amber-400" /> Tips:
+        <div className="card-pastel-yellow border border-amber-300/60 rounded-3xl p-5 text-xs lg:text-sm text-slate-700 shadow-sm">
+          <p className="font-bold text-amber-900 mb-1 flex items-center gap-2">
+            <Lightbulb size={16} className="text-amber-800" /> Tips:
           </p>
-          <p className="leading-relaxed text-slate-300">
+          <p className="leading-relaxed text-slate-700">
             Jangan memilih jurusan hanya karena gengsi atau mengikuti pilihan orang lain. Pertimbangkan kesesuaian antara minat, kemampuan, nilai pribadi, kondisi, dan peluang karier. Ingat, pilihan karier dapat berkembang seiring pengalaman dan proses belajar.
           </p>
         </div>
@@ -1548,8 +1552,8 @@ const MateriContent = {
 
       {/* 3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja */}
       <div className="mb-10">
-        <h3 className="font-bold text-xl text-primary-light mb-4 flex items-center gap-2">
-          <Scale size={20} className="text-primary-light" />
+        <h3 className="font-bold text-xl text-slate-900 mb-4 flex items-center gap-2">
+          <Scale size={20} className="text-purple-600" />
           <span>3. Mitos vs Fakta Seputar Perkuliahan dan Dunia Kerja</span>
         </h3>
         <div className="grid lg:grid-cols-2 gap-4">
@@ -1575,18 +1579,18 @@ const MateriContent = {
               fakta: 'IPK dapat menjadi salah satu pertimbangan dalam proses seleksi kerja, terutama untuk posisi tertentu atau pekerjaan pertama. Namun, perusahaan juga dapat mempertimbangkan kemampuan komunikasi, kerja sama, pemecahan masalah, pengalaman, dan keterampilan sesuai bidang pekerjaan.',
             },
           ].map(({ no, mitos, fakta }) => (
-            <div key={no} className="glass-card p-5 text-xs lg:text-sm flex flex-col gap-3.5 border border-white/[0.07]">
+            <div key={no} className="bg-white/90 border border-purple-100/80 rounded-3xl p-5 shadow-sm text-xs lg:text-sm flex flex-col gap-3.5">
               <div>
-                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 mb-1.5 border border-rose-500/30">
+                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-rose-100 text-rose-700 mb-1.5 border border-rose-200">
                   {no}
                 </span>
-                <p className="text-slate-300 italic font-medium leading-snug">"{mitos}"</p>
+                <p className="text-slate-800 italic font-medium leading-snug">"{mitos}"</p>
               </div>
-              <div className="pt-3 border-t border-white/[0.06]">
-                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 mb-1.5 border border-emerald-500/30">
+              <div className="pt-3 border-t border-purple-100">
+                <span className="inline-block text-[10px] font-black px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 mb-1.5 border border-emerald-200">
                   FAKTA
                 </span>
-                <p className="text-slate-300 leading-relaxed">{fakta}</p>
+                <p className="text-slate-600 leading-relaxed">{fakta}</p>
               </div>
             </div>
           ))}
@@ -1595,11 +1599,11 @@ const MateriContent = {
 
       {/* 4. Tips Memilih Kampus dan Program Studi */}
       <div className="mb-4">
-        <h3 className="font-bold text-xl text-accent mb-2 flex items-center gap-2">
-          <Target size={20} className="text-accent" />
+        <h3 className="font-bold text-xl text-slate-900 mb-2 flex items-center gap-2">
+          <Target size={20} className="text-amber-600" />
           <span>4. Tips Memilih Kampus dan Program Studi</span>
         </h3>
-        <p className="text-slate-400 text-sm leading-relaxed mb-5">
+        <p className="text-slate-600 text-sm leading-relaxed mb-5">
           Sebelum menentukan kampus impian, coba pertimbangkan beberapa hal berikut:
         </p>
 
@@ -1645,19 +1649,19 @@ const MateriContent = {
             <motion.div
               key={item.num}
               whileHover={{ y: -3 }}
-              className="glass-card p-5 border border-white/[0.06] hover:border-accent/30 transition-all flex flex-col justify-between"
+              className="bg-white/90 border border-purple-100/80 hover:border-amber-300 shadow-sm hover:shadow-md rounded-3xl p-5 transition-all flex flex-col justify-between"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-sm flex items-center justify-center">
+                <span className="w-8 h-8 rounded-full bg-amber-100 border border-amber-300 text-amber-800 font-bold text-sm flex items-center justify-center">
                   {item.num}
                 </span>
-                <item.Icon size={20} className="text-accent" />
+                <item.Icon size={20} className="text-amber-600" />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-slate-100 mb-1.5 leading-snug">
+                <h4 className="font-bold text-sm text-slate-900 mb-1.5 leading-snug">
                   {item.title}
                 </h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -1665,13 +1669,13 @@ const MateriContent = {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent border border-emerald-500/30 rounded-2xl p-5 flex items-start gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0" aria-hidden="true">
+        <div className="card-pastel-mint border border-emerald-200/80 rounded-3xl p-5 shadow-sm flex items-start gap-3.5">
+          <div className="w-10 h-10 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-700 flex-shrink-0 shadow-sm" aria-hidden="true">
             <Sparkles size={20} />
           </div>
           <div>
-            <h4 className="font-bold text-emerald-300 text-sm mb-1">Ingat!</h4>
-            <p className="text-xs lg:text-sm text-slate-300 leading-relaxed">
+            <h4 className="font-bold text-emerald-900 text-sm mb-1">Ingat!</h4>
+            <p className="text-xs lg:text-sm text-emerald-950 leading-relaxed">
               Kampus impian bukan hanya tentang nama besar perguruan tinggi, tetapi juga tentang tempat yang dapat mendukung perkembangan kemampuan, pengetahuan, dan tujuan kariermu.
             </p>
           </div>
@@ -1682,20 +1686,20 @@ const MateriContent = {
 
   pribadi: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-royal/10 to-primary/5 border border-royal/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(168,85,247,0.15)] items-center">
-        <div className="w-16 h-16 rounded-2xl bg-royal/20 border border-royal/30 flex items-center justify-center text-royal-light flex-shrink-0" aria-hidden="true">
+      <div className="flex gap-5 bg-gradient-to-r from-purple-100/80 via-pink-50 to-violet-50 border border-purple-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-purple-200 flex items-center justify-center text-purple-700 flex-shrink-0 shadow-sm" aria-hidden="true">
           <HeartPulse size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Kesehatan Mental & Self-Care</h2>
-          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-3">Kesehatan Mental & Self-Care</h2>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
             Kamu tidak akan bisa meraih prestasi luar biasa jika "tangki emosionalmu" kosong. Mari belajar mengenali diri sendiri, mengelola stres, dan merawat kewarasan psikologis.
           </p>
         </div>
       </div>
 
-      <h3 className="font-bold text-lg mb-4 text-royal-light flex items-center gap-2">
-        <Heart size={20} className="text-royal-light" />
+      <h3 className="font-bold text-lg mb-4 text-slate-900 flex items-center gap-2">
+        <Heart size={20} className="text-purple-600" />
         <span>Toolkit P3K Psikologis (Pertolongan Pertama)</span>
       </h3>
       <div className="grid lg:grid-cols-3 gap-4 mb-6">
@@ -1704,28 +1708,28 @@ const MateriContent = {
           { Icon: Smartphone, title: 'Digital Detox', desc: 'Doom-scrolling TikTok/IG rentan memicu Insecurity. Batasi screen-time medsos maksimal 1 jam/hari, sadari bahwa yang diposting hanyalah "highlight reel".' },
           { Icon: FileEdit, title: 'Brain Dump Journal', desc: 'Susah tidur karena overthinking? Ambil kertas, tuliskan secara acak semua yang di pikiranmu tanpa memikirkan tata bahasa. Pindahkan beban dari kepala ke kertas.' },
         ].map(({ Icon: CardIcon, title, desc }) => (
-          <div key={title} className="glass-card p-5 border-t-2 border-t-royal/40 relative overflow-hidden group">
-            <div className="w-10 h-10 rounded-xl bg-royal/10 border border-royal/20 flex items-center justify-center text-royal-light mb-3" aria-hidden="true">
+          <div key={title} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-5 border-t-4 border-t-purple-400 transition-all relative overflow-hidden group">
+            <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700 mb-3" aria-hidden="true">
               <CardIcon size={20} />
             </div>
-            <h4 className="font-bold text-base mb-2 text-slate-100 flex items-center gap-2">{title}</h4>
-            <p className="text-slate-400 text-xs leading-relaxed relative z-10">{desc}</p>
+            <h4 className="font-bold text-base mb-2 text-slate-900 flex items-center gap-2">{title}</h4>
+            <p className="text-slate-600 text-xs leading-relaxed relative z-10">{desc}</p>
           </div>
         ))}
       </div>
 
-      <div className="bg-gradient-to-r from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center">
-        <div className="w-16 h-16 rounded-2xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-400 flex-shrink-0" aria-hidden="true">
+      <div className="card-pastel-peach border border-rose-200/80 rounded-3xl p-6 mt-8 flex flex-col md:flex-row gap-6 items-center shadow-sm">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-rose-200 flex items-center justify-center text-rose-600 flex-shrink-0 shadow-sm" aria-hidden="true">
           <AlertTriangle size={32} />
         </div>
         <div>
-          <h4 className="font-bold text-lg text-rose-300 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
-          <p className="text-slate-300 text-sm leading-relaxed mb-4">
+          <h4 className="font-bold text-lg text-rose-950 mb-2">Red Flags: Kapan Harus ke Konselor?</h4>
+          <p className="text-slate-700 text-sm leading-relaxed mb-4">
             Datang ke profesional bukan tanda kelemahan! Segera cari bantuan jika: <br/>
             <strong>Tidur/makan berubah ekstrem, kehilangan minat pada hobi berlarut-larut, 
             mengurung diri total, atau ada pikiran menyakiti diri sendiri.</strong>
           </p>
-          <p className="text-sm font-semibold text-white">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
+          <p className="text-sm font-bold text-rose-900">Jangan ragu, Konselor TemanBK siap mendengarkan tanpa menghakimi!</p>
         </div>
       </div>
     </div>
@@ -1733,49 +1737,49 @@ const MateriContent = {
 
   sosial: () => (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex gap-5 bg-gradient-to-r from-sky-500/10 to-teal-500/5 border border-sky-500/20 rounded-3xl p-6 lg:p-8 mb-8 shadow-[0_0_30px_rgba(14,165,233,0.15)] items-center">
-        <div className="w-16 h-16 rounded-2xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 flex-shrink-0" aria-hidden="true">
+      <div className="flex gap-5 bg-gradient-to-r from-sky-100/80 via-blue-50 to-indigo-50 border border-sky-200/80 rounded-3xl p-6 lg:p-8 mb-8 shadow-sm items-center">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-sky-200 flex items-center justify-center text-sky-600 flex-shrink-0 shadow-sm" aria-hidden="true">
           <Users size={36} />
         </div>
         <div>
-          <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">Dinamika Sosial & Pertemanan</h2>
-          <p className="text-slate-300 text-sm lg:text-base leading-relaxed">
+          <h2 className="font-display font-bold text-2xl lg:text-3xl text-slate-900 mb-3">Dinamika Sosial & Pertemanan</h2>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">
             Masa SMA diwarnai dengan pembentukan identitas sosial, konflik teman sebaya, hingga urusan perundungan. Bangun relasi yang sehat dan asah kemampuan komunikasi asertifmu.
           </p>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
-        <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-rose-400 hover:shadow-[0_8px_30px_rgba(251,113,133,0.1)] transition-all">
+        <motion.div whileHover={{ y: -4 }} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-rose-400 transition-all">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-rose-400/20 border border-rose-400/30 flex items-center justify-center text-rose-400">
+            <div className="w-10 h-10 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600">
               <Shield size={20} />
             </div>
-            <h3 className="font-bold text-lg">Anti-Bullying & Cyberbullying</h3>
+            <h3 className="font-bold text-lg text-slate-900">Anti-Bullying & Cyberbullying</h3>
           </div>
-          <p className="text-slate-400 text-sm leading-relaxed mb-4">
+          <p className="text-slate-600 text-sm leading-relaxed mb-4">
             Perundungan bukan sekadar "bercanda". Kata-kata anonim di media sosial bisa sangat menyakitkan. Apa yang harus dilakukan?
           </p>
-          <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside">
+          <ul className="text-sm text-slate-700 space-y-2 list-disc list-inside">
             <li><strong>Speak Up:</strong> Laporkan diam-diam ke guru BK atau orang tua.</li>
             <li><strong>Block & Report:</strong> Jangan umpan troll. Screenshot bukti, lalu langsung blokir akun pelaku.</li>
             <li><strong>Jadi Upstander:</strong> Tawarkan bantuan moral jika temanmu jadi korban, jangan diam menonton.</li>
           </ul>
         </motion.div>
 
-        <motion.div whileHover={{ y: -4 }} className="glass-card p-6 border-l-4 border-l-sky-400 hover:shadow-[0_8px_30px_rgba(56,189,248,0.1)] transition-all">
+        <motion.div whileHover={{ y: -4 }} className="bg-white/90 border border-purple-100/80 shadow-sm hover:shadow-md rounded-3xl p-6 border-l-4 border-l-sky-400 transition-all">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-sky-400/20 border border-sky-400/30 flex items-center justify-center text-sky-400">
+            <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600">
               <MessageCircle size={20} />
             </div>
-            <h3 className="font-bold text-lg">Komunikasi Asertif (I-Message)</h3>
+            <h3 className="font-bold text-lg text-slate-900">Komunikasi Asertif (I-Message)</h3>
           </div>
-          <p className="text-slate-400 text-sm leading-relaxed mb-4">
+          <p className="text-slate-600 text-sm leading-relaxed mb-4">
             Jangan selalu menjadi "People Pleaser" (selalu mengiyakan) atau sebaliknya menjadi agresif. Asertif adalah mengutarakan kemauan tanpa menyakiti orang lain.
           </p>
-          <div className="bg-surface-2 p-4 rounded-xl border border-white/[0.05]">
-            <p className="text-sm font-semibold text-white mb-2">Gunakan Rumus "I-Message":</p>
-            <p className="text-xs text-sky-300 italic">"Aku merasa <strong>(perasaan)</strong> saat kamu <strong>(kejadian spesifik)</strong>. Tolong ke depannya <strong>(harapanmu)</strong>."</p>
+          <div className="bg-sky-50/70 p-4 rounded-2xl border border-sky-100">
+            <p className="text-sm font-bold text-sky-950 mb-2">Gunakan Rumus "I-Message":</p>
+            <p className="text-xs text-sky-800 italic">"Aku merasa <strong>(perasaan)</strong> saat kamu <strong>(kejadian spesifik)</strong>. Tolong ke depannya <strong>(harapanmu)</strong>."</p>
           </div>
         </motion.div>
       </div>
@@ -1798,41 +1802,44 @@ export default function Layanan() {
   const setTabMode = (tab, m) => setMode((prev) => ({ ...prev, [tab]: m }))
 
   return (
-    <div>
+    <div className="space-y-6">
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">Edukasi & Kuis</p>
-        <h1 className="font-display font-bold text-4xl lg:text-5xl mb-3">
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+        <span className="text-purple-600 text-xs font-bold tracking-widest uppercase mb-1.5 block">Modul Edukasi & Asesmen</span>
+        <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-2">
           Layanan <span className="gradient-text">Informasi BK</span>
         </h1>
-        <p className="text-slate-400 max-w-xl leading-relaxed">
-          Pilih bidang yang ingin kamu eksplorasi, lalu baca materi atau ikuti kuis interaktif.
+        <p className="text-slate-600 max-w-xl text-sm sm:text-base leading-relaxed">
+          Pilih bidang yang ingin kamu eksplorasi, lalu baca rangkuman materi atau ikuti kuis interaktifnya.
         </p>
       </motion.div>
 
-      {/* Tab Nav */}
+      {/* Tab Nav (Floating Pill Style) */}
       <div
-        className="flex gap-1.5 p-1.5 bg-surface rounded-2xl border border-white/[0.07] w-fit max-w-full overflow-x-auto custom-scroll mb-7"
+        className="flex gap-2 p-1.5 bg-white/90 backdrop-blur-md rounded-full border border-purple-100 shadow-sm w-fit max-w-full overflow-x-auto custom-scroll mb-7"
         role="tablist"
         aria-label="Bidang layanan BK"
       >
-        {tabs.map(({ id, label, Icon: TabIcon }) => (
-          <button
-            key={id}
-            id={`tab-${id}`}
-            role="tab"
-            aria-selected={activeTab === id}
-            aria-controls={`tabpanel-${id}`}
-            onClick={() => setActiveTab(id)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap flex-shrink-0
-              ${activeTab === id
-                ? 'bg-grad-primary text-white shadow-glow-primary'
-                : 'text-slate-400 hover:text-slate-200'
-              }`}
-          >
-            <TabIcon size={16} /> {label}
-          </button>
-        ))}
+        {tabs.map(({ id, label, Icon: TabIcon }) => {
+          const isActive = activeTab === id
+          return (
+            <button
+              key={id}
+              id={`tab-${id}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`tabpanel-${id}`}
+              onClick={() => setActiveTab(id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap flex-shrink-0
+                ${isActive
+                  ? 'bg-[#1E1B2E] text-white shadow-md'
+                  : 'text-slate-600 hover:text-purple-700 hover:bg-purple-50/70'
+                }`}
+            >
+              <TabIcon size={16} /> {label}
+            </button>
+          )
+        })}
       </div>
 
       {/* Tab Panels */}
@@ -1849,30 +1856,33 @@ export default function Layanan() {
         >
           {/* Mode switcher */}
           <div className="flex gap-2 mb-6" role="group" aria-label="Pilih mode">
-            {['materi', 'kuis'].map((m) => (
-              <button
-                key={m}
-                onClick={() => setTabMode(activeTab, m)}
-                aria-pressed={mode[activeTab] === m}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border transition-all
-                  ${mode[activeTab] === m
-                    ? 'bg-surface-2 text-slate-200 border-white/15'
-                    : 'text-slate-500 border-transparent hover:text-slate-300 hover:border-white/10'
-                  }`}
-              >
-                {m === 'materi' ? (
-                  <>
-                    <BookOpen size={14} />
-                    <span>Baca Materi</span>
-                  </>
-                ) : (
-                  <>
-                    <HelpCircle size={14} />
-                    <span>Ikuti Kuis</span>
-                  </>
-                )}
-              </button>
-            ))}
+            {['materi', 'kuis'].map((m) => {
+              const isSelected = mode[activeTab] === m
+              return (
+                <button
+                  key={m}
+                  onClick={() => setTabMode(activeTab, m)}
+                  aria-pressed={isSelected}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold border transition-all
+                    ${isSelected
+                      ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white border-transparent shadow-[0_4px_14px_rgba(139,92,246,0.3)]'
+                      : 'bg-white/80 text-slate-600 border-purple-100 shadow-sm hover:text-purple-700 hover:bg-white'
+                    }`}
+                >
+                  {m === 'materi' ? (
+                    <>
+                      <BookOpen size={14} />
+                      <span>Baca Materi</span>
+                    </>
+                  ) : (
+                    <>
+                      <HelpCircle size={14} />
+                      <span>Ikuti Kuis</span>
+                    </>
+                  )}
+                </button>
+              )
+            })}
           </div>
 
           <AnimatePresence mode="wait">

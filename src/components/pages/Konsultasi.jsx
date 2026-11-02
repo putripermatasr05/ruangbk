@@ -28,7 +28,7 @@ const formatTime = () => {
 const renderText = (text) => {
   return text.split(/(\*\*.*?\*\*)/g).map((part, i) =>
     part.startsWith('**') && part.endsWith('**')
-      ? <strong key={i} className="font-bold text-white">{part.slice(2, -2)}</strong>
+      ? <strong key={i} className="font-bold text-slate-900">{part.slice(2, -2)}</strong>
       : part
   )
 }
@@ -100,36 +100,38 @@ export default function Konsultasi({ navigate }) {
   }
 
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-[280px_1fr] gap-5 lg:h-[calc(100vh-8rem)] lg:max-h-[680px]">
+    <div className="flex flex-col lg:grid lg:grid-cols-[290px_1fr] gap-5 lg:h-[calc(100vh-8.5rem)] lg:max-h-[700px]">
 
       {/* ── Left Info Panel ── */}
       <div className="flex flex-col gap-4 lg:sticky lg:top-0">
         {/* Status + Title */}
         <motion.div initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot" aria-hidden="true" />
-            <span className="text-emerald-400 text-xs font-bold">Online sekarang</span>
+          <div className="inline-flex items-center gap-2 mb-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-dot" aria-hidden="true" />
+            <span className="text-xs font-bold">Konselor Online</span>
           </div>
-          <h1 className="font-display font-bold text-3xl">
-            Ruang <span className="gradient-text">Konsultasi Aman</span>
+          <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 leading-tight">
+            Ruang <span className="gradient-text">Konsultasi Privat</span>
           </h1>
         </motion.div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer / Kerahasiaan in Pastel Yellow */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex gap-3 bg-amber-500/8 border border-amber-500/25 rounded-2xl p-4"
+          className="card-pastel-yellow p-4"
           role="note"
         >
-          <Lock size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="font-bold text-amber-400 text-xs mb-1">Kerahasiaan Terjamin</p>
-            <p className="text-slate-400 text-xs leading-relaxed">
-              Semua percakapan dijamin kerahasiaannya.{' '}
-              <em className="text-slate-500">Catatan: Untuk keperluan UAS, fitur ini adalah simulasi respon otomatis.</em>
-            </p>
+          <div className="flex items-start gap-2.5">
+            <Lock size={16} className="text-amber-700 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-bold text-amber-900 text-xs mb-1">Kerahasiaan Terjamin 100%</p>
+              <p className="text-slate-600 text-xs leading-relaxed">
+                Ceritamu aman dan privat.{' '}
+                <em className="text-slate-500 block mt-1">Catatan UAS: Simulasi konselor respons otomatis.</em>
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -140,6 +142,9 @@ export default function Konsultasi({ navigate }) {
           transition={{ delay: 0.2 }}
           className="flex flex-col gap-2 lg:max-h-[300px] overflow-y-auto custom-scroll pr-1"
         >
+          <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
+            Konselor Pendamping
+          </p>
           {[
             { avatar: avatarGendis, name: 'Gendis Retno W. M.', role: 'Konselor BK', alt: 'Gendis' },
             { avatar: avatarGina, name: 'Gina Naila Rahmatika', role: 'Konselor BK', alt: 'Gina' },
@@ -148,13 +153,13 @@ export default function Konsultasi({ navigate }) {
             { avatar: avatarSyifa, name: 'Syifa Aulia', role: 'Konselor BK', alt: 'Lia' },
             { avatar: avatarZourika, name: 'Zourika Nahda M.', role: 'Konselor BK', alt: 'Nada' },
           ].map(({ avatar, name, role, alt }) => (
-            <div key={name} className="glass-card flex items-center gap-3 px-4 py-3">
-              <img src={avatar} alt={alt} width={38} height={38} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+            <div key={name} className="bg-white/90 border border-purple-100/80 shadow-sm rounded-2xl flex items-center gap-3 px-3.5 py-2.5 hover:border-purple-300 transition-colors">
+              <img src={avatar} alt={alt} width={38} height={38} className="w-9 h-9 rounded-full object-cover flex-shrink-0 border border-purple-200" />
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm truncate">{name}</p>
-                <p className="text-xs text-slate-500 truncate">{role}</p>
+                <p className="font-bold text-xs text-slate-900 truncate">{name}</p>
+                <p className="text-[11px] text-slate-500 truncate">{role}</p>
               </div>
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-bg-2 flex-shrink-0" aria-label="Online" />
+              <div className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" aria-label="Online" />
             </div>
           ))}
         </motion.div>
@@ -165,11 +170,11 @@ export default function Konsultasi({ navigate }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="glass-card flex flex-col overflow-hidden h-[500px] lg:h-auto"
+        className="glass-card flex flex-col overflow-hidden h-[540px] lg:h-auto border border-white/80 shadow-[0_12px_40px_rgba(139,92,246,0.08)]"
       >
         {/* Messages */}
         <div
-          className="flex-1 overflow-y-auto p-5 flex flex-col gap-4 custom-scroll"
+          className="flex-1 overflow-y-auto p-5 sm:p-6 flex flex-col gap-4 custom-scroll bg-gradient-to-b from-white/40 to-white/70"
           role="log"
           aria-live="polite"
           aria-label="Riwayat percakapan"
@@ -185,26 +190,26 @@ export default function Konsultasi({ navigate }) {
               >
                 {/* Avatar */}
                 {msg.type === 'bot' ? (
-                  <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center flex-shrink-0 self-end text-white" aria-hidden="true">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center flex-shrink-0 self-end shadow-sm" aria-hidden="true">
                     <Bot size={16} />
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0 self-end text-slate-300" aria-hidden="true">
+                  <div className="w-8 h-8 rounded-full bg-[#1E1B2E] text-white flex items-center justify-center flex-shrink-0 self-end shadow-sm" aria-hidden="true">
                     <User size={16} />
                   </div>
                 )}
 
                 <div>
                   <div
-                    className={`px-4 py-3 rounded-2xl text-sm leading-relaxed
+                    className={`px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm
                       ${msg.type === 'bot'
-                        ? 'bg-surface-2 border border-white/[0.07] rounded-bl-sm text-slate-200'
-                        : 'bg-grad-primary text-white rounded-br-sm'
+                        ? 'bg-white border border-purple-100 rounded-bl-sm text-slate-800'
+                        : 'bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white rounded-br-sm shadow-[0_4px_16px_rgba(139,92,246,0.25)]'
                       }`}
                   >
                     {renderText(msg.text)}
                   </div>
-                  <p className={`text-[10px] text-slate-600 mt-1 ${msg.type === 'user' ? 'text-right' : ''}`}>{msg.time}</p>
+                  <p className={`text-[10px] text-slate-400 mt-1 px-1 ${msg.type === 'user' ? 'text-right' : ''}`}>{msg.time}</p>
                 </div>
               </motion.div>
             ))}
@@ -221,13 +226,13 @@ export default function Konsultasi({ navigate }) {
                 role="status"
                 aria-label="Konselor sedang mengetik"
               >
-                <div className="w-8 h-8 rounded-full bg-grad-primary flex items-center justify-center text-white" aria-hidden="true">
+                <div className="w-8 h-8 rounded-full bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center shadow-sm" aria-hidden="true">
                   <Bot size={16} />
                 </div>
-                <div className="bg-surface-2 border border-white/[0.07] px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5 items-center">
-                  <span className="w-2 h-2 rounded-full bg-primary-light animate-typing-1" />
-                  <span className="w-2 h-2 rounded-full bg-primary-light animate-typing-2" />
-                  <span className="w-2 h-2 rounded-full bg-primary-light animate-typing-3" />
+                <div className="bg-white border border-purple-100 px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5 items-center shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-typing-1" />
+                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-typing-2" />
+                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-typing-3" />
                 </div>
               </motion.div>
             )}
@@ -237,7 +242,25 @@ export default function Konsultasi({ navigate }) {
         </div>
 
         {/* Input */}
-        <div className="border-t border-white/[0.07] p-4">
+        <div className="border-t border-purple-100/60 p-4 bg-white/80 backdrop-blur-md">
+          {/* Quick topic pills */}
+          <div className="flex gap-2 mb-3 overflow-x-auto pb-1 custom-scroll">
+            {[
+              "Aku bingung pilih jurusan kuliah",
+              "Bagaimana cara mengatasi overthinking?",
+              "Teknik belajar apa yang paling cocok buatku?",
+            ].map((quickText) => (
+              <button
+                key={quickText}
+                type="button"
+                onClick={() => setInput(quickText)}
+                className="text-[11px] whitespace-nowrap px-3 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200/60 transition-colors"
+              >
+                {quickText}
+              </button>
+            ))}
+          </div>
+
           <form onSubmit={handleSend} className="flex gap-3 items-end" aria-label="Kirim pesan konsultasi">
             <textarea
               ref={inputRef}
@@ -250,11 +273,11 @@ export default function Konsultasi({ navigate }) {
                   handleSend(e)
                 }
               }}
-              placeholder="Ketik pesanmu di sini... (Enter untuk kirim)"
+              placeholder="Tulis pesan atau ceritamu di sini... (Enter untuk kirim)"
               rows={1}
               maxLength={500}
               aria-label="Tulis pesan konsultasi"
-              className="flex-1 bg-surface-2 border border-white/[0.07] rounded-2xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 resize-none focus:outline-none focus:border-primary/50 transition-colors leading-relaxed max-h-32"
+              className="flex-1 bg-white border border-purple-200/70 rounded-2xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 resize-none focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all leading-relaxed max-h-32 shadow-sm"
               style={{ overflowY: 'auto' }}
             />
             <motion.button
@@ -265,11 +288,11 @@ export default function Konsultasi({ navigate }) {
               aria-label="Kirim pesan"
               className={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all
                 ${input.trim() && !isSending
-                  ? 'bg-grad-primary shadow-glow-primary hover:shadow-[0_6px_20px_rgba(99,102,241,0.4)]'
-                  : 'bg-surface-2 border border-white/[0.07] text-slate-600 cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white shadow-[0_6px_20px_rgba(139,92,246,0.35)]'
+                  : 'bg-slate-100 border border-slate-200 text-slate-400 cursor-not-allowed'
                 }`}
             >
-              <Send size={17} className={input.trim() ? 'text-white' : ''} />
+              <Send size={17} />
             </motion.button>
           </form>
         </div>

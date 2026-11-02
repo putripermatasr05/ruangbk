@@ -183,12 +183,12 @@ export default function Galeri() {
     <div>
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <p className="text-accent text-xs font-bold tracking-widest uppercase mb-2">Media & Konten</p>
-        <h1 className="font-display font-bold text-4xl lg:text-5xl mb-3">
+        <span className="text-purple-600 text-xs font-bold tracking-widest uppercase mb-1.5 block">Media & Konten Edukatif</span>
+        <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-2">
           Galeri <span className="gradient-text">Edukasi Kreatif</span>
         </h1>
-        <p className="text-slate-400 max-w-xl leading-relaxed">
-          Jelajahi kumpulan video edukasi dan infografis hasil karya tim kami dari berbagai platform digital.
+        <p className="text-slate-600 max-w-xl text-sm sm:text-base leading-relaxed">
+          Kumpulan video reels, tiktok, dan infografis hasil karya tim konselor TemanBK.
         </p>
       </motion.div>
 
@@ -204,10 +204,10 @@ export default function Galeri() {
             whileTap={{ scale: 0.96 }}
             onClick={() => setActiveFilter(f)}
             aria-pressed={activeFilter === f}
-            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold capitalize border transition-all
+            className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold capitalize transition-all
               ${activeFilter === f
-                ? 'bg-grad-primary text-white border-transparent shadow-glow-primary'
-                : 'text-slate-400 border-white/[0.07] hover:border-white/15 hover:text-slate-200'
+                ? 'bg-[#1E1B2E] text-white shadow-md'
+                : 'bg-white/80 text-slate-600 border border-purple-100 shadow-sm hover:text-purple-700 hover:bg-white'
               }`}
           >
             {f === 'semua' ? (
@@ -240,7 +240,7 @@ export default function Galeri() {
                 exit={{ opacity: 0, scale: 0.88 }}
                 transition={{ duration: 0.25 }}
                 whileHover={{ y: -5 }}
-                className="glass-card overflow-hidden cursor-pointer group"
+                className="bg-white/90 border border-purple-100/70 rounded-3xl shadow-sm hover:shadow-md overflow-hidden cursor-pointer group transition-all"
                 role="listitem"
                 tabIndex={0}
                 onClick={() => openModal(item)}
@@ -249,24 +249,24 @@ export default function Galeri() {
               >
                 {/* Thumbnail */}
                 <div className={`relative aspect-video bg-gradient-to-br ${item.bg} overflow-hidden`}>
-                  <div className="absolute inset-0 flex items-center justify-center text-white/40 group-hover:scale-110 transition-transform duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:scale-110 transition-transform duration-500">
                     <item.Icon size={52} />
                   </div>
                   {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-slate-900">
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center text-slate-900 shadow-md">
                       {item.type === 'video' ? <Play size={20} fill="currentColor" /> : <ExternalLink size={18} />}
                     </div>
                   </div>
                   {/* Platform badge */}
-                  <span className={`absolute top-2 left-2 text-white text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full ${platformBadge[item.platform].color}`}>
+                  <span className={`absolute top-2.5 left-2.5 text-white text-[10px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full ${platformBadge[item.platform].color} shadow-sm`}>
                     {platformBadge[item.platform].label}
                   </span>
                 </div>
 
                 {/* Info */}
-                <div className="p-4">
-                  <h3 className="font-bold text-sm leading-snug mb-1 line-clamp-2">{item.title}</h3>
+                <div className="p-4 sm:p-5">
+                  <h3 className="font-bold text-sm text-slate-900 leading-snug mb-1.5 line-clamp-2 group-hover:text-purple-700 transition-colors">{item.title}</h3>
                   <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{item.desc}</p>
                 </div>
               </motion.article>
@@ -281,7 +281,7 @@ export default function Galeri() {
         closedby="any"
         aria-label="Pratinjau konten media"
         aria-modal="true"
-        className="bg-transparent border-none p-0 max-w-full max-h-full w-full h-full backdrop:bg-black/80 backdrop:backdrop-blur-md"
+        className="bg-transparent border-none p-0 max-w-full max-h-full w-full h-full backdrop:bg-black/50 backdrop:backdrop-blur-sm"
         style={{ background: 'transparent' }}
       >
         {selectedItem && (
@@ -289,7 +289,7 @@ export default function Galeri() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              className="bg-surface border border-white/[0.1] rounded-2xl overflow-hidden max-w-lg w-full shadow-card-lg"
+              className="bg-white border border-purple-100 rounded-3xl overflow-hidden max-w-lg w-full shadow-2xl"
             >
               {/* Media area */}
               <div className={`aspect-video bg-gradient-to-br ${selectedItem.bg} flex items-center justify-center text-white/50`}>
@@ -301,20 +301,20 @@ export default function Galeri() {
                 <span className={`inline-block text-white text-[10px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full mb-3 ${platformBadge[selectedItem.platform].color}`}>
                   {platformBadge[selectedItem.platform].label}
                 </span>
-                <h3 className="font-display font-bold text-lg mb-2">{selectedItem.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-5">{selectedItem.desc}</p>
+                <h3 className="font-display font-extrabold text-xl text-slate-900 mb-2">{selectedItem.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-5">{selectedItem.desc}</p>
                 <div className="flex gap-3">
                   <a
                     href={selectedItem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-grad-primary text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-glow-primary hover:shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-shadow"
+                    className="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-500 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all"
                   >
                     <ExternalLink size={15} /> Buka di {platformBadge[selectedItem.platform].label}
                   </a>
                   <button
                     onClick={closeModal}
-                    className="flex items-center gap-2 text-slate-400 text-sm font-bold px-4 py-2.5 rounded-full border border-white/10 hover:border-white/20 hover:text-white transition-all"
+                    className="flex items-center gap-2 text-slate-600 text-sm font-bold px-4 py-2.5 rounded-full border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all"
                   >
                     <X size={15} /> Tutup
                   </button>
