@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Sidebar from './components/layout/Sidebar'
 import BottomNav from './components/layout/BottomNav'
@@ -7,6 +7,7 @@ import Profil from './components/pages/Profil'
 import Layanan from './components/pages/Layanan'
 import Galeri from './components/pages/Galeri'
 import Konsultasi from './components/pages/Konsultasi'
+import PortalKonselor from './components/pages/PortalKonselor'
 
 const pageVariants = {
   initial: { opacity: 0, y: 12 },
@@ -20,19 +21,55 @@ const pages = {
   layanan: Layanan,
   galeri: Galeri,
   konsultasi: Konsultasi,
+  konselor: PortalKonselor,
+  admin: PortalKonselor,
+}
+
+const getInitialPage = () => {
+  const hash = window.location.hash.replace('#', '').toLowerCase()
+  if (hash === 'konselor' || hash === 'admin' || hash === 'portal-konselor') {
+    return 'konselor'
+  }
+  const path = window.location.pathname.replace('/', '').toLowerCase()
+  if (path === 'konselor' || path === 'admin') {
+    return 'konselor'
+  }
+  return 'beranda'
 }
 
 export default function App() {
-  const [activePage, setActivePage] = useState('beranda')
+  const [activePage, setActivePage] = useState(getInitialPage)
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase()
+      if (hash === 'konselor' || hash === 'admin' || hash === 'portal-konselor') {
+        setActivePage('konselor')
+      } else if (pages[hash]) {
+        setActivePage(hash)
+      }
+    }
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [])
 
   const navigate = (page) => {
     if (pages[page]) {
       setActivePage(page)
+      if (page === 'konselor' || page === 'admin') {
+        window.location.hash = 'konselor'
+      } else {
+        if (window.location.hash.replace('#', '') === 'konselor' || window.location.hash.replace('#', '') === 'admin') {
+          window.location.hash = ''
+        }
+      }
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }
 
-  const PageComponent = pages[activePage]
+  const PageComponent = pages[activePage] || Beranda
+  const isCounselorPortal = activePage === 'konselor' || activePage === 'admin'
+  const isChatPage = activePage === 'konsultasi'
 
   return (
     <div className="min-h-screen bg-[#FAF8FF] text-slate-800 relative">
@@ -44,11 +81,11 @@ export default function App() {
         <div className="orb orb-1 absolute w-[380px] h-[380px] bg-emerald-200/30 -bottom-10 right-10" />
       </div>
 
-      {/* Desktop Sidebar */}
-      <Sidebar activePage={activePage} navigate={navigate} />
+      {/* Desktop Sidebar (hidden if in counselor portal for clean separation) */}
+      {!isCounselorPortal && <Sidebar activePage={activePage} navigate={navigate} />}
 
       {/* Main content */}
-      <main className="lg:ml-64 min-h-screen relative z-10 pb-32 lg:pb-12">
+      <main className={`${isCounselorPortal ? 'min-h-screen' : 'lg:ml-64 min-h-screen'} relative z-10 ${isChatPage ? 'pb-20 lg:pb-12' : 'pb-32 lg:pb-12'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activePage}
@@ -58,15 +95,15 @@ export default function App() {
             exit="exit"
             className="w-full"
           >
-            <div className="max-w-6xl mx-auto px-5 lg:px-10 py-6 lg:py-10">
+            <div className={`${isChatPage ? 'max-w-6xl mx-auto px-0 sm:px-4 lg:px-10 py-0 sm:py-4 lg:py-8' : 'max-w-6xl mx-auto px-5 lg:px-10 py-6 lg:py-10'}`}>
               <PageComponent navigate={navigate} />
             </div>
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Mobile Bottom Nav */}
-      <BottomNav activePage={activePage} navigate={navigate} />
+      {/* Mobile Bottom Nav (hidden in counselor portal) */}
+      {!isCounselorPortal && <BottomNav activePage={activePage} navigate={navigate} />}
     </div>
   )
 }

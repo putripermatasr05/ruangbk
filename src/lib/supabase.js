@@ -39,16 +39,22 @@ export const onSync = (callback) => {
 }
 
 /* ─── Helper: Generate Anon Code ─── */
-export const generateAnonCode = (id) => {
-  const seed = (id || Math.random().toString()).slice(-4).toUpperCase()
-  return `Anonim #${seed}`
+export const generateAnonCode = (nameOrId) => {
+  let hash = 0
+  const str = String(nameOrId || 'anon')
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i)
+    hash |= 0
+  }
+  const hex = Math.abs(hash).toString(16).toUpperCase().padStart(4, '0').slice(-4)
+  return `Anonim #${hex}`
 }
 
 /* ─── SQL Setup Schema String (For 1-Click Copy in UI) ─── */
-export const SUPABASE_SQL_SETUP = `-- 1. Buat Tabel Siswa
+export const SUPABASE_SQL_SETUP = `-- 1. Buat Tabel Siswa (Nama, Kelas, dan PIN)
 CREATE TABLE IF NOT EXISTS public.students (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    student_id TEXT UNIQUE NOT NULL,
+    student_id TEXT UNIQUE,
     name TEXT NOT NULL,
     class_name TEXT NOT NULL,
     pin TEXT NOT NULL,
@@ -95,7 +101,7 @@ ALTER PUBLICATION supabase_realtime ADD TABLE public.consultation_messages;
 ALTER PUBLICATION supabase_realtime ADD TABLE public.consultation_threads;
 `
 
-/* ─── Student Auth (PIN-based) ─── */
+/* ─── Student Auth (Nama + PIN, Tanpa NIS) ─── */
 export const getActiveStudent = () => {
   try {
     const raw = localStorage.getItem(LS_STUDENT)
@@ -114,45 +120,46 @@ export const setActiveStudent = (student) => {
   notifySync({ type: 'AUTH_CHANGE', student })
 }
 
-export const loginOrRegisterStudent = async ({ studentId, name, className, pin }) => {
-  const cleanId = studentId.trim()
-  const cleanPin = pin.trim()
+export const loginOrRegisterStudent = async ({ name, className, pin }) => {
   const cleanName = (name || '').trim()
+  const cleanPin = (pin || '').trim()
   const cleanClass = (className || '').trim()
 
-  if (!cleanId || !cleanPin) {
-    throw new Error('ID/NIS dan PIN wajib diisi.')
+  if (!cleanName || !cleanPin) {
+    throw new Error('Nama Lengkap dan PIN wajib diisi.')
   }
 
-  // 1. Try Supabase first
+  // 1. Coba di Supabase terlebih dahulu
   try {
-    const { data: existing, error: selectErr } = await supabase
+    const { data: existingList, error: selectErr } = await supabase
       .from('students')
       .select('*')
-      .eq('student_id', cleanId)
-      .maybeSingle()
+      .ilike('name', cleanName)
+      .limit(1)
 
     if (!selectErr) {
+      const existing = existingList && existingList.length > 0 ? existingList[0] : null
       if (existing) {
-        // Verify PIN
+        // Cocokkan PIN
         if (existing.pin !== cleanPin) {
           throw new Error('PIN yang kamu masukkan salah.')
         }
         const student = {
           id: existing.id,
-          student_id: existing.student_id,
+          student_id: existing.student_id || existing.id,
           name: existing.name,
           class_name: existing.class_name,
         }
         setActiveStudent(student)
         return { student, isNew: false }
       } else {
-        // Register new
-        if (!cleanName || !cleanClass) {
-          throw new Error('Nama dan Kelas wajib diisi untuk pendaftaran baru.')
+        // Siswa belum terdaftar, buat akun baru jika ada kelas
+        if (!cleanClass) {
+          throw new Error('Nama belum terdaftar. Silakan pilih tab "Daftar Akun Baru" dan isi kelasmu.')
         }
+        const generatedId = 'std_' + Date.now().toString(36)
         const newRecord = {
-          student_id: cleanId,
+          student_id: generatedId,
           name: cleanName,
           class_name: cleanClass,
           pin: cleanPin,
@@ -176,14 +183,13 @@ export const loginOrRegisterStudent = async ({ studentId, name, className, pin }
       }
     }
   } catch (err) {
-    if (err.message && err.message.includes('PIN yang kamu masukkan salah')) {
+    if (err.message && (err.message.includes('PIN yang kamu masukkan salah') || err.message.includes('Nama belum terdaftar'))) {
       throw err
     }
-    // If Supabase table doesn't exist yet, fallback to localStorage
-    console.warn('Supabase auth fallback to localStorage:', err.message)
+    console.warn('Supabase auth fallback ke localStorage:', err.message)
   }
 
-  // 2. Fallback Storage Logic
+  // 2. Fallback Storage Logic (LocalStorage)
   const localStudentsKey = 'ruangbk_local_students'
   let localStudents = []
   try {
@@ -192,26 +198,26 @@ export const loginOrRegisterStudent = async ({ studentId, name, className, pin }
     localStudents = []
   }
 
-  const existingLocal = localStudents.find((s) => s.student_id === cleanId)
+  const existingLocal = localStudents.find((s) => s.name.toLowerCase() === cleanName.toLowerCase())
   if (existingLocal) {
     if (existingLocal.pin !== cleanPin) {
       throw new Error('PIN yang kamu masukkan salah.')
     }
     const student = {
-      id: existingLocal.id || cleanId,
-      student_id: existingLocal.student_id,
+      id: existingLocal.id || existingLocal.student_id,
+      student_id: existingLocal.student_id || existingLocal.id,
       name: existingLocal.name,
       class_name: existingLocal.class_name,
     }
     setActiveStudent(student)
     return { student, isNew: false }
   } else {
-    if (!cleanName || !cleanClass) {
-      throw new Error('Nama dan Kelas wajib diisi untuk pendaftaran baru.')
+    if (!cleanClass) {
+      throw new Error('Nama belum terdaftar. Silakan pilih tab "Daftar Akun Baru" dan isi kelasmu.')
     }
     const newStudent = {
       id: 'local_' + Date.now(),
-      student_id: cleanId,
+      student_id: 'std_' + Date.now().toString(36),
       name: cleanName,
       class_name: cleanClass,
       pin: cleanPin,
@@ -306,19 +312,18 @@ export const getThreadMessages = async (threadId) => {
 
 // Create or get active thread for student + counselor
 export const getOrCreateThread = async ({ student, counselorName, isAnonymous }) => {
-  const anonCode = generateAnonCode(student.student_id)
+  const stdIdentifier = student.student_id || student.id || student.name
+  const anonCode = generateAnonCode(stdIdentifier)
 
   try {
-    // Check if thread exists for this student & counselor
     const { data: existing, error: selErr } = await supabase
       .from('consultation_threads')
       .select('*')
-      .eq('student_id', student.student_id)
+      .eq('student_id', stdIdentifier)
       .eq('counselor_name', counselorName)
       .maybeSingle()
 
     if (!selErr && existing) {
-      // If privacy setting changed, update it
       if (existing.is_anonymous !== isAnonymous) {
         const { data: updated } = await supabase
           .from('consultation_threads')
@@ -331,9 +336,8 @@ export const getOrCreateThread = async ({ student, counselorName, isAnonymous })
       return existing
     }
 
-    // Create new thread
     const newThread = {
-      student_id: student.student_id,
+      student_id: stdIdentifier,
       student_name: student.name,
       student_class: student.class_name,
       is_anonymous: isAnonymous,
@@ -360,7 +364,7 @@ export const getOrCreateThread = async ({ student, counselorName, isAnonymous })
   // Fallback Local
   try {
     const all = JSON.parse(localStorage.getItem(LS_THREADS) || '[]')
-    let thread = all.find((t) => t.student_id === student.student_id && t.counselor_name === counselorName)
+    let thread = all.find((t) => t.student_id === stdIdentifier && t.counselor_name === counselorName)
     if (thread) {
       thread.is_anonymous = isAnonymous
       localStorage.setItem(LS_THREADS, JSON.stringify(all))
@@ -368,7 +372,7 @@ export const getOrCreateThread = async ({ student, counselorName, isAnonymous })
     }
     thread = {
       id: 'local_thread_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
-      student_id: student.student_id,
+      student_id: stdIdentifier,
       student_name: student.name,
       student_class: student.class_name,
       is_anonymous: isAnonymous,
@@ -413,7 +417,6 @@ export const sendMessage = async ({ threadId, studentId, senderType, senderName,
 
     if (!error && data) {
       sentMessage = data
-      // Update thread last_message
       await supabase
         .from('consultation_threads')
         .update({
@@ -437,7 +440,6 @@ export const sendMessage = async ({ threadId, studentId, senderType, senderName,
       allMsgs.push(sentMessage)
       localStorage.setItem(LS_MESSAGES, JSON.stringify(allMsgs))
 
-      // Update local thread
       const allThreads = JSON.parse(localStorage.getItem(LS_THREADS) || '[]')
       const targetThread = allThreads.find((t) => t.id === threadId)
       if (targetThread) {
@@ -450,9 +452,7 @@ export const sendMessage = async ({ threadId, studentId, senderType, senderName,
     }
   }
 
-  // Broadcast cross-tab
   notifySync({ type: 'NEW_MESSAGE', message: sentMessage })
-
   return sentMessage
 }
 

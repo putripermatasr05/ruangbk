@@ -80,7 +80,16 @@ export default function Sidebar({ activePage, navigate }) {
       <div className="pt-3 border-t border-purple-100/60">
         <div className="px-2 flex flex-col gap-0.5">
           <span className="text-xs font-semibold text-slate-500">© 2026 TemanBK Kelompok 1</span>
-          <span className="text-[11px] text-slate-400">Untuk Siswa SMA</span>
+          <div className="flex items-center justify-between mt-0.5">
+            <span className="text-[11px] text-slate-400">Untuk Siswa SMA</span>
+            <button
+              onClick={() => navigate('konselor')}
+              className="text-[10px] text-purple-600/70 hover:text-purple-800 hover:underline"
+              title="Khusus Guru BK"
+            >
+              Portal Guru BK
+            </button>
+          </div>
         </div>
       </div>
     </aside>
