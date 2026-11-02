@@ -9,9 +9,9 @@ import Galeri from './components/pages/Galeri'
 import Konsultasi from './components/pages/Konsultasi'
 
 const pageVariants = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] } },
-  exit: { opacity: 0, y: -8, transition: { duration: 0.2, ease: [0.4, 0, 1, 1] } },
+  initial: { opacity: 0, y: 12 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: [0.4, 0, 1, 1] } },
 }
 
 const pages = {
@@ -26,13 +26,16 @@ export default function App() {
   const [activePage, setActivePage] = useState('beranda')
 
   const navigate = (page) => {
-    if (pages[page]) setActivePage(page)
+    if (pages[page]) {
+      setActivePage(page)
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
   }
 
   const PageComponent = pages[activePage]
 
   return (
-    <div className="flex min-h-screen bg-[#FAF8FF] text-slate-800 relative overflow-hidden">
+    <div className="min-h-screen bg-[#FAF8FF] text-slate-800 relative">
       {/* Background Aurora Ambient Glows */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
         <div className="orb orb-1 absolute w-[520px] h-[520px] bg-purple-300/35 -top-24 -left-20" />
@@ -45,7 +48,7 @@ export default function App() {
       <Sidebar activePage={activePage} navigate={navigate} />
 
       {/* Main content */}
-      <main className="flex-1 ml-0 lg:ml-64 min-h-screen pb-24 lg:pb-0 relative z-10 overflow-hidden">
+      <main className="lg:ml-64 min-h-screen relative z-10 pb-32 lg:pb-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={activePage}
@@ -53,12 +56,10 @@ export default function App() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="w-full h-full"
+            className="w-full"
           >
-            <div className="overflow-y-auto h-screen custom-scroll">
-              <div className="max-w-6xl mx-auto px-5 lg:px-10 py-6 lg:py-10">
-                <PageComponent navigate={navigate} />
-              </div>
+            <div className="max-w-6xl mx-auto px-5 lg:px-10 py-6 lg:py-10">
+              <PageComponent navigate={navigate} />
             </div>
           </motion.div>
         </AnimatePresence>
