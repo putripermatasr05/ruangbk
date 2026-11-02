@@ -200,7 +200,9 @@ export default function QuizEngine({ id, title, subtitle, description, instructi
           {q.type === 'scale' && (
             <div>
               <div className="flex items-center gap-2 flex-wrap" role="radiogroup" aria-label={q.text}>
-                <span className="text-xs text-slate-500 mr-1 whitespace-nowrap">Tidak Suka</span>
+                <span className="text-xs text-slate-400 mr-1 whitespace-nowrap font-medium">
+                  {q.minLabel || 'Tidak Sesuai'}
+                </span>
                 {[1, 2, 3, 4, 5].map((n) => (
                   <label key={n} htmlFor={`${id}-q${currentQ}-${n}`}>
                     <input
@@ -225,9 +227,13 @@ export default function QuizEngine({ id, title, subtitle, description, instructi
                     </motion.span>
                   </label>
                 ))}
-                <span className="text-xs text-slate-500 ml-1 whitespace-nowrap">Sangat Suka</span>
+                <span className="text-xs text-slate-400 ml-1 whitespace-nowrap font-medium">
+                  {q.maxLabel || 'Sangat Sesuai'}
+                </span>
               </div>
-              <p className="text-xs text-slate-600 mt-2">(1 = Tidak suka sama sekali, 5 = Sangat suka)</p>
+              <p className="text-xs text-slate-500 mt-2">
+                {q.scaleHint || '(1 = Sangat Tidak Sesuai, 5 = Sangat Sesuai)'}
+              </p>
             </div>
           )}
         </motion.div>

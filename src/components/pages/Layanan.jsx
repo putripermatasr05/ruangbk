@@ -623,43 +623,335 @@ function QuizBelajarSection() {
 
 /* Quiz Data: Karir */
 const quizKarir = {
-  title: 'Asesmen Minat Karir (RIASEC Lengkap)',
-  subtitle: 'Nilai setiap pernyataan dari skala 1–5 (1: Sangat Tidak Setuju, 5: Sangat Setuju).',
+  title: 'Asesmen Eksplorasi Minat Karier & Rumpun Ilmu',
+  subtitle: 'Kenali arah minat, potensi keahlian, dan pilihan jurusan impianmu!',
+  description: 'Setiap program studi dan profesi memiliki karakteristik yang berbeda. Jawab 10 pernyataan berikut sesuai dengan ketertarikan dan kecenderungan dirimu sehari-hari.',
+  instructions: 'Terdapat 10 pernyataan dengan skala penilaian 1 (Sangat Tidak Sesuai) sampai 5 (Sangat Sesuai). Tidak ada jawaban benar atau salah, jawablah secara jujur sesuai dirimu.',
   questions: [
-    { id: 'qk1', type: 'scale', text: '1. Aku suka merakit mesin, memperbaiki peralatan, atau bekerja di luar ruangan dengan alat.', key: 'R' },
-    { id: 'qk2', type: 'scale', text: '2. Aku suka menganalisis data, melakukan eksperimen, atau memecahkan soal matematika/sains.', key: 'I' },
-    { id: 'qk3', type: 'scale', text: '3. Aku tertarik menciptakan sesuatu yang original melalui seni, desain, musik, atau tulisan.', key: 'A' },
-    { id: 'qk4', type: 'scale', text: '4. Aku menikmati mengajar, merawat, atau memberikan dukungan emosional kepada orang lain.', key: 'S' },
-    { id: 'qk5', type: 'scale', text: '5. Aku suka memimpin tim, meyakinkan orang lain, atau mengambil risiko dalam proyek/bisnis.', key: 'E' },
-    { id: 'qk6', type: 'scale', text: '6. Aku nyaman bekerja dengan data yang terorganisir, menyusun jadwal, dan mengikuti instruksi/SOP.', key: 'C' },
+    {
+      id: 'qk1',
+      type: 'scale',
+      text: '1. Saya tertarik memperbaiki atau merakit peralatan elektronik, mesin, atau benda lainnya.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk2',
+      type: 'scale',
+      text: '2. Saya senang mencari tahu penyebab suatu masalah melalui penelitian, pengamatan, atau percobaan.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk3',
+      type: 'scale',
+      text: '3. Saya senang membuat karya kreatif seperti desain, ilustrasi, tulisan, musik, atau video.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk4',
+      type: 'scale',
+      text: '4. Saya senang membantu, mengajar, atau membimbing orang lain.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk5',
+      type: 'scale',
+      text: '5. Saya tertarik memimpin kelompok, mengatur kegiatan, atau mengajak orang lain mencapai tujuan bersama.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk6',
+      type: 'scale',
+      text: '6. Saya senang mengatur dokumen, menyusun laporan, dan mengolah data secara teratur.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk7',
+      type: 'scale',
+      text: '7. Saya menikmati kegiatan praktik yang melibatkan penggunaan alat, mesin, atau keterampilan teknis.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk8',
+      type: 'scale',
+      text: '8. Saya senang menganalisis informasi dan menyelesaikan permasalahan menggunakan pemikiran logis.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk9',
+      type: 'scale',
+      text: '9. Saya tertarik mengembangkan ide-ide baru dan mengekspresikan kreativitas melalui berbagai karya.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
+    {
+      id: 'qk10',
+      type: 'scale',
+      text: '10. Saya senang berinteraksi dengan orang lain, mendengarkan permasalahan mereka, dan memberikan bantuan.',
+      minLabel: 'Tidak Sesuai',
+      maxLabel: 'Sangat Sesuai',
+    },
   ],
   getResult: (answers) => {
-    // 0:R, 1:I, 2:A, 3:S, 4:E, 5:C
     const scores = {
-      realistik: Number(answers[0] || 0),
-      investigatif: Number(answers[1] || 0),
-      artistik: Number(answers[2] || 0),
-      sosial: Number(answers[3] || 0),
-      enterprising: Number(answers[4] || 0),
-      konvensional: Number(answers[5] || 0),
+      teknis_praktik: Number(answers[0] || 0) + Number(answers[6] || 0),   // Soal 1 + 7
+      sains_analitis: Number(answers[1] || 0) + Number(answers[7] || 0),   // Soal 2 + 8
+      seni_kreatif: Number(answers[2] || 0) + Number(answers[8] || 0),     // Soal 3 + 9
+      sosial_edukasi: Number(answers[3] || 0) + Number(answers[9] || 0),    // Soal 4 + 10
+      bisnis_manajemen: Number(answers[4] || 0) + Number(answers[5] || 0), // Soal 5 + 6
     }
-    
-    // Kelompokkan menjadi rumpun dominan
-    const rumpun = {
-      teknis_sains: scores.realistik + scores.investigatif,
-      seni_kreatif: scores.artistik,
-      sosial_edukasi: scores.sosial,
-      bisnis_manajemen: scores.enterprising + scores.konvensional,
+
+    const profiles = {
+      sains_analitis: {
+        id: 'sains_analitis',
+        Icon: Atom,
+        name: 'Sains & Analisis',
+        title: 'Tipe Pemikir & Peneliti (SAINTEK)',
+        tagline: 'Kamu memiliki ketertarikan tinggi pada analisis data, sains, dan penalaran logis!',
+        badge: 'SAINTEK',
+        color: 'text-emerald-400',
+        bg: 'bg-emerald-500/15',
+        border: 'border-emerald-500/30',
+        borderBadge: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+        barColor: 'bg-emerald-500',
+        desc: 'Kamu senang mencari tahu akar penyebab suatu fenomena melalui observasi, eksperimen, dan penalaran yang mendalam. Kamu unggul dalam memproses data, konsep ilmiah, dan pemecahan masalah teknis.',
+        rumpun: 'Sains dan Teknologi (SAINTEK)',
+        prodi: ['Kedokteran', 'Ilmu Komputer', 'Teknik Industri', 'Statistika & Data Science', 'Farmasi', 'Biologi'],
+        karir: ['Data Scientist', 'Software Engineer', 'Peneliti / Akademisi', 'Dokter / Tenaga Medis', 'System Analyst'],
+        tips: 'Pertajam kemampuan problem solving dan riset mandiri. Asah logika pemrograman atau ikuti karya ilmiah remaja (KIR) untuk memaksimalkan potensimu.',
+      },
+      teknis_praktik: {
+        id: 'teknis_praktik',
+        Icon: Wrench,
+        name: 'Teknis & Praktik',
+        title: 'Tipe Praktisi & Keteknikan (VOKASI & Rekayasa)',
+        tagline: 'Kamu menyukai kegiatan praktis terapan, merakit alat, dan keterampilan nyata!',
+        badge: 'VOKASI / TEKNIK',
+        color: 'text-royal-light',
+        bg: 'bg-royal/15',
+        border: 'border-royal/30',
+        borderBadge: 'border-royal/30 text-royal-light bg-royal/10',
+        barColor: 'bg-royal',
+        desc: 'Kamu menyukai hal-hal yang konkret dan langsung terlihat hasilnya. Kamu menikmati merakit komponen mesin/elektronik, menggunakan alat kerja teknis, atau mengaplikasikan keterampilan tangan secara langsung.',
+        rumpun: 'Pendidikan Vokasi (Terapan) & Teknik',
+        prodi: ['Teknik Mesin', 'Teknik Elektro', 'D4 Animasi', 'D4 Keselamatan dan Kesehatan Kerja (K3)', 'D3 Perhotelan', 'D4 Manajemen Informatika'],
+        karir: ['Engineer Terapan', 'Hardware & Network Specialist', 'Ahli K3 Industri', 'Teknisi Mekatronika', 'Operations Specialist'],
+        tips: 'Pendidikan vokasi (D3/D4) atau politeknik dengan bobot praktik tinggi (60–70%) dan sertifikasi industri sangat cocok bagi gaya belajarmu.',
+      },
+      seni_kreatif: {
+        id: 'seni_kreatif',
+        Icon: Palette,
+        name: 'Seni & Kreatif',
+        title: 'Tipe Kreator & Inovator (KREATIF & Desain)',
+        tagline: 'Kamu adalah pribadi yang imajinatif, ekspresif, dan senang melahirkan karya orisinal!',
+        badge: 'INDUSTRI KREATIF',
+        color: 'text-purple-400',
+        bg: 'bg-purple-500/15',
+        border: 'border-purple-500/30',
+        borderBadge: 'border-purple-500/30 text-purple-400 bg-purple-500/10',
+        barColor: 'bg-purple-500',
+        desc: 'Kamu memiliki kepekaan visual, audio, atau estetik yang kuat. Kamu menyukai kebebasan berkreasi, melahirkan inovasi ide baru, dan kurang nyaman dengan tugas yang terlalu kaku dan monoton.',
+        rumpun: 'Seni dan Industri Kreatif',
+        prodi: ['Desain Komunikasi Visual (DKV)', 'Desain Interior', 'Seni Musik', 'Film dan Televisi', 'Animasi', 'Arsitektur'],
+        karir: ['Creative Director', 'UI/UX Designer', 'Animator / 3D Artist', 'Video Creator / Content Producer', 'Brand Designer'],
+        tips: 'Mulai bangun portofolio karya digital sejak sekarang di Behance atau Instagram, dan kuasai tools desain serta video editing modern.',
+      },
+      sosial_edukasi: {
+        id: 'sosial_edukasi',
+        Icon: HeartHandshake,
+        name: 'Sosial & Edukasi',
+        title: 'Tipe Pembimbing & Humanis (PENDIDIKAN & Humaniora)',
+        tagline: 'Kamu berjiwa sosial tinggi, senang mengajar, mendengarkan, dan membantu orang lain!',
+        badge: 'PENDIDIKAN / SOSIAL',
+        color: 'text-rose-400',
+        bg: 'bg-rose-500/15',
+        border: 'border-rose-500/30',
+        borderBadge: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+        barColor: 'bg-rose-500',
+        desc: 'Kamu memiliki kecerdasan emosional dan empati yang tinggi. Kamu nyaman berinteraksi, mendampingi proses perkembangan sesama, dan senang memberikan dampak positif bagi kehidupan orang lain.',
+        rumpun: 'Pendidikan & Keguruan, Sosial & Humaniora',
+        prodi: ['Bimbingan dan Konseling (BK)', 'Psikologi', 'Pendidikan Guru SD (PGSD)', 'Pendidikan Bahasa Indonesia', 'Ilmu Komunikasi', 'Hubungan Internasional'],
+        karir: ['Konselor / Guru BK', 'Pendidik / Tenaga Pengajar', 'HR & People Development', 'Public Relations Specialist', 'Pekerja Sosial'],
+        tips: 'Asah kemampuan komunikasi publik, active listening, dan ikuti kegiatan organisasi kesiswaan atau kerelawanan untuk memperkuat jiwa sosialmu.',
+      },
+      bisnis_manajemen: {
+        id: 'bisnis_manajemen',
+        Icon: TrendingUp,
+        name: 'Bisnis & Manajemen',
+        title: 'Tipe Penggerak & Pengorganisir (SOSHUM & Bisnis)',
+        tagline: 'Kamu cakap memimpin tim, mengambil inisiatif, dan menata dokumen secara teratur!',
+        badge: 'BISNIS & MANAJEMEN',
+        color: 'text-amber-400',
+        bg: 'bg-amber-500/15',
+        border: 'border-amber-500/30',
+        borderBadge: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+        barColor: 'bg-amber-500',
+        desc: 'Kamu memiliki perpaduan jiwa kepemimpinan dalam mencapai target bersama, serta ketelitian dalam mengelola data, laporan, dan dokumen operasional yang rapi terstruktur.',
+        rumpun: 'Sosial dan Humaniora (Ekonomi & Manajemen)',
+        prodi: ['Manajemen Bisnis', 'Akuntansi', 'Ilmu Hukum', 'Administrasi Bisnis / Publik', 'Manajemen Informatika'],
+        karir: ['Project Manager', 'Entrepreneur / Business Owner', 'Business Analyst', 'Auditor / Konsultan Keuangan', 'Legal Officer'],
+        tips: 'Kembangkan skill leadership dalam kepanitiaan, pelajari dasar-dasar spreadsheet, manajemen proyek, dan literasi finansial.',
+      },
     }
-    
-    const winner = Object.entries(rumpun).sort((a, b) => b[1] - a[1])[0][0]
-    const map = {
-      teknis_sains: { Icon: Atom, title: 'Tipe Pemikir & Praktisi (R/I)', desc: 'Kamu logis, analitis, dan suka hal yang pasti. Kamu unggul memecahkan masalah teknis atau ilmiah. Bidang STEM sangat menjanjikan untukmu.', tags: ['Teknik', 'Kedokteran', 'MIPA', 'IT / Programmer'] },
-      seni_kreatif: { Icon: Palette, title: 'Tipe Kreator (Artistik)', desc: 'Jiwa senimu tak terbendung! Kamu out-of-the-box dan ekspresif. Dunia membutuhkan inovasi dan sentuhan keindahan dari karyamu.', tags: ['DKV', 'Arsitektur', 'Ilmu Komunikasi', 'Seni Musik/Rupa'] },
-      sosial_edukasi: { Icon: HeartHandshake, title: 'Tipe Pembimbing (Sosial)', desc: 'Empatimu tinggi. Kamu senang interaksi manusia, mendengarkan, dan membantu orang berkembang. Lingkungan edukasi dan kesehatan masyarakat menantimu.', tags: ['Psikologi', 'Pendidikan', 'Keperawatan', 'Sosiologi'] },
-      bisnis_manajemen: { Icon: TrendingUp, title: 'Tipe Penggerak (E/C)', desc: 'Kamu memiliki jiwa kepemimpinan, suka mengorganisir, dan berorientasi pada target. Kamu sangat cocok memimpin proyek, menata administrasi, atau membangun usaha.', tags: ['Manajemen Bisnis', 'Akuntansi', 'Ilmu Hukum', 'Hubungan Internasional'] },
+
+    const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1])
+    const maxScore = sorted[0][1]
+    const topWinners = sorted.filter(([, sc]) => sc === maxScore).map(([k]) => k)
+    const isCombination = topWinners.length > 1
+    const primary = profiles[topWinners[0]]
+    const PrimaryIcon = primary.Icon
+
+    return {
+      render: ({ reset }) => (
+        <div className="space-y-6">
+          <div className="text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+              className={`w-16 h-16 rounded-2xl ${primary.bg} border ${primary.border} flex items-center justify-center ${primary.color} mx-auto mb-4`}
+              aria-hidden="true"
+            >
+              {isCombination ? <Sparkles size={32} /> : <PrimaryIcon size={32} />}
+            </motion.div>
+            <span className={`inline-block text-[11px] font-bold px-3 py-1 rounded-full border mb-2 ${primary.borderBadge}`}>
+              {isCombination ? 'KOMBINASI MULTI-MINAT' : primary.badge}
+            </span>
+            <h3 className="font-display font-bold text-2xl lg:text-3xl mb-2 text-white">
+              {isCombination
+                ? `Kombinasi Minat: ${topWinners.map((w) => profiles[w].name).join(' & ')}`
+                : primary.title}
+            </h3>
+            <p className="text-primary-light font-semibold text-base mb-2">
+              {isCombination
+                ? `Kamu memiliki potensi seimbang di bidang ${topWinners.map((w) => profiles[w].name).join(' dan ')}!`
+                : primary.tagline}
+            </p>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-xl mx-auto">
+              {primary.desc}
+            </p>
+          </div>
+
+          {/* Breakdown Skor Minat */}
+          <div className="bg-surface-2/70 border border-white/[0.08] rounded-2xl p-5">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3 text-center">
+              Distribusi Skor Minat Karier (Maks. 10 Poin per Bidang)
+            </h4>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              {[
+                profiles.sains_analitis,
+                profiles.teknis_praktik,
+                profiles.seni_kreatif,
+                profiles.sosial_edukasi,
+                profiles.bisnis_manajemen,
+              ].map((item) => {
+                const sc = scores[item.id]
+                return (
+                  <div key={item.id} className="bg-surface p-3.5 rounded-xl border border-white/[0.05] flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 mb-1">
+                        <item.Icon size={14} className={item.color} />
+                        <span>{item.name}</span>
+                      </div>
+                      <p className={`font-display font-bold text-xl ${item.color}`}>
+                        {sc} <span className="text-xs text-slate-500 font-normal">/ 10</span>
+                      </p>
+                    </div>
+                    <div className="h-1.5 bg-surface-3 rounded-full mt-2.5 overflow-hidden">
+                      <div
+                        className={`h-full ${item.barColor} rounded-full`}
+                        style={{ width: `${(sc / 10) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Rekomendasi Rumpun & Jurusan */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="glass-card p-5 border border-white/[0.08]">
+              <h4 className="font-bold text-sm text-slate-200 mb-2 flex items-center gap-2">
+                <GraduationCap size={16} className="text-emerald-400" />
+                <span>Rekomendasi Program Studi / Jurusan:</span>
+              </h4>
+              <p className="text-xs text-slate-400 mb-3">
+                Kesesuaian dengan <strong>{primary.rumpun}</strong>:
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {primary.prodi.map((p) => (
+                  <span key={p} className="text-xs px-2.5 py-1 rounded-lg bg-surface-2 text-slate-200 border border-white/[0.07]">
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-card p-5 border border-white/[0.08]">
+              <h4 className="font-bold text-sm text-slate-200 mb-2 flex items-center gap-2">
+                <Briefcase size={16} className="text-sky-400" />
+                <span>Peluang Jalur Karier Masa Depan:</span>
+              </h4>
+              <p className="text-xs text-slate-400 mb-3">
+                Profesi yang memanfaatkan kekuatan bidang ini:
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {primary.karir.map((k) => (
+                  <span key={k} className="text-xs px-2.5 py-1 rounded-lg bg-surface-2 text-slate-200 border border-white/[0.07]">
+                    {k}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Tips Pengembangan Diri */}
+          <div className="glass-card p-4.5 border border-white/[0.08] flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+              <Lightbulb size={18} />
+            </div>
+            <div>
+              <h5 className="font-bold text-xs uppercase tracking-wider text-amber-300 mb-1">
+                Langkah Pengembangan yang Disarankan
+              </h5>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {primary.tips}
+              </p>
+            </div>
+          </div>
+
+          {/* Refleksi IKIGAI */}
+          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4.5 text-xs lg:text-sm text-slate-200">
+            <p className="font-bold text-primary-light mb-1 flex items-center gap-2">
+              <Sparkles size={16} className="text-primary-light" />
+              <span>Refleksi Kerangka IKIGAI:</span>
+            </p>
+            <p className="leading-relaxed text-slate-300">
+              Hasil asesmen ini menggambarkan apa yang kamu <strong>CINTAI (Passion)</strong> dan potensi apa yang ingin kamu jadikan <strong>KEAHLIAN (Profession)</strong>. 
+              Gabungkan dengan apa yang <strong>DIBUTUHKAN LINGKUNGAN (Mission)</strong> serta <strong>PELUANG PENGHASILAN (Vocation)</strong> agar pilihan kampus dan kariermu tepat sasaran!
+            </p>
+          </div>
+
+          {/* Tombol Ulangi Kuis */}
+          <div className="text-center pt-2">
+            <button
+              onClick={reset}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-surface-2 border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-primary/40 hover:bg-primary/10 transition-all"
+            >
+              <RotateCcw size={15} /> Ulangi Kuis Karir
+            </button>
+          </div>
+        </div>
+      ),
     }
-    return map[winner]
   },
 }
 
