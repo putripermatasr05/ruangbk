@@ -294,22 +294,6 @@ export default function Beranda({ navigate }) {
             </div>
           ))}
         </div>
-
-        {/* Stats counter */}
-        <div className="mt-8 pt-6 border-t border-purple-100/60 grid grid-cols-3 gap-4 text-center">
-          <div>
-            <p className="font-display font-extrabold text-2xl sm:text-3xl text-purple-700">500+</p>
-            <p className="text-xs font-medium text-slate-500 mt-0.5">Siswa Terlayani</p>
-          </div>
-          <div>
-            <p className="font-display font-extrabold text-2xl sm:text-3xl text-indigo-700">4</p>
-            <p className="text-xs font-medium text-slate-500 mt-0.5">Bidang Layanan BK</p>
-          </div>
-          <div>
-            <p className="font-display font-extrabold text-2xl sm:text-3xl text-amber-600">6</p>
-            <p className="text-xs font-medium text-slate-500 mt-0.5">Konselor Pendamping</p>
-          </div>
-        </div>
       </section>
     </div>
   )
