@@ -43,8 +43,6 @@ const COUNSELORS = [
     firstName: 'Putri',
     role: 'Konselor BK',
     avatar: avatarPutri,
-    specialty: 'Perencanaan Karir & Kampus',
-    tag: 'Karir & Kampus',
     online: true,
   },
   {
@@ -53,8 +51,6 @@ const COUNSELORS = [
     firstName: 'Gendis',
     role: 'Konselor BK',
     avatar: avatarGendis,
-    specialty: 'Manajemen Stres & Regulasi Emosi',
-    tag: 'Stres & Emosi',
     online: true,
   },
   {
@@ -63,8 +59,6 @@ const COUNSELORS = [
     firstName: 'Gina',
     role: 'Konselor BK',
     avatar: avatarGina,
-    specialty: 'Dinamika Pertemanan & Relasi Sosial',
-    tag: 'Pertemanan',
     online: true,
   },
   {
@@ -73,8 +67,6 @@ const COUNSELORS = [
     firstName: 'Nasywa',
     role: 'Konselor BK',
     avatar: avatarNasywa,
-    specialty: 'Eksplorasi Minat & Bakat',
-    tag: 'Minat & Bakat',
     online: true,
   },
   {
@@ -83,8 +75,6 @@ const COUNSELORS = [
     firstName: 'Syifa',
     role: 'Konselor BK',
     avatar: avatarSyifa,
-    specialty: 'Self-Care & Mindfulness',
-    tag: 'Self-Care',
     online: true,
   },
   {
@@ -93,8 +83,6 @@ const COUNSELORS = [
     firstName: 'Zourika',
     role: 'Konselor BK',
     avatar: avatarZourika,
-    specialty: 'Strategi Belajar & Motivasi',
-    tag: 'Gaya Belajar',
     online: true,
   },
 ]
@@ -315,13 +303,11 @@ export default function Konsultasi() {
             />
           </div>
           <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
-              <h1 className="font-bold text-xs sm:text-sm text-slate-900 truncate">
-                {selectedCounselor.name}
-              </h1>
-            </div>
-            <p className="text-[10px] text-purple-700 font-medium truncate">
-              {selectedCounselor.specialty}
+            <h1 className="font-bold text-xs sm:text-sm text-slate-900 truncate">
+              {selectedCounselor.name}
+            </h1>
+            <p className="text-[10px] text-slate-500 font-medium truncate">
+              Konselor BK
             </p>
           </div>
         </div>
@@ -459,7 +445,7 @@ export default function Konsultasi() {
               Silakan ceritakan apa yang sedang kamu rasakan atau tanyakan seputar studi, karir, dan hal lainnya di sini.
             </div>
             <span className="text-[10px] text-slate-400 mt-1 block px-1">
-              Konselor BK • {selectedCounselor.tag}
+              Konselor BK
             </span>
           </div>
         </div>
